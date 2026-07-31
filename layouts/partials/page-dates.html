@@ -1,0 +1,10 @@
+{{ if or (not .Date.IsZero) (not .Lastmod.IsZero) }}
+  <div class="page-dates" aria-label="Даты публикации и обновления">
+    {{ if not .Date.IsZero }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">Опубликовано {{ .Date.Format "02.01.2006" }}</time>
+    {{ end }}
+    {{ if not .Lastmod.IsZero }}
+      <time datetime="{{ .Lastmod.Format "2006-01-02" }}">Обновлено {{ .Lastmod.Format "02.01.2006" }}</time>
+    {{ end }}
+  </div>
+{{ end }}
