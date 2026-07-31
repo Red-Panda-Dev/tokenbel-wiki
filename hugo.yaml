@@ -20,6 +20,10 @@ params:
   description: "Справочные материалы, руководства и статистика TokenBel."
   mainSiteURL: "https://tokenbel.info/"
   dashboardURL: "https://dashboard.tokenbel.info/"
+  tokensURL: "https://dashboard.tokenbel.info/tokens/"
+  secondMarketURL: "https://dashboard.tokenbel.info/secondhand/"
+  sharesURL: "https://dashboard.tokenbel.info/shares/"
+  bondsURL: "https://dashboard.tokenbel.info/bonds/"
   repositoryURL: "https://github.com/Red-Panda-Dev/tokenbel-wiki"
 
 menus:
