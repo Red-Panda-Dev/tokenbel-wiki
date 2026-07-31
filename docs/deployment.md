@@ -21,9 +21,9 @@ The Hugo standard edition is intentional: the site has plain CSS and only uses H
 - Production domain (not connected by this change): `wiki.tokenbel.info`
 - Static asset directory: `./public`
 - Missing URL behavior: nearest Hugo `404.html` with HTTP `404`
-- Preview URLs: enabled in `wrangler.jsonc`
+- Preview URLs: enabled in `wrangler.toml`
 
-`wrangler.jsonc` has no `main`, bindings, routes, account ID, token, secret, or custom `build` hook. Omitting the `build` hook is intentional: current Workers Builds documentation does not honor Wrangler Custom Builds as its dashboard build step. It also prevents `npx` from resolving an unpinned Wrangler before `build.sh` has executed `npm ci`. Workers Builds runs `./build.sh` as its explicit build command, then runs `npm run deploy` using the lockfile-installed Wrangler.
+`wrangler.toml` has no `main`, bindings, routes, account ID, token, secret, or custom `build` hook. Omitting the `build` hook is intentional: current Workers Builds documentation does not honor Wrangler Custom Builds as its dashboard build step. It also prevents `npx` from resolving an unpinned Wrangler before `build.sh` has executed `npm ci`. Workers Builds runs `./build.sh` as its explicit build command, then runs `npm run deploy` using the lockfile-installed Wrangler.
 
 ## Local validation
 
@@ -99,7 +99,7 @@ A repeated `./build.sh` from the same commit must succeed and must not modify tr
 
 ## Production cutover (separate approval)
 
-No route or custom domain is declared in `wrangler.jsonc`; this change does not switch production traffic.
+No route or custom domain is declared in `wrangler.toml`; this change does not switch production traffic.
 
 Before a separately approved cutover:
 
