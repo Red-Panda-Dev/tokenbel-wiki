@@ -35,6 +35,16 @@ make build
 make check
 ```
 
+The Makefile also wraps the package scripts for the Cloudflare Linux build flow:
+
+```bash
+make cloudflare-build
+make deploy-dry-run
+make deploy
+```
+
+`make deploy-dry-run` builds first and validates without publishing. `make deploy` builds first and publishes, so use it only after staging approval.
+
 Validate the Cloudflare deployment configuration and its pinned npm dependency with:
 
 ```bash

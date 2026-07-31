@@ -35,8 +35,11 @@ make help      показать команды
 make version   вывести версию Hugo
 make dev       запустить live-reload сервер с draft/future страницами
 make build     собрать production-сайт в public/
-make check     собрать сайт и проверить основной HTML-вывод
-make clean     удалить артефакты сборки
+make check             собрать сайт и проверить основной HTML-вывод
+make cloudflare-build  выполнить pinned production build для Cloudflare
+make deploy-dry-run    проверить Cloudflare deploy без публикации
+make deploy            опубликовать Worker и static assets
+make clean             удалить артефакты сборки
 ```
 
 `make serve` — алиас для `make dev`. Переменная `HUGO_IMAGE` позволяет переопределить Docker-образ, а `HUGO_VERSION` — версию Hugo.
@@ -49,7 +52,7 @@ Production deployment uses Cloudflare Workers Static Assets.
 - Worker: `tokenbel-wiki`
 - Production domain: `wiki.tokenbel.info`
 - Build: `./build.sh`
-- Deploy: `npm run deploy`
+- Deploy: `make deploy` (or `npm run deploy`)
 
 Подробные настройки Workers Builds, staging, custom domain и rollback описаны в [docs/deployment.md](docs/deployment.md). Подключение production domain выполняется только после отдельно подтверждённой staging-проверки.
 
