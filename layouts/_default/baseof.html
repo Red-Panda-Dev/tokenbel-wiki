@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="{{ site.Language.Lang | default "ru" }}">
+<html lang="{{ site.Language.Lang | default "ru" }}" class="h-full">
   <head>
     {{ partial "head.html" . }}
   </head>
-  <body>
-    <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+  <body class="flex min-h-screen flex-col bg-gray-50 px-4 font-sans text-black antialiased">
+    <a class="fixed top-2 left-2 z-[60] -translate-y-24 rounded-lg bg-black px-4 py-2 text-white transition focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-blue-600 motion-reduce:transition-none" href="#main-content">Перейти к содержимому</a>
     {{ partial "header.html" . }}
-    <main id="main-content">
+    <main id="main-content" class="container mx-auto mt-44 mb-4 w-full lg:mt-20 lg:px-0">
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}

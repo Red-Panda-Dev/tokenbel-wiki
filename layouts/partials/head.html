@@ -8,6 +8,9 @@
 {{ end }}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <title>{{ $pageTitle }}</title>
 <meta name="description" content="{{ $description }}">
 {{ if not $is404 }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
@@ -17,9 +20,7 @@
 <meta property="og:type" content="{{ if or .IsHome $is404 }}website{{ else }}article{{ end }}">
 {{ if not $is404 }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
-{{ with resources.Get "css/main.css" | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
-{{ end }}
+{{ partial "css.html" . }}
 {{ if .IsHome }}
   {{ $website := dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "url" site.BaseURL "description" site.Params.description }}
   <script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>

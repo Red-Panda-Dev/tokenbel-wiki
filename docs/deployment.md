@@ -7,12 +7,15 @@ TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is n
 | Tool | Version | Purpose |
 | --- | --- | --- |
 | Hugo | `0.164.0` (standard Linux x86_64 release) | Static-site build |
-| Node.js | `24.18.1` | Runs npm and Wrangler |
+| Node.js | `24.18.1` | Runs npm, Tailwind CSS, and Wrangler |
+| Tailwind CSS | `4.3.3` | Compiles wiki styles through Hugo |
+| Tailwind CLI | `4.3.2` | Hugo `css.TailwindCSS` backend |
+| Tailwind Typography | `0.5.20` | Styles Markdown article content |
 | Wrangler | `4.118.0` | Validates and deploys the Worker |
 
-The Hugo standard edition is intentional: the site has plain CSS and only uses Hugo's built-in `minify` and `fingerprint` Pipes, so it does not need Dart Sass or the Extended edition.
+The Hugo standard edition is intentional: Tailwind CSS 4 uses one plain-CSS source and Hugo's `css.TailwindCSS` plus `fingerprint` Pipes, so it does not need Dart Sass or the Extended edition.
 
-`build.sh` downloads Hugo and Node only when the pinned local cache is absent, validates each download against the upstream SHA-256 checksum list, sets `TZ=Europe/Amsterdam` and `HUGO_CACHEDIR=.cache/hugo`, runs `npm ci`, then runs Hugo in the `production` environment. It deliberately does not fetch Git history because `enableGitInfo: false` in `hugo.yaml`.
+`build.sh` downloads Hugo and Node only when the pinned local cache is absent, validates each download against the upstream SHA-256 checksum list, sets `TZ=Europe/Amsterdam` and `HUGO_CACHEDIR=.cache/hugo`, runs `npm ci`, then runs two Hugo production passes. The first writes complete Hugo build statistics; the second compiles every emitted Tailwind utility. It deliberately does not fetch Git history because `enableGitInfo: false` in `hugo.yaml`.
 
 ## Repository configuration
 

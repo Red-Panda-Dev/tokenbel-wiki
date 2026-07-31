@@ -88,6 +88,10 @@ log_versions() {
 }
 
 build_site() {
+  # Hugo writes build statistics after processing Tailwind sources. The second
+  # pass consumes the complete stats file so a clean build includes every
+  # utility emitted by Hugo templates.
+  "${HUGO_BIN}" --gc --minify --cleanDestinationDir --environment production
   "${HUGO_BIN}" --gc --minify --cleanDestinationDir --environment production
 }
 
