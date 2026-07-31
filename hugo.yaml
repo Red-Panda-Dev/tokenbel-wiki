@@ -44,29 +44,6 @@ menus:
       pageRef: "/about"
       weight: 50
 
-build:
-  buildStats:
-    enable: true
-  cachebusters:
-    - source: "assets/notwatching/hugo_stats\\.json"
-      target: css
-
-module:
-  mounts:
-    - source: archetypes
-      target: archetypes
-    - source: assets
-      target: assets
-    - source: content
-      target: content
-    - source: layouts
-      target: layouts
-    - source: static
-      target: static
-    - source: hugo_stats.json
-      target: assets/notwatching/hugo_stats.json
-      disableWatch: true
-
 caches:
   images:
     dir: ":cacheDir/images"

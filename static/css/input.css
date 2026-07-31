@@ -2,7 +2,6 @@
 
 @source "../../layouts/**/*.html";
 @source "../../content/**/*.{md,html}";
-@source "hugo_stats.json";
 
 @plugin "@tailwindcss/typography";
 

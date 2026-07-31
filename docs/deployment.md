@@ -7,15 +7,15 @@ TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is n
 | Tool | Version | Purpose |
 | --- | --- | --- |
 | Hugo | `0.164.0` (standard Linux x86_64 release) | Static-site build |
-| Node.js | `24.18.1` | Runs npm, Tailwind CSS, and Wrangler |
-| Tailwind CSS | `4.3.3` | Compiles wiki styles through Hugo |
-| Tailwind CLI | `4.3.2` | Hugo `css.TailwindCSS` backend |
+| Node.js | `24.18.1` | Runs npm, Tailwind CSS CLI, and Wrangler |
+| Tailwind CSS | `4.3.3` | Tailwind CSS core dependency |
+| Tailwind CLI | `4.3.2` | CLI compiler for committed static CSS |
 | Tailwind Typography | `0.5.20` | Styles Markdown article content |
 | Wrangler | `4.118.0` | Validates and deploys the Worker |
 
-The Hugo standard edition is intentional: Tailwind CSS 4 uses one plain-CSS source and Hugo's `css.TailwindCSS` plus `fingerprint` Pipes, so it does not need Dart Sass or the Extended edition.
+The Hugo standard edition is intentional: pinned standalone `@tailwindcss/cli` compiles `static/css/input.css` into committed `static/css/output.css` and minified `static/css/tailwind.min.css`; Hugo only copies static files and does not need Dart Sass or the Extended edition.
 
-`build.sh` downloads Hugo and Node only when the pinned local cache is absent, validates each download against the upstream SHA-256 checksum list, sets `TZ=Europe/Amsterdam` and `HUGO_CACHEDIR=.cache/hugo`, runs `npm ci`, then runs two Hugo production passes. The first writes complete Hugo build statistics; the second compiles every emitted Tailwind utility. It deliberately does not fetch Git history because `enableGitInfo: false` in `hugo.yaml`.
+`build.sh` downloads Hugo and Node only when the pinned local cache is absent, validates each download against the upstream SHA-256 checksum list, sets `TZ=Europe/Amsterdam` and `HUGO_CACHEDIR=.cache/hugo`, runs `npm ci`, then performs one Hugo production build. It deliberately does not fetch Git history because `enableGitInfo: false` in `hugo.yaml`.
 
 ## Repository configuration
 
@@ -48,6 +48,8 @@ make deploy
 ```
 
 `make deploy-dry-run` builds first and validates without publishing. `make deploy` builds first and publishes, so use it only after staging approval.
+
+Tailwind output is committed deliberately: change `static/css/input.css` or Tailwind classes in templates, then run `make css-build` and commit both `static/css/output.css` and `static/css/tailwind.min.css`. Run `make css-watch` in a second terminal for development updates. `make check` verifies that the committed minified file matches a fresh CLI build.
 
 Validate the Cloudflare deployment configuration and its pinned npm dependency with:
 
@@ -97,7 +99,7 @@ curl -fsS https://<staging-domain>/robots.txt
 curl -fsS https://<staging-domain>/sitemap.xml
 ```
 
-Expected status codes are `200`, `200`, `404`, and `200`. Also review keyboard navigation, focus state, mobile layout, fingerprinted CSS, favicon, section links, and PR-preview URL. The canonical URL intentionally remains `https://wiki.tokenbel.info/` even on staging; verify it has no `localhost` references.
+Expected status codes are `200`, `200`, `404`, and `200`. Also review keyboard navigation, focus state, mobile layout, `tailwind.min.css`, favicon, section links, and PR-preview URL. The canonical URL intentionally remains `https://wiki.tokenbel.info/` even on staging; verify it has no `localhost` references.
 
 A repeated `./build.sh` from the same commit must succeed and must not modify tracked files.
 

@@ -38,11 +38,13 @@ make build
 Доступные команды:
 
 ```text
-make help      показать команды
-make version   вывести версию Hugo
-make dev       запустить live-reload сервер с draft/future страницами
-make build     собрать production-сайт в public/
-make check             собрать сайт и проверить основной HTML-вывод
+make help              показать команды
+make version           вывести версию Hugo
+make css-build         пересобрать committed CSS output и minified CSS
+make css-watch         следить за input.css и обновлять output.css
+make dev               запустить live-reload сервер с draft/future страницами
+make build             собрать production-сайт в public/
+make check             проверить актуальность CSS и основной HTML-вывод
 make cloudflare-build  выполнить pinned production build для Cloudflare
 make deploy-dry-run    проверить Cloudflare deploy без публикации
 make deploy            опубликовать Worker и static assets
@@ -68,8 +70,9 @@ Production deployment uses Cloudflare Workers Static Assets.
 - `content/` — Markdown-контент и front matter;
 - `content/<section>/_index.md` — landing page раздела;
 - `layouts/` — локальные Hugo-шаблоны и partials, без внешней темы;
-- `assets/css/main.css` — Tailwind CSS 4 source, собираемый Hugo через `css.TailwindCSS`; generated CSS не коммитится;
-- `static/` — неизменяемые статические файлы.
+- `static/css/input.css` — Tailwind CSS 4 source;
+- `static/css/output.css` и `static/css/tailwind.min.css` — committed CLI output для development и production;
+- `static/` — статические файлы, копируемые Hugo без обработки.
 
 ### Новый раздел
 
@@ -101,11 +104,17 @@ make version
 make check
 ```
 
-Для CSS-сборки требуются pinned Node.js-зависимости из `package-lock.json`; внешняя Hugo-тема не используется. Hugo запускает Tailwind через `css.TailwindCSS`, поэтому отдельная Tailwind CLI-команда не нужна.
+Для CSS-сборки требуются pinned Node.js-зависимости из `package-lock.json`; внешняя Hugo-тема не используется. Standalone `@tailwindcss/cli` собирает `static/css/input.css` в committed `output.css` и minified `tailwind.min.css` — Hugo только копирует их в `public/`.
+
+После изменения Tailwind classes в шаблонах или `input.css` выполните:
+
+```bash
+make css-build
+make check
+```
 
 Для production-подобной сборки используйте:
 
 ```bash
-npm ci
-hugo --gc --minify
+./build.sh
 ```

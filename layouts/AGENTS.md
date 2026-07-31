@@ -2,7 +2,7 @@
 
 ## Scope and inheritance
 
-Applies to: `layouts/` и `assets/css/main.css` (обрабатывается здесь через Hugo Pipes).
+Applies to: `layouts/` и `static/css/input.css` (собирается standalone Tailwind CLI).
 Inherits repository-wide guidance from `/AGENTS.md`.
 This file defines only local differences для шаблонов и презентации.
 
@@ -26,8 +26,8 @@ layouts/
 
 ## Local boundaries and invariants
 
-- CSS — единственный Tailwind CSS 4 source `assets/css/main.css`; Hugo **standard** edition обрабатывает его через `resources.Get | css.TailwindCSS | fingerprint` в `partials/css.html`. Не добавляйте `.scss` / Sass `@import` и не коммитьте generated CSS.
-- Для уникального layout используйте Tailwind utilities, а для повторяющихся wiki-компонентов — semantic classes через `@apply` в `assets/css/main.css`. Все условные class strings должны быть полными literal mappings, а не динамическими фрагментами.
+- CSS source — `static/css/input.css`; pinned standalone `@tailwindcss/cli` собирает committed `static/css/output.css` (dev) и `static/css/tailwind.min.css` (production). `partials/css.html` выбирает output в development и minified файл в production. Не добавляйте `.scss` / Sass `@import`.
+- Для уникального layout используйте Tailwind utilities, а для повторяющихся wiki-компонентов — semantic classes через `@apply` в `static/css/input.css`. Все условные class strings должны быть полными literal mappings, а не динамическими фрагментами. После изменения templates/input.css выполните `make css-build` и закоммитьте оба CSS output-файла.
 - `head.html` управляет SEO: `canonical` = `.Permalink` (всегда production-домен), `noindex, follow` только для 404, OG-теги, JSON-LD на главной. Не ломайте логику canonical/robots.
 - `make check` жёстко ищет строки: `База знаний TokenBel` (home), `Страница не найдена` (404). Сохраняйте их дословно при рефакторинге.
 - Icon-enum в `section-card.html` ({news, chart, guide, document, info}) должно совпадать со значениями `icon` в `content/<section>/_index.md` (см. `content/AGENTS.md`).
@@ -41,4 +41,4 @@ layouts/
 
 ## Validation
 
-`npm ci` и `make check` после правок шаблонов; проверьте fingerprinted CSS (атрибуты `integrity=` и `crossorigin="anonymous"`), canonical на домашней и 404, а также layout на ширине 320 px.
+`npm ci`, `make css-build` и `make check` после правок шаблонов; проверьте подключение `output.css` в development и `tailwind.min.css` в production, canonical на домашней и 404, а также layout на ширине 320 px.

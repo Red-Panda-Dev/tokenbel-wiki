@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "./build.sh",
+    "css:build": "NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o static/css/output.css && NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o static/css/tailwind.min.css --minify",
+    "css:watch": "NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o static/css/output.css --watch",
     "deploy": "wrangler deploy",
     "deploy:dry-run": "wrangler deploy --dry-run"
   },

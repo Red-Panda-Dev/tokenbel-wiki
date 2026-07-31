@@ -1,12 +1,3 @@
-{{ with resources.Get "css/main.css" }}
-  {{ $options := dict "minify" (not hugo.IsDevelopment) }}
-  {{ with . | css.TailwindCSS $options }}
-    {{ if hugo.IsDevelopment }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}">
-    {{ else }}
-      {{ with . | fingerprint }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-      {{ end }}
-    {{ end }}
-  {{ end }}
-{{ end }}
+{{ $stylesheet := "css/tailwind.min.css" }}
+{{ if hugo.IsDevelopment }}{{ $stylesheet = "css/output.css" }}{{ end }}
+<link rel="stylesheet" href="{{ $stylesheet | relURL }}">
