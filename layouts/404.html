@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <section class="container not-found page-shell">
+    <p class="eyebrow">Ошибка 404</p>
+    <h1>Страница не найдена</h1>
+    <p>Возможно, адрес изменился или материал ещё не перенесён в новую wiki.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="{{ site.Home.RelPermalink }}">На главную</a>
+      <a class="button button-secondary" href="{{ "guides/" | relURL }}">Открыть руководство</a>
+    </div>
+  </section>
+{{ end }}

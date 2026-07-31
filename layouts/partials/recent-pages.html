@@ -1,0 +1,21 @@
+{{ $recentPages := where site.RegularPages "Params.excludeFromRecent" "ne" true }}
+<section class="recent-section" aria-labelledby="recent-heading">
+  <div class="section-heading">
+    <p class="eyebrow">Материалы</p>
+    <h2 id="recent-heading">Последние обновления</h2>
+  </div>
+  {{ with first 6 $recentPages.ByLastmod.Reverse }}
+    <ol class="recent-list">
+      {{ range . }}
+        <li class="recent-item">
+          <p class="recent-meta">{{ with .CurrentSection }}{{ .Title }}{{ end }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Summary }}<p>{{ . | plainify | truncate 180 }}</p>{{ end }}
+          <time datetime="{{ .Lastmod.Format "2006-01-02" }}">Обновлено {{ .Lastmod.Format "02.01.2006" }}</time>
+        </li>
+      {{ end }}
+    </ol>
+  {{ else }}
+    <p class="empty-state">Материалы появятся после переноса содержимого из текущей wiki.</p>
+  {{ end }}
+</section>

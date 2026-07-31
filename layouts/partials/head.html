@@ -1,0 +1,26 @@
+{{ $is404 := eq .Kind "404" }}
+{{ $description := .Description | default site.Params.description }}
+{{ $pageTitle := site.Title }}
+{{ if not .IsHome }}{{ $pageTitle = printf "%s | %s" .Title site.Title }}{{ end }}
+{{ if $is404 }}
+  {{ $pageTitle = printf "Страница не найдена | %s" site.Title }}
+  {{ $description = "Запрошенная страница не найдена в TokenBel Wiki." }}
+{{ end }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $pageTitle }}</title>
+<meta name="description" content="{{ $description }}">
+{{ if not $is404 }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
+{{ if $is404 }}<meta name="robots" content="noindex, follow">{{ end }}
+<meta property="og:title" content="{{ $pageTitle }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if or .IsHome $is404 }}website{{ else }}article{{ end }}">
+{{ if not $is404 }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+{{ with resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{ end }}
+{{ if .IsHome }}
+  {{ $website := dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "url" site.BaseURL "description" site.Params.description }}
+  <script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{ end }}

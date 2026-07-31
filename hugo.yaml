@@ -1,0 +1,40 @@
+baseURL: "https://wiki.tokenbel.info/"
+title: "Wiki TokenBel"
+languageCode: "ru-BY"
+defaultContentLanguage: "ru"
+enableRobotsTXT: true
+enableGitInfo: false
+
+pagination:
+  pagerSize: 12
+
+taxonomies:
+  tag: tags
+
+params:
+  description: "Справочные материалы, руководства и статистика TokenBel."
+  mainSiteURL: "https://tokenbel.info/"
+  dashboardURL: "https://dashboard.tokenbel.info/"
+  repositoryURL: "https://github.com/Red-Panda-Dev/tokenbel-wiki"
+
+menus:
+  main:
+    - name: "Новости"
+      pageRef: "/news"
+      weight: 10
+    - name: "Статистика"
+      pageRef: "/statistics"
+      weight: 20
+    - name: "Руководство"
+      pageRef: "/guides"
+      weight: 30
+    - name: "Политика"
+      pageRef: "/policies"
+      weight: 40
+    - name: "О проекте"
+      pageRef: "/about"
+      weight: 50
+
+caches:
+  images:
+    dir: ":cacheDir/images"

@@ -1,0 +1,42 @@
+{{ define "main" }}
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">TokenBel Wiki</p>
+      <h1>{{ .Title }}</h1>
+      <p class="hero-description">{{ .Description }}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ .Params.heroPrimaryURL | relURL }}">{{ .Params.heroPrimaryLabel }} <span aria-hidden="true">→</span></a>
+        <a class="button button-secondary" href="{{ .Params.heroSecondaryURL }}">{{ .Params.heroSecondaryLabel }} <span aria-hidden="true">↗</span></a>
+      </div>
+      {{ with .Content }}<div class="hero-note">{{ . }}</div>{{ end }}
+    </div>
+  </section>
+
+  <section class="container sections-section" aria-labelledby="sections-heading">
+    <div class="section-heading">
+      <p class="eyebrow">Навигация</p>
+      <h2 id="sections-heading">Основные разделы</h2>
+    </div>
+    <div class="section-grid">
+      {{ range site.Sections.ByWeight }}
+        {{ partial "section-card.html" . }}
+      {{ end }}
+    </div>
+  </section>
+
+  <div class="container">
+    {{ partial "recent-pages.html" . }}
+  </div>
+
+  <section class="container useful-links" aria-labelledby="useful-links-heading">
+    <div class="section-heading">
+      <p class="eyebrow">TokenBel</p>
+      <h2 id="useful-links-heading">Полезные ссылки</h2>
+    </div>
+    <ul>
+      <li><a href="{{ site.Params.mainSiteURL }}">Основной сайт TokenBel <span aria-hidden="true">↗</span></a></li>
+      <li><a href="{{ site.Params.dashboardURL }}">Дашборд TokenBel <span aria-hidden="true">↗</span></a></li>
+      <li><a href="{{ site.Params.repositoryURL }}">Репозиторий на GitHub <span aria-hidden="true">↗</span></a></li>
+    </ul>
+  </section>
+{{ end }}
