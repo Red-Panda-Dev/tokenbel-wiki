@@ -1,6 +1,8 @@
 ---
 title: "Privacy Policy"
 description: "How TokenBel processes and protects users’ personal data."
+date: 2025-12-06
+lastmod: 2025-12-06
 ---
 
 ## Personal Data Controller
