@@ -8,6 +8,9 @@
     "deploy:dry-run": "wrangler deploy --dry-run"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "4.3.2",
+    "@tailwindcss/typography": "0.5.20",
+    "tailwindcss": "4.3.3",
     "wrangler": "4.118.0"
   }
 }

@@ -20,10 +20,11 @@ DOCKER_CLEAN = docker run --rm \
 	--entrypoint /bin/sh \
 	$(HUGO_IMAGE)
 
-.PHONY: help version dev serve build production check clean cloudflare-build deploy deploy-dry-run
+.PHONY: help version dependencies dev serve build production check clean cloudflare-build deploy deploy-dry-run
 
 help:
 	@printf '%s\n' \
+		'make dependencies  Install pinned Node.js build dependencies in Docker' \
 		'make dev       Run the live-reloading local server' \
 		'make build     Build the production site into public/' \
 		'make check     Build and run basic output checks' \
@@ -36,7 +37,10 @@ help:
 version:
 	@$(DOCKER_RUN) hugo version
 
-dev: clean
+dependencies:
+	@$(DOCKER_RUN) npm ci --include=optional --os=linux --cpu=x64 --libc=musl
+
+dev: clean dependencies
 	@$(DOCKER_DEV) hugo server \
 		--buildDrafts \
 		--buildFuture \
@@ -47,7 +51,8 @@ dev: clean
 
 serve: dev
 
-build production: clean
+build production: clean dependencies
+	@$(DOCKER_RUN) hugo --gc --minify --environment production
 	@$(DOCKER_RUN) hugo --gc --minify --environment production
 
 check: build
@@ -68,4 +73,4 @@ deploy: cloudflare-build
 	@npm run deploy
 
 clean:
-	@$(DOCKER_CLEAN) -c 'rm -rf /src/public /src/resources /src/.hugo_build.lock /src/.cache'
+	@$(DOCKER_CLEAN) -c 'rm -rf /src/public /src/resources /src/.hugo_build.lock /src/.cache /src/hugo_stats.json'

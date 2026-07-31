@@ -1,11 +1,13 @@
 {{ define "main" }}
-  <section class="container not-found page-shell">
-    <p class="eyebrow">Ошибка 404</p>
-    <h1>Страница не найдена</h1>
-    <p>Возможно, адрес изменился или материал ещё не перенесён в новую wiki.</p>
-    <div class="hero-actions">
-      <a class="button button-primary" href="{{ site.Home.RelPermalink }}">На главную</a>
-      <a class="button button-secondary" href="{{ "guides/" | relURL }}">Открыть руководство</a>
+  <section class="page max-w-3xl" aria-labelledby="not-found-heading">
+    <div class="wiki-card">
+      <p class="eyebrow">Ошибка 404</p>
+      <h1 id="not-found-heading" class="text-3xl font-bold tracking-tight text-black sm:text-4xl">Страница не найдена</h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-gray-700">Возможно, адрес изменился или материал ещё не перенесён в новую wiki.</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="wiki-button-primary" href="{{ site.Home.RelPermalink }}">На главную</a>
+        <a class="wiki-button-secondary" href="{{ "guides/" | relURL }}">Открыть руководство</a>
+      </div>
     </div>
   </section>
 {{ end }}

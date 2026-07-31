@@ -1,19 +1,26 @@
-<article class="section-card">
-  <div class="section-icon" aria-hidden="true">
+{{ $iconClasses := dict
+  "news" "grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-700"
+  "chart" "grid h-10 w-10 place-items-center rounded-lg bg-green-50 text-green-700"
+  "guide" "grid h-10 w-10 place-items-center rounded-lg bg-purple-50 text-purple-700"
+  "document" "grid h-10 w-10 place-items-center rounded-lg bg-orange-50 text-orange-700"
+  "info" "grid h-10 w-10 place-items-center rounded-lg bg-gray-100 text-gray-700"
+}}
+<article class="wiki-card">
+  <div class="{{ index $iconClasses .Params.icon | default (index $iconClasses "info") }}" aria-hidden="true">
     {{ $icon := .Params.icon }}
     {{ if eq $icon "news" }}
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
     {{ else if eq $icon "chart" }}
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg>
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg>
     {{ else if eq $icon "guide" }}
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5z"/><path d="M5 4.5v17M9 6h6M9 10h6"/></svg>
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5z"/><path d="M5 4.5v17M9 6h6M9 10h6"/></svg>
     {{ else if eq $icon "document" }}
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></svg>
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></svg>
     {{ else }}
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>
     {{ end }}
   </div>
-  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-  <p>{{ .Description }}</p>
-  <a class="card-link" href="{{ .RelPermalink }}">Открыть раздел <span aria-hidden="true">→</span></a>
+  <h3 class="text-lg font-semibold text-black"><a class="wiki-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p class="text-sm leading-relaxed text-gray-700">{{ .Description }}</p>
+  <a class="wiki-link mt-auto inline-flex min-h-11 items-center self-start font-semibold" href="{{ .RelPermalink }}">Открыть раздел <span aria-hidden="true">→</span></a>
 </article>

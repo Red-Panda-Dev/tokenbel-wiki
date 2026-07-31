@@ -26,7 +26,8 @@ layouts/
 
 ## Local boundaries and invariants
 
-- CSS — только plain CSS. Hugo **standard** edition не поддерживает Dart Sass: `assets/css/main.css` подключается через `resources.Get | minify | fingerprint` в `head.html`. Не добавляйте `.scss` / Sass `@import`.
+- CSS — единственный Tailwind CSS 4 source `assets/css/main.css`; Hugo **standard** edition обрабатывает его через `resources.Get | css.TailwindCSS | fingerprint` в `partials/css.html`. Не добавляйте `.scss` / Sass `@import` и не коммитьте generated CSS.
+- Для уникального layout используйте Tailwind utilities, а для повторяющихся wiki-компонентов — semantic classes через `@apply` в `assets/css/main.css`. Все условные class strings должны быть полными literal mappings, а не динамическими фрагментами.
 - `head.html` управляет SEO: `canonical` = `.Permalink` (всегда production-домен), `noindex, follow` только для 404, OG-теги, JSON-LD на главной. Не ломайте логику canonical/robots.
 - `make check` жёстко ищет строки: `База знаний TokenBel` (home), `Страница не найдена` (404). Сохраняйте их дословно при рефакторинге.
 - Icon-enum в `section-card.html` ({news, chart, guide, document, info}) должно совпадать со значениями `icon` в `content/<section>/_index.md` (см. `content/AGENTS.md`).
@@ -40,4 +41,4 @@ layouts/
 
 ## Validation
 
-`make check` после правок шаблонов; проверьте fingerprinted CSS (атрибут `integrity=`) и canonical на домашней и 404.
+`npm ci` и `make check` после правок шаблонов; проверьте fingerprinted CSS (атрибуты `integrity=` и `crossorigin="anonymous"`), canonical на домашней и 404, а также layout на ширине 320 px.

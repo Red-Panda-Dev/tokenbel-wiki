@@ -6,11 +6,18 @@
 
 - Docker;
 - GNU Make;
-- Git.
+- Git;
+- Node.js и npm (для Tailwind CSS 4 build dependencies).
 
 Hugo запускается в Docker-образе `hugomods/hugo:0.164.0`, поэтому локальная версия Hugo не требуется и совпадает с версией сборки.
 
 ## Локальный запуск
+
+Установите pinned Node.js-зависимости, включая Tailwind CSS 4:
+
+```bash
+npm ci
+```
 
 Запустите live-reload сервер:
 
@@ -61,7 +68,7 @@ Production deployment uses Cloudflare Workers Static Assets.
 - `content/` — Markdown-контент и front matter;
 - `content/<section>/_index.md` — landing page раздела;
 - `layouts/` — локальные Hugo-шаблоны и partials, без внешней темы;
-- `assets/css/main.css` — исходный CSS, собираемый Hugo Pipes;
+- `assets/css/main.css` — Tailwind CSS 4 source, собираемый Hugo через `css.TailwindCSS`; generated CSS не коммитится;
 - `static/` — неизменяемые статические файлы.
 
 ### Новый раздел
@@ -94,4 +101,11 @@ make version
 make check
 ```
 
-Никаких Node.js-зависимостей или внешней Hugo-темы для сборки не требуется.
+Для CSS-сборки требуются pinned Node.js-зависимости из `package-lock.json`; внешняя Hugo-тема не используется. Hugo запускает Tailwind через `css.TailwindCSS`, поэтому отдельная Tailwind CLI-команда не нужна.
+
+Для production-подобной сборки используйте:
+
+```bash
+npm ci
+hugo --gc --minify
+```
