@@ -1,3 +1,2 @@
 {{ $stylesheet := "css/tailwind.min.css" }}
-{{ if hugo.IsDevelopment }}{{ $stylesheet = "css/output.css" }}{{ end }}
 <link rel="stylesheet" href="{{ $stylesheet | relURL }}">
