@@ -15,7 +15,9 @@
               <p class="recent-meta">{{ $.Title }}</p>
               <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
               {{ with .Summary }}<p>{{ . | plainify | truncate 180 }}</p>{{ end }}
-              <time datetime="{{ .Lastmod.Format "2006-01-02" }}">Обновлено {{ .Lastmod.Format "02.01.2006" }}</time>
+              {{ if not .Lastmod.IsZero }}
+                <time datetime="{{ .Lastmod.Format "2006-01-02" }}">Обновлено {{ .Lastmod.Format "02.01.2006" }}</time>
+              {{ end }}
             </article>
           </li>
         {{ end }}
