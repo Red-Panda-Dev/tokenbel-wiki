@@ -4,24 +4,42 @@
 
 ## Требования
 
-- Hugo (актуальная stable-версия, рекомендуется extended);
+- Docker;
+- GNU Make;
 - Git.
+
+Hugo запускается в Docker-образе `hugomods/hugo:0.164.0`, поэтому локальная версия Hugo не требуется и совпадает с версией сборки.
 
 ## Локальный запуск
 
+Запустите live-reload сервер:
+
 ```bash
-hugo server --buildDrafts
+make dev
 ```
 
-Откройте адрес, выведенный Hugo (обычно `http://localhost:1313/`).
+Откройте <http://localhost:1313/>. Порт можно изменить: `make dev PORT=8080`.
 
-## Production build
+Для production-подобного запуска соберите статический сайт:
 
 ```bash
-hugo --gc --minify
+make build
 ```
 
 Собранный сайт появится в `public/`. Эта директория — build artifact и не коммитится. Деплой настраивается отдельно.
+
+Доступные команды:
+
+```text
+make help      показать команды
+make version   вывести версию Hugo
+make dev       запустить live-reload сервер с draft/future страницами
+make build     собрать production-сайт в public/
+make check     собрать сайт и проверить основной HTML-вывод
+make clean     удалить артефакты сборки
+```
+
+`make serve` — алиас для `make dev`. Переменная `HUGO_IMAGE` позволяет переопределить Docker-образ, а `HUGO_VERSION` — версию Hugo.
 
 ## Структура
 
@@ -57,13 +75,8 @@ aliases:
 ## Валидация
 
 ```bash
-hugo version
-hugo server --buildDrafts
-hugo --gc --minify
-test -f public/index.html
-test -f public/404.html
-grep -q 'База знаний TokenBel' public/index.html
-grep -q 'Страница не найдена' public/404.html
+make version
+make check
 ```
 
 Никаких Node.js-зависимостей или внешней Hugo-темы для сборки не требуется.

@@ -1,7 +1,12 @@
 baseURL: "https://wiki.tokenbel.info/"
 title: "Wiki TokenBel"
-languageCode: "ru-BY"
 defaultContentLanguage: "ru"
+
+languages:
+  ru:
+    locale: "ru-BY"
+    label: "Русский"
+    weight: 1
 enableRobotsTXT: true
 enableGitInfo: false
 
