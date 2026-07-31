@@ -19,6 +19,7 @@ layouts/
 └── partials/
     ├── head.html            # <head>: title, canonical, robots, OG, CSS-Pipes, JSON-LD
     ├── header.html / footer.html
+    ├── page-dates.html      # «Опубликовано/Обновлено» из front matter — рендер-поверхность инварианта enableGitInfo: false
     ├── section-card.html    # Карточка раздела: рендер icon-enum
     └── recent-pages.html    # «Последние обновления»: фильтр excludeFromRecent
 ```

@@ -34,6 +34,7 @@ wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./publ
 
 Читайте по необходимости:
 
+- Архитектурные или кросс-модульные правки → `ARCHITECTURE.md` (каноническая карта слоёв, зависимостей и инвариантов)
 - Правки контента, front matter, структуры разделов → `content/AGENTS.md`
 - Правки шаблонов, SEO-мета, иконок, CSS-Pipes → `layouts/AGENTS.md`
 - Развёртывание, staging, rollback, pinned-инструменты → `docs/deployment.md`
