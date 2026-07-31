@@ -41,6 +41,18 @@ make clean     удалить артефакты сборки
 
 `make serve` — алиас для `make dev`. Переменная `HUGO_IMAGE` позволяет переопределить Docker-образ, а `HUGO_VERSION` — версию Hugo.
 
+## Deployment
+
+Production deployment uses Cloudflare Workers Static Assets.
+
+- Production branch: `main`
+- Worker: `tokenbel-wiki`
+- Production domain: `wiki.tokenbel.info`
+- Build: `./build.sh`
+- Deploy: `npm run deploy`
+
+Подробные настройки Workers Builds, staging, custom domain и rollback описаны в [docs/deployment.md](docs/deployment.md). Подключение production domain выполняется только после отдельно подтверждённой staging-проверки.
+
 ## Структура
 
 - `content/` — Markdown-контент и front matter;
