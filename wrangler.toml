@@ -23,3 +23,6 @@ persist = true
 
 [observability.traces]
 enabled = true
+
+[placement]
+mode = "smart"
