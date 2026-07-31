@@ -19,11 +19,12 @@ The Hugo standard edition is intentional: the site has plain CSS and only uses H
 - Worker name: `tokenbel-wiki`
 - Production branch: `main`
 - Production domain (not connected by this change): `wiki.tokenbel.info`
+- Configured Worker route hostname: `wi.tokenbel.info`
 - Static asset directory: `./public`
 - Missing URL behavior: nearest Hugo `404.html` with HTTP `404`
 - Preview URLs: enabled in `wrangler.toml`
 
-`wrangler.toml` has no `main`, bindings, routes, account ID, token, secret, or custom `build` hook. Omitting the `build` hook is intentional: current Workers Builds documentation does not honor Wrangler Custom Builds as its dashboard build step. It also prevents `npx` from resolving an unpinned Wrangler before `build.sh` has executed `npm ci`. Workers Builds runs `./build.sh` as its explicit build command, then runs `npm run deploy` using the lockfile-installed Wrangler.
+`wrangler.toml` has no `main`, bindings, account ID, token, secret, or custom `build` hook. It declares the `wi.tokenbel.info` routes and enables Workers observability logs and traces. Omitting the `build` hook is intentional: current Workers Builds documentation does not honor Wrangler Custom Builds as its dashboard build step. It also prevents `npx` from resolving an unpinned Wrangler before `build.sh` has executed `npm ci`. Workers Builds runs `./build.sh` as its explicit build command, then runs `npm run deploy` using the lockfile-installed Wrangler.
 
 ## Local validation
 
@@ -99,7 +100,7 @@ A repeated `./build.sh` from the same commit must succeed and must not modify tr
 
 ## Production cutover (separate approval)
 
-No route or custom domain is declared in `wrangler.toml`; this change does not switch production traffic.
+The `wi.tokenbel.info` route and custom domain are declared in `wrangler.toml`; publishing this configuration still requires the Cloudflare account and DNS state to be confirmed separately. The production hostname `wiki.tokenbel.info` remains unchanged by this change.
 
 Before a separately approved cutover:
 

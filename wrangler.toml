@@ -5,3 +5,21 @@ preview_urls = true
 [assets]
 directory = "./public"
 not_found_handling = "404-page"
+
+[[routes]]
+pattern = "wi.tokenbel.info/*"
+zone_name = "tokenbel.info"
+
+[[routes]]
+pattern = "wi.tokenbel.info"
+custom_domain = true
+
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
+
+[observability.traces]
+enabled = true
