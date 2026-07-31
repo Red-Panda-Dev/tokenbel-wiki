@@ -13,5 +13,15 @@
     <div class="prose">
       {{ .Content }}
     </div>
+    {{ with .GetTerms "tags" }}
+      <footer class="article-footer">
+        <h2>Теги</h2>
+        <ul class="tag-list" aria-label="Теги статьи">
+          {{ range . }}
+            <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          {{ end }}
+        </ul>
+      </footer>
+    {{ end }}
   </article>
 {{ end }}
