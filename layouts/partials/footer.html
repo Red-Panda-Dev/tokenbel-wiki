@@ -1,14 +1,16 @@
-<footer class="mt-auto border-t border-gray-300 bg-white">
-  <div class="mx-auto grid w-full max-w-7xl gap-4 py-8 text-sm text-gray-700 md:grid-cols-[1.6fr_1fr_auto] md:items-end">
-    <div>
-      <p class="font-bold text-black">TokenBel Wiki</p>
-      <p>Справочные материалы по сервису TokenBel и рынку белорусских токенов.</p>
+<footer class="shadow-md-[0_-6px_12px_rgba(0,0,0,0.1)] mt-auto bg-white">
+    <div class="stack-gap-2 container mx-auto items-center justify-between py-4 text-sm flex flex-col md:flex-row">
+        <div class="stack-gap-2 flex-col items-center sm:items-start">
+            <a href="https://wiki.tokenbel.info" class="transition-opacity hover:opacity-80">
+                <img src="{{ "wiki_logo.svg" | relURL }}" alt="TokenBel Wiki" class="h-7 w-auto">
+            </a>
+            <p class="text-sm text-gray-700">Справочные материалы по сервису TokenBel и рынку белорусских токенов.</p>
+            <p class="text-sm text-gray-700">© 2025 – 2026, <a class="active-a" href="{{ site.Params.mainSiteURL }}">TokenBel</a></p>
+        </div>
+        <div class="flex flex-col items-center md:flex-row md:gap-1" aria-label="Внешние ссылки">
+            <a class="active-a inline-flex rounded-lg px-4 py-2 items-center font-semibold" href="{{ site.Params.mainSiteURL }}">TokenBel</a>
+            <a class="active-a inline-flex rounded-lg px-4 py-2 items-center font-semibold" href="{{ site.Params.dashboardURL }}">Компании</a>
+            <a class="active-a inline-flex rounded-lg px-4 py-2 items-center font-semibold" href="{{ site.Params.repositoryURL }}">GitHub</a>
+        </div>
     </div>
-    <nav class="flex flex-wrap gap-x-4 gap-y-2" aria-label="Внешние ссылки">
-      <a class="wiki-link inline-flex min-h-10 items-center font-semibold" href="{{ site.Params.mainSiteURL }}">Основной сайт <span aria-hidden="true">↗</span></a>
-      <a class="wiki-link inline-flex min-h-10 items-center font-semibold" href="{{ site.Params.dashboardURL }}">Дашборд <span aria-hidden="true">↗</span></a>
-      <a class="wiki-link inline-flex min-h-10 items-center font-semibold" href="{{ site.Params.repositoryURL }}">GitHub <span aria-hidden="true">↗</span></a>
-    </nav>
-    <p class="text-xs">© 2025–2026 TokenBel</p>
-  </div>
 </footer>

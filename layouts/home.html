@@ -1,43 +1,108 @@
 {{ define "main" }}
-  <div class="page">
+<div class="page">
     <section class="wiki-card p-4 sm:p-6" aria-labelledby="hero-heading">
-      <p class="eyebrow">TokenBel Wiki</p>
-      <h1 id="hero-heading" class="max-w-3xl text-4xl font-bold tracking-tight text-black sm:text-5xl">{{ .Title }}</h1>
-      <p class="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700">{{ .Description }}</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a class="wiki-button-primary" href="{{ .Params.heroPrimaryURL | relURL }}">{{ .Params.heroPrimaryLabel }} <span aria-hidden="true">→</span></a>
-        <a class="wiki-button-secondary" href="{{ .Params.heroSecondaryURL }}">{{ .Params.heroSecondaryLabel }} <span aria-hidden="true">↗</span></a>
-      </div>
-      {{ with .Content }}<div class="mt-5 max-w-3xl text-sm leading-relaxed text-gray-700">{{ . }}</div>{{ end }}
+        <p class="eyebrow">TokenBel Wiki</p>
+        <h1
+            id="hero-heading"
+            class="max-w-3xl text-4xl font-bold tracking-tight text-black sm:text-5xl"
+        >
+            {{ .Title }}
+        </h1>
+        <p class="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700">
+            {{ .Description }}
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+            <a
+                class="wiki-button-primary"
+                href="{{ .Params.heroPrimaryURL | relURL }}"
+                >{{ .Params.heroPrimaryLabel }}
+                <span aria-hidden="true">→</span></a
+            >
+            <a
+                class="wiki-button-secondary"
+                href="{{ .Params.heroSecondaryURL }}"
+                >{{ .Params.heroSecondaryLabel }}
+            </a>
+        </div>
+        {{ with .Content }}
+        <div class="mt-5 max-w-3xl text-sm leading-relaxed text-gray-700">
+            {{ . }}
+        </div>
+        {{ end }}
     </section>
 
     <section class="wiki-card" aria-labelledby="sections-heading">
-      <div>
-        <p class="eyebrow">Навигация</p>
-        <h2 id="sections-heading" class="mt-2 text-2xl font-bold tracking-tight text-black">Основные разделы</h2>
-      </div>
-      <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        {{ range site.Sections.ByWeight }}
-          {{ partial "section-card.html" . }}
-        {{ end }}
-      </div>
+        <div>
+            <p class="eyebrow">Навигация</p>
+            <h2
+                id="sections-heading"
+                class="text-2xl font-bold tracking-tight text-black"
+            >
+                Основные разделы
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+            {{ range site.Sections.ByWeight }} {{ partial "section-card.html" .
+            }} {{ end }}
+        </div>
     </section>
 
     {{ partial "recent-pages.html" . }}
 
     <section class="wiki-card" aria-labelledby="useful-links-heading">
-      <div>
-        <p class="eyebrow">TokenBel</p>
-        <h2 id="useful-links-heading" class="mt-2 text-2xl font-bold tracking-tight text-black">Полезные ссылки</h2>
-      </div>
-      <ul class="flex flex-wrap gap-x-6 gap-y-2">
-        <li><a class="wiki-link inline-flex min-h-11 items-center font-semibold" href="{{ site.Params.dashboardURL }}">Компании<span aria-hidden="true">↗</span></a></li>
-        <li><a class="wiki-link inline-flex min-h-11 items-center font-semibold" href="{{ site.Params.tokensURL }}">Токены<span aria-hidden="true">↗</span></a></li>
-        <li><a class="wiki-link inline-flex min-h-11 items-center font-semibold" href="{{ site.Params.secondMarketURL }}">Вторичный рынок<span aria-hidden="true">↗</span></a></li>
-        <li><a class="wiki-link inline-flex min-h-11 items-center font-semibold" href="{{ site.Params.sharesURL }}">Облигации<span aria-hidden="true">↗</span></a></li>
-        <li><a class="wiki-link inline-flex min-h-11 items-center font-semibold" href="{{ site.Params.sharesURL }}">Акции<span aria-hidden="true">↗</span></a></li>
-        <li><a class="wiki-link inline-flex min-h-11 items-center font-semibold" href="{{ site.Params.repositoryURL }}">GitHub<span aria-hidden="true">↗</span></a></li>
-      </ul>
+        <div>
+            <p class="eyebrow">TokenBel</p>
+            <h2
+                id="useful-links-heading"
+                class="text-2xl font-bold tracking-tight text-black"
+            >
+                Полезные ссылки
+            </h2>
+        </div>
+        <ul class="flex flex-wrap gap-2">
+            <li>
+                <a
+                    class="active-a inline-flex rounded-lg px-4 items-center font-semibold"
+                    href="{{ site.Params.dashboardURL }}"
+                    >Компании</a
+                >
+            </li>
+            <li>
+                <a
+                    class="active-a inline-flex rounded-lg px-4 items-center font-semibold"
+                    href="{{ site.Params.tokensURL }}"
+                    >Токены</a
+                >
+            </li>
+            <li>
+                <a
+                    class="active-a inline-flex rounded-lg px-4 items-center font-semibold"
+                    href="{{ site.Params.secondMarketURL }}"
+                    >Вторичный рынок</a
+                >
+            </li>
+            <li>
+                <a
+                    class="active-a inline-flex rounded-lg px-4 items-center font-semibold"
+                    href="{{ site.Params.sharesURL }}"
+                    >Облигации</a
+                >
+            </li>
+            <li>
+                <a
+                    class="active-a inline-flex rounded-lg px-4 items-center font-semibold"
+                    href="{{ site.Params.sharesURL }}"
+                    >Акции</a
+                >
+            </li>
+            <li>
+                <a
+                    class="active-a inline-flex rounded-lg px-4 items-center font-semibold"
+                    href="{{ site.Params.repositoryURL }}"
+                    >GitHub</a
+                >
+            </li>
+        </ul>
     </section>
-  </div>
+</div>
 {{ end }}

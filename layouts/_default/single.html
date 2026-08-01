@@ -1,8 +1,8 @@
 {{ define "main" }}
   <article class="page max-w-3xl">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="wiki-link" href="{{ site.Home.RelPermalink }}">Главная</a>
-      {{ with .CurrentSection }}<span aria-hidden="true">/</span><a class="wiki-link" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      <a class="active-a" href="{{ site.Home.RelPermalink }}">Главная</a>
+      {{ with .CurrentSection }}<span aria-hidden="true">/</span><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
       <span aria-hidden="true">/</span><span aria-current="page" class="font-semibold text-black">{{ .Title }}</span>
     </nav>
     <header class="border-b border-gray-300 pb-6">

@@ -9,7 +9,7 @@
       {{ range . }}
         <li class="wiki-card">
           <p class="text-xs font-semibold text-blue-700">{{ with .CurrentSection }}{{ .Title }}{{ end }}</p>
-          <h3 class="text-base font-semibold text-black"><a class="wiki-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <h3 class="text-base font-semibold text-black"><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
           {{ with .Summary }}<p class="text-sm leading-relaxed text-gray-700">{{ . | plainify | truncate 180 }}</p>{{ end }}
           {{ partial "page-dates.html" . }}
         </li>

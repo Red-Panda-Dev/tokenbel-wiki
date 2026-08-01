@@ -20,7 +20,7 @@
       <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>
     {{ end }}
   </div>
-  <h3 class="text-lg font-semibold text-black"><a class="wiki-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <h3 class="text-lg font-semibold text-black"><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
   <p class="text-sm leading-relaxed text-gray-700">{{ .Description }}</p>
-  <a class="wiki-link mt-auto inline-flex min-h-11 items-center self-start font-semibold" href="{{ .RelPermalink }}">Открыть раздел <span aria-hidden="true">→</span></a>
+  <a class="active-a mt-auto inline-flex min-h-11 items-center self-start font-semibold" href="{{ .RelPermalink }}">Открыть раздел <span aria-hidden="true">→</span></a>
 </article>
