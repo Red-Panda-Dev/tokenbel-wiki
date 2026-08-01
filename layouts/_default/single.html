@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <article class="page max-w-3xl">
+  <article class="page">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a class="active-a" href="{{ site.Home.RelPermalink }}">Главная</a>
       {{ with .CurrentSection }}<span aria-hidden="true">/</span><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
