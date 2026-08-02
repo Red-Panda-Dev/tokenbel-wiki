@@ -1,26 +1,25 @@
-{{ $iconClasses := dict
-  "news" "grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-700"
-  "chart" "grid h-10 w-10 place-items-center rounded-lg bg-green-50 text-green-700"
-  "guide" "grid h-10 w-10 place-items-center rounded-lg bg-purple-50 text-purple-700"
-  "document" "grid h-10 w-10 place-items-center rounded-lg bg-orange-50 text-orange-700"
-  "info" "grid h-10 w-10 place-items-center rounded-lg bg-gray-100 text-gray-700"
-}}
-{{ $icon := .Params.icon | default "info" }}
 <article class="wiki-card">
-  <div class="{{ index $iconClasses $icon | default (index $iconClasses "info") }}" aria-hidden="true">
-    {{ if eq $icon "news" }}
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-    {{ else if eq $icon "chart" }}
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg>
-    {{ else if eq $icon "guide" }}
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5z"/><path d="M5 4.5v17M9 6h6M9 10h6"/></svg>
-    {{ else if eq $icon "document" }}
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></svg>
-    {{ else }}
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>
-    {{ end }}
-  </div>
-  <h3 class="text-lg font-semibold text-black"><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-  <p class="text-sm leading-relaxed text-gray-700">{{ .Description }}</p>
-  <a class="active-a mt-auto inline-flex min-h-11 items-center self-start font-semibold" href="{{ .RelPermalink }}">Открыть раздел <span aria-hidden="true">→</span></a>
+    <div class="flex-col md:flex-row gap-2 content-center inline-flex items-center">
+        <div
+            class="flex items-center rounded-lg bg-gray-100 text-gray-700 p-1"
+            aria-hidden="true"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                viewBox="0 0 16 16"
+            >
+                <path d="M0 0h16v16H0z" fill="none" />
+                <path
+                    fill="none"
+                    stroke="currentColor"
+                    d="M2 8h12m-9.5 5v-3h-2v3m2 0v.5h-2V13m2 0h-2M9 13v-3H7v3m2 0v.5H7V13m2 0H7m6.5 0v-3h-2v3m2 0v.5h-2V13m2 0h-2m-7-7.5v-3h-2v3m2 0V6h-2v-.5m2 0h-2m6.5 0v-3H7v3m2 0V6H7v-.5m2 0H7m6.5 0v-3h-2v3m2 0V6h-2v-.5m2 0h-2"
+                />
+            </svg>
+        </div>
+        <h3 class="text-lg font-semibold">
+            <a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h3>
+    </div>
+    <p class="text-sm leading-relaxed text-gray-700">{{ .Description }}</p>
 </article>
