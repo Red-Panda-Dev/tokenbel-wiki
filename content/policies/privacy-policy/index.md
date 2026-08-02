@@ -62,7 +62,7 @@ This service is not intended for children. Minors may only use it with parental 
 
 You may request access, correction, deletion, processing restriction, withdrawal of consent, and information about data disclosure. Submit requests to <admin@tokenbel.info>.
 
-You can delete your account and all associated data yourself – [instructions](https://wiki.tokenbel.info/books/rukovodstvo-polzovatelia/page/licnyi-kabinet "Личный кабинет").
+You can delete your account and all associated data yourself – [instructions](/guides/rukovodstvo-polzovatelia/licnyi-kabinet/ "Личный кабинет").
 
 You may also submit a complaint to the authorized data protection authority. Contact details are available via official resources or upon request.
 
