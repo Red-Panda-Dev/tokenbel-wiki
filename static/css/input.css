@@ -34,7 +34,7 @@
 }
 
 .eyebrow {
-    @apply text-xs font-bold tracking-widest text-blue-700 uppercase;
+    @apply text-xs font-bold tracking-widest uppercase;
 }
 
 .breadcrumbs {

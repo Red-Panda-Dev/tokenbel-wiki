@@ -847,7 +847,6 @@
   font-weight: var(--font-weight-bold);
   --tw-tracking: var(--tracking-widest);
   letter-spacing: var(--tracking-widest);
-  color: var(--color-blue-700);
   text-transform: uppercase;
 }
 .breadcrumbs {
