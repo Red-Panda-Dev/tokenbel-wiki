@@ -55,16 +55,16 @@ weight: 4
 
 #### Месяц в цифрах
 
-[[![активных-эмитентов-2026-01-01T11-43-23.237Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/87/b855c6abd748e746.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/87/b855c6abd748e746.jpg)[[![новых-токенов-2026-01-01T11-43-26.195Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/86/523bab6fe4e2ccce.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/86/523bab6fe4e2ccce.jpg)
+[![активных-эмитентов-2026-01-01T11-43-23.237Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/87/b855c6abd748e746.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/87/b855c6abd748e746.jpg)[![новых-токенов-2026-01-01T11-43-26.195Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/86/523bab6fe4e2ccce.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/86/523bab6fe4e2ccce.jpg)
 
-[[![совокупно-продано-2026-01-01T11-43-36.720Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/91/784afe7951c135d3.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/91/784afe7951c135d3.jpg)
+[![совокупно-продано-2026-01-01T11-43-36.720Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/91/784afe7951c135d3.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/91/784afe7951c135d3.jpg)
 
-[[![совокупно-выпущено-2026-01-01T11-43-34.137Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/93/8ae2d2eb55f9ba62.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/93/8ae2d2eb55f9ba62.jpg)
+[![совокупно-выпущено-2026-01-01T11-43-34.137Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/93/8ae2d2eb55f9ba62.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/93/8ae2d2eb55f9ba62.jpg)
 
 Количество новых выпусков с группировкой по платформе
 
-[[![количество-эмиссий-по-платформе-2026-01-03T14-44-49.941Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/94/efc6fa9fedd76dd9.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/94/efc6fa9fedd76dd9.jpg)
+[![количество-эмиссий-по-платформе-2026-01-03T14-44-49.941Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/94/efc6fa9fedd76dd9.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/94/efc6fa9fedd76dd9.jpg)
 
 Общий объём новых выпусков (в BYN) с группировкой по платформе
 
-[[![выпущено-по-платформе-и-валюте-2026-01-03T14-44-46.016Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/95/d4b225d772b3e962.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/95/d4b225d772b3e962.jpg)
+[![выпущено-по-платформе-и-валюте-2026-01-03T14-44-46.016Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/95/d4b225d772b3e962.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/95/d4b225d772b3e962.jpg)

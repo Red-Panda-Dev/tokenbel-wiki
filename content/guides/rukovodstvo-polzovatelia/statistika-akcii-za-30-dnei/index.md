@@ -20,7 +20,7 @@ weight: 9
 
 Все данные на странице обновляются автоматически и охватывают последние 30 календарных дней.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/195/3c42cdaf132aca1f.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/195/3c42cdaf132aca1f.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/195/3c42cdaf132aca1f.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/195/3c42cdaf132aca1f.png)
 
 ---
 
@@ -191,7 +191,7 @@ weight: 9
 
 ### Связи между блоками
 
-[[![shares_30days.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/198/3232a96dce792cce.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/198/3232a96dce792cce.webp)
+[![shares_30days.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/198/3232a96dce792cce.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/198/3232a96dce792cce.webp)
 
 Карточки дают общее понимание рынка. Круговые диаграммы показывают структуру. Рейтинги выделяют лидеров по разным показателям. Карта ликвидности помогает сравнить акции между собой визуально.
 

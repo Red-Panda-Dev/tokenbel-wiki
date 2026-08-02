@@ -27,7 +27,7 @@ YTM показывает общую доходность, которую вы п
 
 #### Схема денежных потоков
 
-[[![BYN Payment Flow to Maturity.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/122/ba93fc541d4593be.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/122/ba93fc541d4593be.png)
+[![BYN Payment Flow to Maturity.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/122/ba93fc541d4593be.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/122/ba93fc541d4593be.png)
 
 **Ключевой инсайт:** Вы платите один раз в начале, но получаете множество платежей на протяжении всего срока + крупную сумму в конце. YTM объединяет все эти разновременные потоки в одну годовую ставку.
 

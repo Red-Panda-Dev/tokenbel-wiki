@@ -28,14 +28,14 @@ weight: 1
 * **Цены акций в трёх валютах:** над графиком цены акции появился переключатель BYN/USD/EUR. Курс подтягивается с Нацбанка, так что цену удобно смотреть в нужной валюте.
 * **Расчёт по вторичным предложениям:** блок калькуляции на странице предложений перерисовали в едином стиле с облигациями, а дату покупки по умолчанию подставляем сегодняшней.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/226/1a66e3521aa085b8.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/226/1a66e3521aa085b8.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/226/1a66e3521aa085b8.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/226/1a66e3521aa085b8.png)
 Пример калькулятора доходности [облигации ЗАО "АЙГЕНИС" #51](https://dashboard.tokenbel.info/bonds/ad9e8490).
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/228/9f384997c75388d0.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/228/9f384997c75388d0.png)
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/227/d6b4e865388c49f7.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/227/d6b4e865388c49f7.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/228/9f384997c75388d0.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/228/9f384997c75388d0.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/227/d6b4e865388c49f7.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/227/d6b4e865388c49f7.png)
 График цен [простой акции Приорбанка](https://dashboard.tokenbel.info/shares/a97f1fed) в 2 разных валютах (BYN\EUR).
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/229/4a5bb1f0d792071a.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/229/4a5bb1f0d792071a.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/229/4a5bb1f0d792071a.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/229/4a5bb1f0d792071a.png)
 Пример шаблона депозита
 
 ### Для компаний и эмитентов

@@ -23,7 +23,7 @@ weight: 4
 * **Теперь:** видно, какая часть портфеля приходится на разные сроки и типы инструментов.
 * **Зачем это нужно:** инвестору проще заметить перекосы: например, когда слишком много активов погашается в одном периоде или, наоборот, есть пустые интервалы.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/192/73ea53e2eab52c21.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/192/73ea53e2eab52c21.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/192/73ea53e2eab52c21.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/192/73ea53e2eab52c21.png)
 
 ---
 ## Что стало удобнее

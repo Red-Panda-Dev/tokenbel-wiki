@@ -16,16 +16,16 @@ weight: 3
 Функция **Избранное** позволяет пользователям быстро получать доступ к наиболее важным для них компаниям и токенам. Правила работы:
 
 1. Количество компаний и токенов, которые можно добавить в избранное, ограничено. Лимит отображается на странице [Настроек](https://dashboard.tokenbel.info/profile/settings):  
-[[![Screenshot from 2026-02-11 15-31-08.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/115/f41863320711af9a.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/115/f41863320711af9a.png)
+[![Screenshot from 2026-02-11 15-31-08.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/115/f41863320711af9a.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/115/f41863320711af9a.png)
 2. Любую компанию или токен можно добавить в избранное одним кликом.  
-[[![favorite_pipeline.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/21/183652098b88138e.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/21/183652098b88138e.png)
+[![favorite_pipeline.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/21/183652098b88138e.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/21/183652098b88138e.png)
 3. Все добавленные элементы отображаются на странице [Избранное](https://dashboard.tokenbel.info/profile/favorite):  
-[[![Favorite Page.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/23/af5dfe69d34e3d61.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/23/af5dfe69d34e3d61.png)
+[![Favorite Page.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/23/af5dfe69d34e3d61.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/23/af5dfe69d34e3d61.png)
 
 #### Календарь
 
 Для удобного планирования можно просматривать расписание событий токенов на странице [Календарь](https://dashboard.tokenbel.info/profile/calendar). У каждого избранного токена в календаре есть даты выплат процентного дохода, даты приёма заявок и выплат по досрочному погашению, срок эмиссии.  
-[[![Calendar Page.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/24/66358ce78217ee48.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/24/66358ce78217ee48.png)
+[![Calendar Page.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/24/66358ce78217ee48.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/24/66358ce78217ee48.png)
 
 #### Уведомления
 
@@ -34,7 +34,7 @@ weight: 3
 - для компаний: новые финансовые отчёты, новые токены, изменения рейтингов и т.д.;
 - для токенов: приближение важных событий (выплаты, окончание срока) и т.д..
 
-[[![Favorite Notifications.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/26/918f6a41b6c33139.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/26/918f6a41b6c33139.png)
+[![Favorite Notifications.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/26/918f6a41b6c33139.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/26/918f6a41b6c33139.png)
 
 ##### Персонализированные уведомления
 
@@ -51,9 +51,9 @@ weight: 3
 
 Персонализированные фильтры доступны как для первичного рынка (эмисси новых токенов), так и для вторичного рынка.
 
-[[![Screenshot from 2026-02-11 15-33-02.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/117/2b4680c6c3aaf10a.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/117/2b4680c6c3aaf10a.png)
+[![Screenshot from 2026-02-11 15-33-02.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/117/2b4680c6c3aaf10a.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/117/2b4680c6c3aaf10a.png)
 
-[[![Screenshot from 2026-02-11 15-32-20.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/116/a30ad42bab26e7bf.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/116/a30ad42bab26e7bf.png)
+[![Screenshot from 2026-02-11 15-32-20.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/116/a30ad42bab26e7bf.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/116/a30ad42bab26e7bf.png)
 
 ---
 
@@ -72,4 +72,4 @@ weight: 3
 - **Лимиты использования** - список различных лимитов пользователя на использование ресурсов и функций сервиса.
 - **Удаление аккаунта** - необратимое действие. Все Ваши данные, включая избранное, уведомления и социальные авторизации будут удалены навсегда.
 
-[[![Settings_Page.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/73/c00e0c091733c673.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/73/c00e0c091733c673.png)
+[![Settings_Page.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/73/c00e0c091733c673.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/73/c00e0c091733c673.png)

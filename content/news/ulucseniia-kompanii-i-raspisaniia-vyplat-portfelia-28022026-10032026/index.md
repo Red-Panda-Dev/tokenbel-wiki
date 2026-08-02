@@ -25,7 +25,7 @@ weight: 9
 
 У компаний появилась новая страница - [**Календарь**](https://dashboard.tokenbel.info/company/ae6840b7/calendar). На данной странице представлены 2 графика: События и Выплаты. Расписание событий содержит уже знакомый набор событий с датами: начало\окончание продаж, выплаты, заявки\выплаты по досрочному погашению и планируемая дата окончания обращения токена.
 
-[[![Screenshot_20260313_032556.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/146/22fa59d8db5e4fe3.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/146/22fa59d8db5e4fe3.png)
+[![Screenshot_20260313_032556.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/146/22fa59d8db5e4fe3.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/146/22fa59d8db5e4fe3.png)
 Пример календаря событий.
 
 График выплат содержит 2 столбца: выплаты по Процентам и Погашения. Проценты - ежемесячная сумма которую компания должна будет выплатить. Погашения - сумма которую компания выплатит при погашении эмиссии в конкретный месяц. Все расчёты в BYN.
@@ -33,31 +33,31 @@ weight: 9
 В данный момент не учитываются:
  - Досрочные погашения
  - Досрочные выплаты
-[[![Screenshot_20260313_032612.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/147/cc351fe6b907e84e.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/147/cc351fe6b907e84e.png)
+[![Screenshot_20260313_032612.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/147/cc351fe6b907e84e.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/147/cc351fe6b907e84e.png)
 Пример расписания выплат.
 
 #### 📊 Сравнение компаний
 
 У компании появилась новая кнопка - **Сравнить**. После её нажатия, компания добавляется в список для сравнения. Добавьте от 1 до 10 компаний в список, перейдите на [страницу сравнений](https://dashboard.tokenbel.info/compare/companies).
 
-[[![Screenshot_20260313_033632.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/148/2db27162abd30bf2.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/148/2db27162abd30bf2.png)
+[![Screenshot_20260313_033632.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/148/2db27162abd30bf2.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/148/2db27162abd30bf2.png)
 Кнопка для добавления компании в список для сравнения.
 
 На странице сравнений, кроме общей информации о компаниях, так же присутствует детальная информация о фин. состоянии компаний - балансы, обязательства и коэффициенты.
 
-[[![Screenshot_20260313_034221.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/149/1c4b9a7c2ca63c1c.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/149/1c4b9a7c2ca63c1c.png)
+[![Screenshot_20260313_034221.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/149/1c4b9a7c2ca63c1c.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/149/1c4b9a7c2ca63c1c.png)
 Базовая информация о компаниях.
 
-[[![Screenshot_20260313_034238.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/150/dacd33c7b024bf72.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/150/dacd33c7b024bf72.png)
+[![Screenshot_20260313_034238.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/150/dacd33c7b024bf72.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/150/dacd33c7b024bf72.png)
 Пример графического сравнения фин.параметров, баланса в данном случае.
 
 ### 🛠️ Остальное
 
 Календарь избранных эмиссий приведён к единому виду, с остальными подобными календарями.
-[[![Screenshot_20260313_035436.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/151/b7ada5b03fdc7404.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/151/b7ada5b03fdc7404.png)
+[![Screenshot_20260313_035436.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/151/b7ada5b03fdc7404.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/151/b7ada5b03fdc7404.png)
 
 Для всех компаний обновили [информацию о долгах](https://dashboard.tokenbel.info/company/f0c9d367/debts) из реестра.
-[[![Screenshot_20260313_035827.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/152/21b57be2aba60d4d.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/152/21b57be2aba60d4d.png)
+[![Screenshot_20260313_035827.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/152/21b57be2aba60d4d.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/152/21b57be2aba60d4d.png)
 
 ## 🎯 Планы
 

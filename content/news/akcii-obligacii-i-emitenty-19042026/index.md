@@ -20,7 +20,7 @@ weight: 7
 - **Как было раньше:** Данные о ценных бумагах (выплаты, эмитенты, история торгов) не были представлены на платформе. Не было ни каталога, ни карточек бумаг.
 - **Как стало сейчас:** Появился полноценный и актуальный набор данных о всех ценных бумагах представленных на финансовом рынке Беларуси. Данные извлекаются и периодически обновляются из внешней системы - [сайта БВФБ](https://www.bcse.by/). Благодаря этому, детальные страницы ценных бумаг содержат актуальную информацию и есть возможность работать с этими данными в портфеле.
 
-[[![Screenshot_20260421_023304.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/161/317c8a68d270a18d.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/161/317c8a68d270a18d.png)
+[![Screenshot_20260421_023304.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/161/317c8a68d270a18d.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/161/317c8a68d270a18d.png)
 
 Пример нового выпадающего списка со страницами ценных бумаг.
 
@@ -31,7 +31,7 @@ weight: 7
  - **Тип акции** - простая или привилегированная
  - **Активность** - торгуется\не торгуется. Если акция отмечена как **Торгуется** - значит, что у акции были сделки в течении последних 30 календарных дней.
 
-[[![Screenshot_20260421_023908.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/162/16c303b757bf34fe.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/162/16c303b757bf34fe.png)
+[![Screenshot_20260421_023908.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/162/16c303b757bf34fe.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/162/16c303b757bf34fe.png)
 
 Пример фильтров и акций.
 
@@ -51,7 +51,7 @@ weight: 7
  - **Активность** - принцип такой же как и у акций, если были сделки последние 30 дней - облигация активна.
  - **Периодичность выплат**
 
-[[![Screenshot_20260421_024502.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/163/7f3df36da603791d.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/163/7f3df36da603791d.png)
+[![Screenshot_20260421_024502.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/163/7f3df36da603791d.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/163/7f3df36da603791d.png)
 
 Пример фильтров и облигаций.
 
@@ -64,16 +64,16 @@ weight: 7
 ### 💼 Портфель
 
 Добавление Акции или Облигации в портфель происходит точно так же, как и добавление Токена - на вкладке портфеля с Позициями, нужно нажать кнопку "+ Добавить операцию", в модальном окне остаётся только выбрать нужный тип ценных бумаг и найти конкретную в списке Инструментов:
-[[![Screenshot_20260421_033052.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/166/bf07abdd4012f4e7.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/166/bf07abdd4012f4e7.png)
+[![Screenshot_20260421_033052.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/166/bf07abdd4012f4e7.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/166/bf07abdd4012f4e7.png)
 
 Появление ценных бумаг потребовало от портфеля значительных доработок:
 - Вкладка "Аналитика" в Портфеле получила новый блок - "Диверсификация по типу инструмента"
-[[![Screenshot_20260421_032805.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/164/db1cfb0324c31657.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/164/db1cfb0324c31657.png)
+[![Screenshot_20260421_032805.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/164/db1cfb0324c31657.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/164/db1cfb0324c31657.png)
 - В блоке "Диверсификация по платформам" появилась новая платформа - "БВФБ", к ней относятся все акции и облигации беларуских эмитентов.
-  [[![Screenshot_20260421_032855.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/165/9a74744a3fa411a0.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/165/9a74744a3fa411a0.png)
+  [![Screenshot_20260421_032855.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/165/9a74744a3fa411a0.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/165/9a74744a3fa411a0.png)
 - Вкладка "Календарь" пополнилась событиями Облигаций.
 - На вкладке "Выплаты" в общем списке выплат так же появились выбранные пользователем облигации
-  [[![Screenshot_20260421_033509.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/167/90bee914b93b30d1.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/167/90bee914b93b30d1.png)
+  [![Screenshot_20260421_033509.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/167/90bee914b93b30d1.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/167/90bee914b93b30d1.png)
 
 ### 🛠️ Остальное
 

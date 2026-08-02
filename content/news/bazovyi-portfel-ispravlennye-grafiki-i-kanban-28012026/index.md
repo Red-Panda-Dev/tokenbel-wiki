@@ -20,7 +20,7 @@ weight: 12
 У пользователей появилась возможность создавать свои портфели из токенов представленных в нашей системе. Сейчас пользователям доступна возможность создания до 3 портфелей. После периода тестирования и исправления выявленных проблем этот лимит будет расширен. Количество позиций в портфеле не ограничено.
 
 Пример портфелей:
-[[![Screenshot_20260128_043311.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/106/1f0e60dae324bfd9.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/106/1f0e60dae324bfd9.png)
+[![Screenshot_20260128_043311.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/106/1f0e60dae324bfd9.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/106/1f0e60dae324bfd9.png)
 
 Портфели бывают 2 типов:
 
@@ -28,10 +28,10 @@ weight: 12
 - **Публичный** - общедоступный вид портфеля. Позиции таких портфелей видны всем пользователям при переходе по прямой ссылке - [пример](https://dashboard.tokenbel.info/shared/portfolio/c813e3d6). Анонимная статистика с таких портфелей может собираться для анализа рынка и предпочтений пользователей.
 
 Пример портфеля с позициями:
-[[![Screenshot_20260128_045207.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/107/eb3e5e0830228da9.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/107/eb3e5e0830228da9.png)
+[![Screenshot_20260128_045207.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/107/eb3e5e0830228da9.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/107/eb3e5e0830228da9.png)
 
 Пример доступных параметров при создании позиции:
-[[![Screenshot_20260128_045335.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/109/8269726975694e2b.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/109/8269726975694e2b.png)
+[![Screenshot_20260128_045335.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/109/8269726975694e2b.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/109/8269726975694e2b.png)
 
 Этих полей достаточно, для того что бы в дальнейшем из функций базового портфеля построить более детальную и гибкую систему по учёту денежных потоков пользователей.
 
@@ -40,9 +40,9 @@ weight: 12
 Вместе со списком позиций портфеля, пользователю доступна аналитика актуального состояния портфеля. Сейчас аналитика представлена 2 блоками:
 
 - Обзор портфеля - краткая информация о портфеле: объём, средние проценты, количество компаний, токенов и т.д.
-  [[![Screenshot_20260128_045725.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/110/d437c8b16e721a7c.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/110/d437c8b16e721a7c.png)
+  [![Screenshot_20260128_045725.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/110/d437c8b16e721a7c.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/110/d437c8b16e721a7c.png)
 - Диверсификации - различные группировки позиций портфеля с анализом их распределения. Группировка по валюте, токену, компании, платформе и т.д. Всего 6 групп.
-  [[![Screenshot_20260128_050134.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/111/fe5fc3683e2d6d8b.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/111/fe5fc3683e2d6d8b.png)
+  [![Screenshot_20260128_050134.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/111/fe5fc3683e2d6d8b.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/111/fe5fc3683e2d6d8b.png)
 
 На этом функции базового портфеля заканчиваются. Но уже планируются доработки и улучшения, которые войдут в полноценный функционал портфеля: больше детальной информации о токенах, календари выплат, персонализируемая таблица позиций и т.д.
 
@@ -56,4 +56,4 @@ weight: 12
 ## 🎯 Планы
 
 Ближайшее время предстоит выполнить множество мелких задач с одной общей целью - сделать сервис более удобным и дружественным:
-[[![Screenshot_20260128_051836.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/112/87b42035adbd5653.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/112/87b42035adbd5653.png)
+[![Screenshot_20260128_051836.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/112/87b42035adbd5653.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/112/87b42035adbd5653.png)

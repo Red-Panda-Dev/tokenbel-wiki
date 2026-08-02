@@ -22,7 +22,7 @@ weight: 2
 
 После регистрации одним из методов, на странице [**Настроек**](https://dashboard.tokenbel.info/profile/settings) вы можете подключить дополнительные виды авторизации и использовать их в дальнейшем для входа в систему.
 
-[[![Screenshot_20251206_040425.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/72/9aaafa3835671d1e.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/72/9aaafa3835671d1e.png)
+[![Screenshot_20251206_040425.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/72/9aaafa3835671d1e.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/72/9aaafa3835671d1e.png)
 
 При регистрации через **Telegram**, в системе сохраняется username (если имеется) и уникальный ID пользователя. Авторизация в **Telegram** происходит через нашего официального бота - [@tokenbel_bot.](https://t.me/tokenbel_bot)
 
@@ -38,7 +38,7 @@ weight: 2
 
 Если Вы вошли в систему через **Google**, **Яндекс**, **Microsoft** - Вы можете привязать Ваш аккаунт к **Telegram**. Для этого перейдите на страницу [**Настроек**](https://dashboard.tokenbel.info/profile/settings) вашего аккаунта в системе, найдите на ней уникальный 8-ми значный **Код** вашего аккаунта и скопируйте его.
 
-[[![settings-username-code.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/12/92c4e886a3bd94f3.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/12/92c4e886a3bd94f3.png)Перейдите в наш официальный Telegram бот - [@tokenbel_bot](https://t.me/tokenbel_bot), отправьте команду **/connect**. Бот попросит Вас отправить ему уникальный 8-ми значный **Код** вашего аккаунта, после успешной отправки кода и подтверждения от бота аккаунт будет привязан.[[![telegram-account-connect.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/13/a84c8bf6c96576fd.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/13/a84c8bf6c96576fd.png)
+[![settings-username-code.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/12/92c4e886a3bd94f3.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/12/92c4e886a3bd94f3.png)Перейдите в наш официальный Telegram бот - [@tokenbel_bot](https://t.me/tokenbel_bot), отправьте команду **/connect**. Бот попросит Вас отправить ему уникальный 8-ми значный **Код** вашего аккаунта, после успешной отправки кода и подтверждения от бота аккаунт будет привязан.[![telegram-account-connect.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/13/a84c8bf6c96576fd.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/13/a84c8bf6c96576fd.png)
 
 ##### 2. Привязка Телеграм при помощи авторизации
 

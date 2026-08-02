@@ -116,7 +116,7 @@ weight: 7
 
 При наведении на элементы графиков появляются подсказки с датами, длительностью и суммами. В меню графика можно открыть полноэкранный режим или скачать изображение в PNG, JPEG или SVG.
 
-[[![Детали облигации](https://cdn-wiki.tokenbel.info/wiki/assets/images/177/1fbf467e2126bdd1.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/177/1fbf467e2126bdd1.webp)
+[![Детали облигации](https://cdn-wiki.tokenbel.info/wiki/assets/images/177/1fbf467e2126bdd1.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/177/1fbf467e2126bdd1.webp)
 
 ---
 
@@ -222,7 +222,7 @@ weight: 7
 
 Страница устроена так, чтобы сначала дать общий обзор облигации, затем раскрыть условия выплат и только после этого показать рыночную историю.
 
-[[![Страница облигации](https://cdn-wiki.tokenbel.info/wiki/assets/images/178/c7d4309df409a625.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/178/c7d4309df409a625.webp)
+[![Страница облигации](https://cdn-wiki.tokenbel.info/wiki/assets/images/178/c7d4309df409a625.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/178/c7d4309df409a625.webp)
 
 Главная карточка помогает понять, что это за выпуск. Расписание и календарь объясняют будущие и прошедшие выплаты. Графики и таблица торгов показывают, как облигация вела себя на рынке. Блоки с другими облигациями помогают перейти к сравнению.
 

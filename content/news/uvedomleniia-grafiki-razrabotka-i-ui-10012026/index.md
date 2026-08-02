@@ -23,10 +23,10 @@ weight: 13
  - **Персональные фильтры уведомлений вторичного рынка**. Уведомления о новых предложениях на вторичном рынке с персональным фильтром. 
 
 Пример персональных фильтров:
-[[![Screenshot_20260110_025636.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/100/08a2e8cbccdd6747.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/100/08a2e8cbccdd6747.png)
+[![Screenshot_20260110_025636.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/100/08a2e8cbccdd6747.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/100/08a2e8cbccdd6747.png)
 
 Первые пользователи уже активировали новые уведомления:
-[[![notifications-stats-2026-01-10T00-17-52.029Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/103/40609babf671238d.jpg)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/103/40609babf671238d.jpg)
+[![notifications-stats-2026-01-10T00-17-52.029Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/103/40609babf671238d.jpg)](https://cdn-wiki.tokenbel.info/wiki/assets/images/103/40609babf671238d.jpg)
 
 #### 🛠️ Разработка
 
@@ -50,7 +50,7 @@ weight: 13
  - [Логин](https://tokenbel.info/login/)
 
 Пример будущих карточек токенов:
-[[![Screenshot_20260110_030417.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/101/d98862f99b968073.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/101/d98862f99b968073.png)
+[![Screenshot_20260110_030417.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/101/d98862f99b968073.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/101/d98862f99b968073.png)
 
 Зачем тратить на всё это время? Главная страница сайта - должна быть привлекательной и информативной, раз цель сайта - информировать пользователей. Страница с FAQ стала более читабельной, благодаря подсветке параметров и важных моментов. Страница с логином теперь грузится гораздо быстрее, не имеет рекламы и выглядит не как "привет из 2006". Так же была обновлена SEO составляющая страниц.
 
@@ -58,7 +58,7 @@ weight: 13
 Раньше, для отображения всех графиков на сайте использовалась библиотека **ChartJS**, теперь мы переехали (на 90%) на её более интересный аналог - **Highcharts**. Для пользователей значительно расширился функционал (появился полноэкранный режим работы с графиком, возможность скачать его в различных форматах) и уменьшилось время первоначальной загрузки страницы (новая библиотека меньше). Личный календарь пользователя ещё будет переезжать, а мобильная версия графиков будет дорабатываться.
 
 Пример графика, баланс компании:
-[[![Screenshot_20260110_040004.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/105/094ee48590a30cf2.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/105/094ee48590a30cf2.png)
+[![Screenshot_20260110_040004.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/105/094ee48590a30cf2.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/105/094ee48590a30cf2.png)
 
 ### 🔎 Google Search Console
 
@@ -67,7 +67,7 @@ weight: 13
 Зачем нам индексация от Гугла? Это один из простых вариантов рассказать пользователям, что такой сервис существует и предоставляет различную полезную информацию о рынке токенов в Беларуси.
 
 На сайте более 400 страниц, в это время Гугл индексирует:
-[[![Screenshot_20260110_032148.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/104/61703eb208854a54.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/104/61703eb208854a54.png)
+[![Screenshot_20260110_032148.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/104/61703eb208854a54.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/104/61703eb208854a54.png)
 
 ## 🎯 Планы
 

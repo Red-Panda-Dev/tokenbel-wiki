@@ -263,7 +263,7 @@ weight: 14
 
 Если результатов много, попросите AI-клиент показать следующую часть или сузьте запрос фильтром.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/221/afe9d732b3930555.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/221/afe9d732b3930555.webp)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/221/afe9d732b3930555.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/221/afe9d732b3930555.webp)
 
 ---
 ### Ошибки и пустые ответы

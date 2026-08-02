@@ -20,7 +20,7 @@ weight: 8
 - **Как было раньше:** Портфель поддерживал только эмиссии существующие в сервисе TokenBel (данные собираются с Августа 2025 года). Все данные и расчёты привязывались к существующим токенам и компаниям, что блокировало возможность добавления токенов созданных ранее или же не отслеженных сервисом.
 - **Как стало сейчас:** Введена возможность создавать собственный токен - часть полей заполняется вручную, часть рассчитывается автоматически. Новый вид инструмента получил полную интеграцию с графиком событий, платежей, офферт и аналитикой. Так же внесённые изменения позволяют в будущем создавать и добавлять все возможные типы ценных бумаг.
 
-[[![Screenshot_20260331_013014.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/156/adaa99f8669a2d65.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/156/adaa99f8669a2d65.png)
+[![Screenshot_20260331_013014.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/156/adaa99f8669a2d65.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/156/adaa99f8669a2d65.png)
 
 Пример всплывающего окна с заполненной информацией о персональном инструменте - токене.
 
@@ -28,7 +28,7 @@ weight: 8
 
 Все предложения вторичного рынка, отфильтрованные по компаниям и эмиссиям из портфеля - с фильтрами по цене, доходности и статусу, вам больше не нужно переключаться на отдельную страницу.
 
-[[![Screenshot_20260330_191712.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/157/ff370f28be5be1ac.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/157/ff370f28be5be1ac.png)
+[![Screenshot_20260330_191712.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/157/ff370f28be5be1ac.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/157/ff370f28be5be1ac.png)
 
 Пример вкладки "Вторичный рынок" в портфеле.
 
@@ -36,7 +36,7 @@ weight: 8
 
 Два новых столбца в таблице позиций портфеля с цветовой индикацией относительно номинала - наглядно видно, какие предложения вас ожидают на вторичном рынке, в среднем, за последние 30 дней.
 
-[[![Screenshot_20260330_191644.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/158/e79daeae0be891ad.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/158/e79daeae0be891ad.png)
+[![Screenshot_20260330_191644.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/158/e79daeae0be891ad.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/158/e79daeae0be891ad.png)
 Пример реального портфеля с эмиссиями и их предложениями на вторичном рынке. Если предложений не было - 0.
 
 ### 💢 Всплывающее окно жалоб на эмиссии\компании
@@ -44,10 +44,10 @@ weight: 8
 Пользователи могут сообщать о проблемах с эмиссиями или компаниями через удобную форму - ещё один быстрой канал обратной связи. Все жалобы поступают в канал, где в ручном режиме обрабатываются (проверяются + вносятся исправления).
 За полезную обратную связь пользователям начисляются баллы, куда и как они будут применяться - ещё не решили, но, скорее всего, будет связано с расширением лимитов или других полезных функций.
 
-[[![Screenshot_20260330_191746.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/159/7e68db2f0d93c39c.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/159/7e68db2f0d93c39c.png)
+[![Screenshot_20260330_191746.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/159/7e68db2f0d93c39c.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/159/7e68db2f0d93c39c.png)
 Пример кнопки на странице компании.
 
-[[![Screenshot_20260331_013819.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/160/ee5d70d0faa67e0c.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/160/ee5d70d0faa67e0c.png)
+[![Screenshot_20260331_013819.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/160/ee5d70d0faa67e0c.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/160/ee5d70d0faa67e0c.png)
 
 Пример всплывающего окна при жалобе на эмиссию [KANDM.USD.2025.01](https://dashboard.tokenbel.info/company/f06a9f2f/emission/6541dfd6)
 
@@ -55,7 +55,7 @@ weight: 8
 
 **Сравнение компаний - выбор из интерфейса:** Добавление и удаление компаний прямо со страницы сравнения через поисковый дропдаун, до 10 компаний - не нужно предварительно отмечать компанию на её странице.
 
-[[![Screenshot_20260331_000907.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/155/01933fabc6c252c1.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/155/01933fabc6c252c1.png)
+[![Screenshot_20260331_000907.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/155/01933fabc6c252c1.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/155/01933fabc6c252c1.png)
 Пример дропдауна с выбранными компаниями.
 
 ### 🛠️ Остальное

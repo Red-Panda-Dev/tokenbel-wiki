@@ -24,13 +24,13 @@ weight: 14
 
 Всё, теперь остаётся только ждать, сайт сам будет обновлять страницу и отображать свежие предложения с выбранными параметрами. Обновление страницы происходит 1 раз в минуту. Сбор новых предложений на вторичном рынке происходит реже.
 
-[[![Screenshot_20251227_015744.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/83/757c30c63069d13c.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/83/757c30c63069d13c.png)
+[![Screenshot_20251227_015744.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/83/757c30c63069d13c.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/83/757c30c63069d13c.png)
 
 ##### 📊 Изменение страниц статистики
 
 Статистика продаж со страницы "Аналитика" переехала на страницу "Статистика"->"[Продажи](https://dashboard.tokenbel.info/statistics/selling/)". А статистика рынка и платформ перебаралсь на страницу "Статистика"->"[Рынок](https://dashboard.tokenbel.info/statistics/market/)". Со страницы статистики Рынка и Продаж убрали лишнюю и неактуальную информацию.
 
-[[![Screenshot_20251227_024758.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/84/259654232db0008e.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/84/259654232db0008e.png)
+[![Screenshot_20251227_024758.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/84/259654232db0008e.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/84/259654232db0008e.png)
 
 Эти изменения сделали интерфейс более понятным и информативным. Так же позволят в дальнейшем расширять набор статистики которую можно предоставлять о сервисе, токенах и рынке в целом. В планах уже есть вынесение части полезных графиков из [Статистики рынка токенов Беларуси](/statistics/statistika-rynka-tokenov-belarusi/) на сайт для отслеживания в режиме онлайн динамики происходящего на рынке.
 
@@ -47,6 +47,6 @@ weight: 14
 
 Судя по статистике активных оповещений, именно подобные вещи нужны пользователям:
 
-[[![Screenshot_20251227_025941.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/85/cafaac94803037a6.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/85/cafaac94803037a6.png)
+[![Screenshot_20251227_025941.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/85/cafaac94803037a6.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/85/cafaac94803037a6.png)
 
 По логике и UI портфеля уже есть идеи, референсы, так что и этот функционал не должен сильно задержаться. После базовой логики Портфеля будет небольшой перерыв в 1-2 недели для "стабилизации" всей логики приложения и мелких правок, технических улучшений.

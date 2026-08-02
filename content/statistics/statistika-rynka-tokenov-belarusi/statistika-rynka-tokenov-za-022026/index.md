@@ -58,6 +58,6 @@ weight: 3
    - Покупка, 137, 7% или 2% от всего рынка;
 
 ### Месяц в цифрах
-[[![comp_emisss.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/142/1e82c57f70ca76af.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/142/1e82c57f70ca76af.webp)
-[[![emiss_sold.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/144/a21ecb8e5b26e338.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/144/a21ecb8e5b26e338.webp)
-[[![sold_percents.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/145/7ff901b50f9bdc7c.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/145/7ff901b50f9bdc7c.webp)
+[![comp_emisss.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/142/1e82c57f70ca76af.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/142/1e82c57f70ca76af.webp)
+[![emiss_sold.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/144/a21ecb8e5b26e338.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/144/a21ecb8e5b26e338.webp)
+[![sold_percents.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/145/7ff901b50f9bdc7c.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/145/7ff901b50f9bdc7c.webp)

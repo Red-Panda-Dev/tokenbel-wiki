@@ -25,10 +25,10 @@ weight: 3
 * **RSS-подписка:** за обновлениями можно следить через любой RSS-ридер, без ручной проверки сайта.
 * **Страницы акций:** цены в истории торгов и на графиках показываются точнее.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/207/4f6d5580b68e98e0.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/207/4f6d5580b68e98e0.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/207/4f6d5580b68e98e0.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/207/4f6d5580b68e98e0.png)
 Пример событий в ленте
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/206/0e57e5a173881256.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/206/0e57e5a173881256.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/206/0e57e5a173881256.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/206/0e57e5a173881256.png)
 Фильтры для ленты
 
 ### Для компаний и эмитентов
@@ -36,7 +36,7 @@ weight: 3
 * **Отрасль в профиле:** отрасль эмитента теперь отображается в каталоге и на страницах облигаций. Это помогает быстрее понять профиль компании и сравнивать эмитентов между собой.
 * **Больше источников новостей:** к обработке добавлены материалы БВФБ, Bynex, Finstore, OfficeLife, Aigenis, Fainex, MyFin и NEG. Покрытие публичных событий стало шире.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/205/5e32fb27c8f9ba00.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/205/5e32fb27c8f9ba00.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/205/5e32fb27c8f9ba00.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/205/5e32fb27c8f9ba00.png)
 
 ### Для данных и страниц
 

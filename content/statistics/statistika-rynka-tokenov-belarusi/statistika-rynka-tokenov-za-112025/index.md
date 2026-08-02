@@ -62,7 +62,7 @@ weight: 5
 
 Новые токены по платформам
 
-[[![Screenshot_20251201_170225.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/41/c4e2ab4c11864885.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/41/c4e2ab4c11864885.png)
+[![Screenshot_20251201_170225.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/41/c4e2ab4c11864885.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/41/c4e2ab4c11864885.png)
 
 ![эмиссии-по-продолжительности-и-валюте-2025-12-08T17-34-43.601Z.jpg](https://cdn-wiki.tokenbel.info/wiki/assets/images/74/d44655ad2a7a7ec4.jpg)
 
@@ -90,7 +90,7 @@ weight: 5
 
 Выпущено по индустрии и валюте
 
-[[![Screenshot_20251201_171603.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/47/72b4feb2bdbcc382.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/47/72b4feb2bdbcc382.png)
+[![Screenshot_20251201_171603.png](https://cdn-wiki.tokenbel.info/wiki/assets/images/47/72b4feb2bdbcc382.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/47/72b4feb2bdbcc382.png)
 
 Выпущено по платформе и валюте
 

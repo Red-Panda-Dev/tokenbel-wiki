@@ -13,7 +13,7 @@ weight: 12
 
 Страница полезна инвесторам, которые хотят понять, какие облигации торгуются чаще всего, какие показывают наибольшую доходность, и как текущая доходность отдельных выпусков соотносится со средним уровнем за месяц.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/201/55fa91ed6c92422d.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/201/55fa91ed6c92422d.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/201/55fa91ed6c92422d.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/201/55fa91ed6c92422d.png)
 
 ---
 
@@ -162,7 +162,7 @@ weight: 12
 
 ### Связи между блоками
 
-[[![bonds_30days.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/202/a7eeb7864de9951f.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/202/a7eeb7864de9951f.webp)
+[![bonds_30days.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/202/a7eeb7864de9951f.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/202/a7eeb7864de9951f.webp)
 
 ---
 

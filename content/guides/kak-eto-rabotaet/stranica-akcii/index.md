@@ -143,7 +143,7 @@ weight: 6
 
 Кнопка сохранения остаётся недоступной, пока не заполнены обязательные поля. Проверяется корректность порядка дат: фиксация → решение → выплата. При ошибке открывается окно с описанием проблемы. При успехе показывается уведомление, и страница перезагружается с обновлёнными данными.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/210/d2daa013e249cf1d.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/210/d2daa013e249cf1d.webp)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/210/d2daa013e249cf1d.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/210/d2daa013e249cf1d.webp)
 
 ## История торгов: визуализация
 
@@ -189,7 +189,7 @@ weight: 6
 
 Все три графика синхронизированы по горизонтальной оси: выделение участка на одном автоматически применяет тот же диапазон на двух других. На небольших экранах высота графиков уменьшается для удобства просмотра. В меню каждого графика доступны полноэкранный режим и экспорт изображения. Под графиками повторяется напоминание о том, что показаны только дни реальных торгов.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/212/c13bbf60337deb18.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/212/c13bbf60337deb18.webp)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/212/c13bbf60337deb18.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/212/c13bbf60337deb18.webp)
 
 ## История торгов за 30 календарных дней
 
@@ -274,7 +274,7 @@ weight: 6
 
 ## Как связаны блоки страницы
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/213/b16d518b391f5d2c.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/213/b16d518b391f5d2c.webp)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/213/b16d518b391f5d2c.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/213/b16d518b391f5d2c.webp)
 
 ## Краткий глоссарий
 

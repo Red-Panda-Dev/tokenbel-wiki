@@ -13,7 +13,7 @@ weight: 11
 
 Она полезна тем, кто хочет быстро оценить состояние рынка облигаций: насколько активно проходили торги, какие выпуски выделялись по обороту или сделкам, и у каких облигаций заметнее всего изменилась доходность.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/199/56bf3fa2459deca2.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/199/56bf3fa2459deca2.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/199/56bf3fa2459deca2.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/199/56bf3fa2459deca2.png)
 
 ---
 
@@ -157,7 +157,7 @@ weight: 11
 
 ### Связи между блоками
 
-[[![bonds_trades.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/200/5e07ac023ec8ba49.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/200/5e07ac023ec8ba49.webp)
+[![bonds_trades.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/200/5e07ac023ec8ba49.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/200/5e07ac023ec8ba49.webp)
 
 Фильтры задают общий контекст для всей страницы. Карточки показывают краткий итог, графики объясняют динамику по дням, а таблицы помогают перейти от общей картины к конкретным облигациям и эмитентам.
 

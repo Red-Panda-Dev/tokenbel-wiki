@@ -13,7 +13,7 @@ weight: 10
 
 Страница полезна тем, кто хочет понять общую картину рынка акций: насколько активно торговались бумаги, какие эмитенты были наиболее востребованы и как менялась динамика цен.
 
-[[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/196/102c759a9b7ca7b8.png)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/196/102c759a9b7ca7b8.png)
+[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/196/102c759a9b7ca7b8.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/196/102c759a9b7ca7b8.png)
 
 ---
 
@@ -137,7 +137,7 @@ weight: 10
 
 ### Связи между блоками
 
-[[![shares_trades.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/197/f750aabfe7b328b2.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/197/f750aabfe7b328b2.webp)
+[![shares_trades.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/197/f750aabfe7b328b2.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/197/f750aabfe7b328b2.webp)
 
 Фильтры в верхней части влияют на все блоки страницы одновременно. Карточки и графики дают общую картину, таблицы позволяют изучить детали и перейти к конкретным акциям или эмитентам.
 

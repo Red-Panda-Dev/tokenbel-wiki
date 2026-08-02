@@ -40,6 +40,6 @@ weight: 5
 **Тариф Pro (Параллельная и автомасштабируемая обработка)**
 Для пользователей тарифа **Pro** выделена отдельная архитектура доставки. Ваши сообщения обрабатываются не одним потоком, а параллельно пулом выделенных серверов (worker-узлов). Система автоматически отслеживает нагрузку и при необходимости мгновенно подключает новые мощности. Благодаря параллельной обработке ваши уведомления не стоят в очереди и доставляются моментально, даже в моменты пиковой нагрузки на бирже.
 
-[[![tarifs.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/154/76f688cccadc0107.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/154/76f688cccadc0107.webp)
+[![tarifs.webp](https://cdn-wiki.tokenbel.info/wiki/assets/images/154/76f688cccadc0107.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/154/76f688cccadc0107.webp)
 
 Страница с доступными подписками - [Тарифы](https://tokenbel.info/pricing/).

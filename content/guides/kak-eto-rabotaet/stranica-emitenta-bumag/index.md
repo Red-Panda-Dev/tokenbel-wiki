@@ -127,7 +127,7 @@ weight: 8
 
 Страница устроена так, чтобы сначала дать общий обзор эмитента, затем показать его справочные данные и после этого раскрыть список связанных бумаг.
 
-[[![Issuer page diagram](https://cdn-wiki.tokenbel.info/wiki/assets/images/179/7d38c0034a520b22.webp)]](https://cdn-wiki.tokenbel.info/wiki/assets/images/179/7d38c0034a520b22.webp)
+[![Issuer page diagram](https://cdn-wiki.tokenbel.info/wiki/assets/images/179/7d38c0034a520b22.webp)](https://cdn-wiki.tokenbel.info/wiki/assets/images/179/7d38c0034a520b22.webp)
 
 Верхний блок помогает быстро понять масштаб эмитента по количеству бумаг. Справочная информация помогает проверить саму организацию. Таблица ценных бумаг переводит от общей карточки к конкретным акциям и облигациям. Блок других эмитентов помогает продолжить просмотр без возврата в каталог.
 
