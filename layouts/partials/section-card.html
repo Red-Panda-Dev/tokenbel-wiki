@@ -5,9 +5,9 @@
   "document" "grid h-10 w-10 place-items-center rounded-lg bg-orange-50 text-orange-700"
   "info" "grid h-10 w-10 place-items-center rounded-lg bg-gray-100 text-gray-700"
 }}
+{{ $icon := .Params.icon | default "info" }}
 <article class="wiki-card">
-  <div class="{{ index $iconClasses .Params.icon | default (index $iconClasses "info") }}" aria-hidden="true">
-    {{ $icon := .Params.icon }}
+  <div class="{{ index $iconClasses $icon | default (index $iconClasses "info") }}" aria-hidden="true">
     {{ if eq $icon "news" }}
       <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
     {{ else if eq $icon "chart" }}

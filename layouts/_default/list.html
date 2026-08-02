@@ -3,10 +3,17 @@
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a class="active-a" href="{{ site.Home.RelPermalink }}">Главная</a><span aria-hidden="true">/</span><span aria-current="page" class="font-semibold text-black">{{ .Title }}</span>
     </nav>
-    <header class="border-b border-gray-300 pb-6">
+    <header class="flex flex-col gap-2 border-b border-gray-300 pb-2">
       <h1 class="text-3xl font-bold tracking-tight text-black sm:text-4xl">{{ .Title }}</h1>
-      {{ with .Description }}<p class="mt-3 max-w-3xl text-lg leading-relaxed text-gray-700">{{ . }}</p>{{ end }}
+      {{ with .Description }}<p class="text-lg leading-relaxed text-gray-700">{{ . }}</p>{{ end }}
     </header>
+    {{ with .Sections.ByWeight }}
+      <ol class="grid gap-2">
+        {{ range . }}
+          <li>{{ partial "section-card.html" . }}</li>
+        {{ end }}
+      </ol>
+    {{ end }}
     {{ with .RegularPages.ByLastmod.Reverse }}
       <ol class="grid gap-2">
         {{ range . }}
@@ -21,7 +28,9 @@
         {{ end }}
       </ol>
     {{ else }}
-      <p class="wiki-empty-state">Материалы этого раздела пока готовятся.</p>
+      {{ if not $.Sections }}
+        <p class="wiki-empty-state">Материалы этого раздела пока готовятся.</p>
+      {{ end }}
     {{ end }}
   </section>
 {{ end }}

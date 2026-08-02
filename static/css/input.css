@@ -6,76 +6,115 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Manrope", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans:
+        "Manrope", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
-
 
 .active-a {
     @apply text-blue-600 transition hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-600;
 }
 
 .page {
-  @apply flex w-full flex-col gap-4;
+    @apply flex w-full flex-col gap-2;
 }
 
 .wiki-card {
-  @apply flex min-w-0 flex-col gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-md transition-shadow hover:shadow-xl motion-reduce:transition-none;
+    @apply flex min-w-0 flex-col gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-md transition-shadow hover:shadow-xl motion-reduce:transition-none;
 }
 
 .wiki-button-primary {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white shadow-md transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 motion-reduce:transition-none;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white shadow-md transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 motion-reduce:transition-none;
 }
 
 .wiki-button-secondary {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 shadow-md transition hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white motion-reduce:transition-none;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 shadow-md transition hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white motion-reduce:transition-none;
 }
 
 .eyebrow {
-  @apply text-xs font-bold tracking-widest text-blue-700 uppercase;
+    @apply text-xs font-bold tracking-widest text-blue-700 uppercase;
 }
 
 .breadcrumbs {
-  @apply flex flex-wrap items-center gap-2 text-sm text-gray-700;
+    @apply flex flex-wrap items-center gap-2 text-sm text-gray-700;
 }
 
 .page-dates {
-  @apply flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-700;
+    @apply flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-700;
 }
 
 .article-content {
-  @apply prose prose-gray max-w-none prose-headings:text-black prose-p:text-gray-700 prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-blockquote:border-blue-600 prose-blockquote:text-gray-700 prose-img:rounded-lg;
+    @apply prose prose-gray max-w-none prose-headings:text-black prose-p:text-gray-700 prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-blockquote:border-blue-600 prose-blockquote:text-gray-700 prose-img:rounded-lg;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    @apply mt-3 mb-2;
+}
+
+.article-content p,
+.article-content ul {
+    @apply mt-0 mb-0;
+}
+
+.article-content ul {
+    @apply pl-4;
+}
+
+.article-content li {
+    @apply mt-0 mb-0 pl-0;
 }
 
 .article-content a {
-  @apply text-blue-600 decoration-blue-300 underline-offset-2 hover:text-blue-900;
+    @apply text-blue-600 decoration-blue-300 underline-offset-2 hover:text-blue-900;
 }
 
 .article-content table {
-  @apply block w-full overflow-x-auto text-sm;
+    @apply mt-0 mb-0 w-full border border-gray-100 text-sm;
+}
+
+.article-content thead {
+    @apply bg-gray-100 text-left text-xs uppercase;
+}
+
+.article-content tbody tr {
+    @apply border border-gray-100 transition-colors hover:bg-gray-100;
 }
 
 .article-content th {
-  @apply border border-gray-300 bg-gray-50 p-2 text-left text-black;
+    @apply border border-gray-100 p-2 text-left;
 }
 
 .article-content td {
-  @apply border border-gray-300 p-2 text-left;
+    @apply border border-gray-100 p-2 text-left;
+}
+
+.article-content hr {
+    @apply mt-2 mb-2;
+}
+
+.article-content blockquote {
+    @apply mt-2 mb-2 pl-4;
 }
 
 .article-footer {
-  @apply mt-2 border-t border-gray-300 pt-2;
+    @apply pt-2 border-t border-gray-300 flex flex-col gap-2;
 }
 
 .tag-list {
-  @apply m-0 flex flex-wrap gap-2 p-0;
+    @apply flex flex-wrap items-center gap-2 text-sm;
 }
 
 .tag-list a {
-  @apply inline-flex min-h-9 items-center rounded-lg border border-gray-300 bg-white px-3 py-1 text-sm font-medium text-blue-600 transition hover:bg-gray-100 hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-600 motion-reduce:transition-none;
+    @apply inline-flex items-center rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium hover:bg-gray-100;
 }
 
 .wiki-empty-state {
-  @apply rounded-lg border border-dashed border-gray-300 bg-gray-50 p-4 text-gray-700;
+    @apply rounded-lg border border-dashed border-gray-300 bg-gray-50 p-4 text-gray-700;
 }
 
 .header_btn {
