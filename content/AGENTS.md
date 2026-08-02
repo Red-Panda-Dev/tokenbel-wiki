@@ -13,8 +13,8 @@ content/
 ├── _index.md                # Главная: требует hero-параметры (см. ниже)
 ├── <section>/_index.md      # Landing раздела (news, statistics, guides, policies, about)
 └── <section>/<slug>/        # Leaf bundle статьи
-    ├── index.md
-    └── index.md
+    ├── index.md             # Единственный контент-файл статьи
+    └── <вложения>           # изображения/файлы рядом; для мигрированных — CDN URL, не локальные
 ```
 
 ## Local boundaries and invariants
