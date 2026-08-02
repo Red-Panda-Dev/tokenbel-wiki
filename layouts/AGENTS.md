@@ -16,8 +16,11 @@ layouts/
 │   ├── baseof.html          # Каркас <html>, partials head/header/footer, блок main
 │   ├── list.html            # Список статей раздела (сортировка по Lastmod)
 │   └── single.html          # Одна статья
+├── _markup/
+│   └── render-table.html    # Render hook таблиц Markdown
 └── partials/
-    ├── head.html            # <head>: title, canonical, robots, OG, CSS-Pipes, JSON-LD
+    ├── head.html            # <head>: title, canonical, robots, OG, JSON-LD
+    ├── css.html             # Выбор output.css (dev) или tailwind.min.css (production)
     ├── header.html / footer.html
     ├── page-dates.html      # «Опубликовано/Обновлено» из front matter — рендер-поверхность инварианта enableGitInfo: false
     ├── section-card.html    # Карточка раздела: рендер icon-enum
