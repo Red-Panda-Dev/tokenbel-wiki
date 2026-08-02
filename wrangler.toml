@@ -7,11 +7,11 @@ directory = "./public"
 not_found_handling = "404-page"
 
 [[routes]]
-pattern = "wi.tokenbel.info/*"
+pattern = "wiki.tokenbel.info/*"
 zone_name = "tokenbel.info"
 
 [[routes]]
-pattern = "wi.tokenbel.info"
+pattern = "wiki.tokenbel.info"
 custom_domain = true
 
 [observability]
