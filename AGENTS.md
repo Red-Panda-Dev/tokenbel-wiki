@@ -14,6 +14,8 @@ layouts/               Локальные Hugo-шаблоны и partials (бе�
 static/css/input.css  Tailwind CSS 4 source; output.css и tailwind.min.css — committed CLI output
 static/                Статики, включая committed Tailwind output и favicon.svg
 archetypes/            Шаблоны `hugo new`
+assets/                Зарезервировано Hugo assets/ (пусто; CSS-pipeline использует static/, а не assets/)
+scripts/               Зарезервировано (пусто; сборка — через Makefile/build.sh, а не скрипты здесь)
 docs/                  Документация развёртывания (deployment.md)
 hugo.yaml              Конфигурация сайта (язык ru, секции меню, taxonomies)
 Makefile               Локальная Docker-обёртка над Hugo
