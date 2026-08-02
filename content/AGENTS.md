@@ -14,7 +14,7 @@ content/
 ├── <section>/_index.md      # Landing раздела (news, statistics, guides, policies, about)
 └── <section>/<slug>/        # Leaf bundle статьи
     ├── index.md
-    └── ...вложения (изображения, .xlsx и т.п.) рядом
+    └── index.md
 ```
 
 ## Local boundaries and invariants
@@ -31,7 +31,7 @@ content/
 - Новый раздел: создайте `content/<section>/_index.md` и добавьте пункт в `menus.main` в `hugo.yaml`, если он нужен в навигации.
 - Не задавайте `icon` вне enum — иконка будет неверной без ошибки сборки.
 - Даты: `lastmod` показывается пользователям (`Обновлено ...`). Git-даты не используются (`enableGitInfo: false`), обновляйте `date`/`lastmod` осознанно.
-- Миграция BookStack: задавайте стабильный `url` и список прежних адресов в `aliases`.
+- Одноразовая миграция BookStack создаёт чистые leaf bundles без `url`, `aliases`, legacy-адресов и BookStack metadata. Связи с исходниками остаются только в gitignored migration artifacts; изображения используют абсолютные CDN URL `https://cdn-wiki.tokenbel.info/wiki/assets/...`, а не локальные вложения.
 
 ## Validation
 

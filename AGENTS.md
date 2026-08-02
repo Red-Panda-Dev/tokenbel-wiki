@@ -43,7 +43,7 @@ wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./publ
 
 - Новый раздел: `content/<section>/_index.md` с `title`, `description`, `weight`, `icon` ∈ {news, chart, guide, document, info}; при необходимости добавьте пункт в `menus.main` в `hugo.yaml`.
 - Новая статья: leaf bundle `content/<section>/<slug>/index.md` с вложениями рядом.
-- Миграция BookStack: сохраняйте прежние адреса через front matter `url` и `aliases`.
+- Одноразовая миграция BookStack создаёт чистый Hugo content без `url`, `aliases`, legacy-адресов и BookStack metadata в `content/`. Связи с исходными страницами хранятся только в gitignored migration artifacts; изображения используют абсолютные CDN URL `https://cdn-wiki.tokenbel.info/wiki/assets/...`.
 - Не добавляйте внешние Hugo-темы и Sass-зависимости.
 - Визуальный reference — основной TokenBel: `../tbel/src/tbel/static/css/input.css`, `../tbel/src/tbel/templates/base.html`, `../tbel/src/tbel/templates/elements/header.html`. Не переносите dashboard-компоненты, AlpineJS или аналитику.
 - Для уникального layout используйте Tailwind utilities; для повторяющихся wiki-компонентов — стабильные semantic classes через `@apply` в `static/css/input.css`. Не формируйте Tailwind class names динамически.

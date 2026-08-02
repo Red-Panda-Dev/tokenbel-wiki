@@ -80,22 +80,14 @@ Production deployment uses Cloudflare Workers Static Assets.
 
 ### Новая статья
 
-Используйте leaf bundle, чтобы Markdown и вложения находились рядом:
+Используйте leaf bundle для статьи:
 
 ```text
 content/guides/ytm/
-├── index.md
-├── chart.webp
-└── example.xlsx
+└── index.md
 ```
 
-В front matter статьи можно задать стабильный URL и прежние адреса при миграции BookStack:
-
-```yaml
-url: "/books/rukovodstvo-polzovatelia/page/doxodnost-k-pogaseniiu-ytm/"
-aliases:
-  - "/link/42/"
-```
+Одноразовая миграция BookStack создаёт чистый Hugo content без `url`, `aliases`, legacy-адресов и BookStack metadata. Исходные связи остаются только в gitignored migration artifacts; изображения мигрированных статей используют абсолютные CDN URL `https://cdn-wiki.tokenbel.info/wiki/assets/...`.
 
 ## Валидация
 
