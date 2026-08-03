@@ -1,0 +1,66 @@
+# wiki-media
+
+Изолированный Python CLI для публикации временных изображений TokenBel Wiki в Cloudflare R2.
+
+## Установка и запуск
+
+```bash
+cd tools/wiki-media
+uv sync
+uv run python -m wiki_media publish --dry-run
+```
+
+Также можно установить package через `python -m pip install -e tools/wiki-media` и вызывать `wiki-media`. CLI ищет root репозитория по `.git/`, `hugo.yaml` и `content/`, поэтому запуск возможен из вложенной директории.
+
+## Make commands
+
+В `tools/wiki-media/` есть самостоятельный `Makefile` с uv-based commands:
+
+```bash
+make help
+make test
+make lint          # проверка Ruff без изменений
+make refactor      # Ruff: исправления, включая unsafe fixes, и форматирование
+make publish-dry-run MEDIA_PATH=content/guides
+make validate MEDIA_PATH=content/guides
+make cleanup DRY_RUN=--dry-run
+```
+
+`make refactor` обрабатывает только `src/` и `tests/`: применяет `ruff check --fix --unsafe-fixes`, затем `ruff format`. Перед изменением кода просмотрите `git diff`.
+
+## Authoring
+
+Изображение хранится **только** в `.wiki-media/inbox/`, например:
+
+```text
+.wiki-media/inbox/statistics/trading-volume.png
+```
+
+В Markdown используйте только image marker:
+
+```markdown
+![Объём торгов](upload:statistics/trading-volume.png)
+![Объём торгов](upload:statistics/trading-volume.png "Источник")
+![Объём торгов](<upload:statistics/Объём торгов.png>)
+<img src="upload:statistics/trading-volume.png" alt="Объём торгов">
+```
+
+Обычная ссылка `[документ](upload:file.pdf)` запрещена. `upload:` всегда inbox-relative: абсолютные пути, `..`, `~`, URI и symlink запрещены.
+
+## Commands
+
+```bash
+wiki-media publish [content-path] [--dry-run] [--remote] [--verbose] [--json-report report.json]
+wiki-media validate [content-path] [--remote]
+wiki-media cleanup [--dry-run]
+```
+
+Scope может быть всем `content/`, поддеревом или ровно `index.md`/`_index.md`. `cleanup` всегда сканирует весь `content/` и никогда не обращается к R2.
+
+`publish --dry-run` без `--remote`, `validate` без `--remote` и `cleanup --dry-run` не требуют credentials. R2 publish uses only `AWS_S3_URL`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+
+## Immutable destination
+
+Bucket is always `tokenbel-wiki`; prefix is always `wiki/media/images`; CDN is always `https://cdn-wiki.tokenbel.info`.
+
+The object key is `wiki/media/images/<sha[:2]>/<sha><canonical-extension>`. The tool validates all local images before remote writes, checks existing objects without overwriting mismatches, uploads/verifies remote SHA-256, stages exact-span rewrites, and atomically promotes them with rollback backups. It never deletes R2 objects or commits Git changes.

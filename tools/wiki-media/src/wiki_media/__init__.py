@@ -1,0 +1,1 @@
+"""TokenBel Wiki media publisher."""
