@@ -13,7 +13,9 @@ ignoreFiles:
   - "AGENTS\\.md$"
 
 pagination:
-  pagerSize: 12
+  disableAliases: true
+  pagerSize: 8
+  path: "page"
 
 taxonomies:
   tag: tags

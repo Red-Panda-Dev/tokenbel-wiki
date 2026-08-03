@@ -134,6 +134,27 @@
     @apply rounded-lg border border-dashed border-gray-300 bg-gray-50 p-4 text-gray-700;
 }
 
+.wiki-pagination {
+    @apply flex flex-wrap items-center justify-center;
+}
+
+.wiki-pagination-list {
+    @apply flex flex-wrap items-center justify-center gap-2;
+}
+
+.wiki-pagination-link,
+.wiki-pagination-current {
+    @apply inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border px-4 py-2 font-medium shadow-md focus:outline-none focus:ring-2 motion-reduce:transition-none;
+}
+
+.wiki-pagination-link {
+    @apply border-gray-300 bg-white text-gray-700 transition hover:bg-gray-100 hover:text-black focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white;
+}
+
+.wiki-pagination-current {
+    @apply border-blue-600 bg-blue-600 text-white focus:ring-blue-600;
+}
+
 .header_btn {
     @apply cursor-pointer rounded-lg px-4 py-2 font-medium text-gray-700 transition-all duration-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400;
 }

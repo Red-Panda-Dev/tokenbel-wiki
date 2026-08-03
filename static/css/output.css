@@ -1431,6 +1431,82 @@
   padding: calc(var(--spacing) * 4);
   color: var(--color-gray-700);
 }
+.wiki-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.wiki-pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+}
+.wiki-pagination-link, .wiki-pagination-current {
+  display: inline-flex;
+  min-height: calc(var(--spacing) * 11);
+  min-width: calc(var(--spacing) * 11);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  padding-inline: calc(var(--spacing) * 4);
+  padding-block: calc(var(--spacing) * 2);
+  --tw-font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-medium);
+  --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  &:focus {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  &:focus {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transition-property: none;
+  }
+}
+.wiki-pagination-link {
+  border-color: var(--color-gray-300);
+  background-color: var(--color-white);
+  color: var(--color-gray-700);
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-gray-100);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-black);
+    }
+  }
+  &:focus {
+    --tw-ring-color: var(--color-gray-500);
+  }
+  &:focus {
+    --tw-ring-offset-width: 2px;
+    --tw-ring-offset-shadow: var(--tw-ring-inset,) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  }
+  &:focus {
+    --tw-ring-offset-color: var(--color-white);
+  }
+}
+.wiki-pagination-current {
+  border-color: var(--color-blue-600);
+  background-color: var(--color-blue-600);
+  color: var(--color-white);
+  &:focus {
+    --tw-ring-color: var(--color-blue-600);
+  }
+}
 .header_btn {
   cursor: pointer;
   border-radius: var(--radius-lg);

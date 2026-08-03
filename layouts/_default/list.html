@@ -12,9 +12,11 @@
         {{ end }}
       </ol>
     {{ end }}
-    {{ with .RegularPages.ByLastmod.Reverse }}
+    {{ $pages := .RegularPages.ByLastmod.Reverse }}
+    {{ if $pages }}
+      {{ $pager := .Paginate $pages }}
       <ol class="grid gap-2">
-        {{ range . }}
+        {{ range $pager.Pages }}
           <li>
             <article class="wiki-card">
               <p class="text-xs font-semibold">{{ $.Title }}</p>
@@ -25,10 +27,9 @@
           </li>
         {{ end }}
       </ol>
-    {{ else }}
-      {{ if not $.Sections }}
-        <p class="wiki-empty-state">Материалы этого раздела пока готовятся.</p>
-      {{ end }}
+      {{ partial "pagination.html" (dict "pager" $pager "page" $) }}
+    {{ else if not $.Sections }}
+      <p class="wiki-empty-state">Материалы этого раздела пока готовятся.</p>
     {{ end }}
   </section>
 {{ end }}
