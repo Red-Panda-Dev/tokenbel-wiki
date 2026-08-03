@@ -1,27 +1,33 @@
-{{ $is404 := eq .Kind "404" }}
-{{ $description := .Description | default site.Params.description }}
-{{ $pageTitle := site.Title }}
-{{ if not .IsHome }}{{ $pageTitle = printf "%s | %s" .Title site.Title }}{{ end }}
-{{ if $is404 }}
-  {{ $pageTitle = printf "Страница не найдена | %s" site.Title }}
-  {{ $description = "Запрошенная страница не найдена в TokenBel Wiki." }}
-{{ end }}
+{{- $is404 := eq .Kind "404" -}}
+{{- $seo := partial "seo-values.html" . -}}
+{{- if $is404 -}}
+  {{- $seo = dict "title" (printf "Страница не найдена | %s" site.Title) "description" "Запрошенная страница не найдена в TokenBel Wiki." -}}
+{{- end -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<title>{{ $pageTitle }}</title>
-<meta name="description" content="{{ $description }}">
-{{ if not $is404 }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
-{{ if $is404 }}<meta name="robots" content="noindex, follow">{{ end }}
-<meta property="og:title" content="{{ $pageTitle }}">
-<meta property="og:description" content="{{ $description }}">
-<meta property="og:type" content="{{ if or .IsHome $is404 }}website{{ else }}article{{ end }}">
-{{ if not $is404 }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
+<title>{{ $seo.title }}</title>
+<meta name="description" content="{{ $seo.description }}">
+{{ if not $is404 }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:title" content="{{ $seo.title }}">
+  <meta property="og:description" content="{{ $seo.description }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:locale" content="{{ site.Params.seo.ogLocale }}">
+  <meta property="og:image" content="{{ $seo.image }}">
+  <meta property="og:image:alt" content="{{ $seo.imageAlt }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $seo.title }}">
+  <meta name="twitter:description" content="{{ $seo.description }}">
+  <meta name="twitter:image" content="{{ $seo.image }}">
+  <meta name="twitter:image:alt" content="{{ $seo.imageAlt }}">
+{{ else }}
+  <meta name="robots" content="noindex, follow">
+{{ end }}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 {{ partial "css.html" . }}
-{{ if .IsHome }}
-  {{ $website := dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "url" site.BaseURL "description" site.Params.description }}
-  <script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
-{{ end }}
+{{ if not $is404 }}{{ partial "seo-jsonld.html" . }}{{ end }}

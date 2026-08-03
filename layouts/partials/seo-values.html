@@ -1,0 +1,46 @@
+{{- $is404 := eq .Kind "404" -}}
+{{- $titleMaxLength := site.Params.seo.titleMaxLength | default 60 -}}
+{{- $descriptionMaxLength := site.Params.seo.descriptionMaxLength | default 155 -}}
+{{- $descriptionMinLength := site.Params.seo.descriptionMinLength | default 120 -}}
+{{- $pageTitle := .Params.seoTitle | default .Title | default site.Title -}}
+{{- $pageTitle = $pageTitle | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- $title := $pageTitle -}}
+
+{{- if .IsHome -}}
+  {{- $title = site.Params.seo.homeTitle | default site.Title -}}
+{{- else if not $is404 -}}
+  {{- $suffix := printf " | %s" site.Title -}}
+  {{- $available := sub $titleMaxLength (strings.RuneCount $suffix) -}}
+  {{- if gt (strings.RuneCount $pageTitle) $available -}}
+    {{- $pageTitle = strings.Substr $pageTitle 0 $available -}}
+  {{- end -}}
+  {{- $title = printf "%s%s" $pageTitle $suffix -}}
+{{- end -}}
+{{- if gt (strings.RuneCount $title) $titleMaxLength -}}
+  {{- $title = strings.Substr $title 0 $titleMaxLength -}}
+{{- end -}}
+
+{{- $description := .Params.seoDescription | default .Description | default .Summary | default site.Params.description -}}
+{{- $description = $description | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- if lt (strings.RuneCount $description) $descriptionMinLength -}}
+  {{- if $description -}}
+    {{- $description = printf "%s %s" $description site.Params.seo.descriptionSuffix -}}
+  {{- else -}}
+    {{- $description = site.Params.seo.descriptionFallback -}}
+  {{- end -}}
+{{- end -}}
+{{- if lt (strings.RuneCount $description) $descriptionMinLength -}}
+  {{- $description = printf "%s %s" $description site.Params.seo.descriptionFallback -}}
+{{- end -}}
+{{- if gt (strings.RuneCount $description) $descriptionMaxLength -}}
+  {{- $description = strings.Substr $description 0 $descriptionMaxLength | strings.TrimSpace -}}
+{{- end -}}
+
+{{- $image := .Params.image | default site.Params.socialImage -}}
+{{- $imageAlt := .Params.imageAlt | default site.Params.socialImageAlt | default $title -}}
+{{- return (dict
+  "title" $title
+  "description" $description
+  "image" ($image | absURL)
+  "imageAlt" ($imageAlt | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace)
+) -}}

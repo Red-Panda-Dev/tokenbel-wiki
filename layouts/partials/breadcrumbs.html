@@ -1,7 +1,7 @@
 <nav class="breadcrumbs" aria-label="Хлебные крошки">
   <a class="active-a" href="{{ site.Home.RelPermalink }}">Главная</a>
   {{ range .Ancestors.Reverse }}
-    {{ if ne .RelPermalink site.Home.RelPermalink }}
+    {{ if not .IsHome }}
       <span aria-hidden="true">/</span><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{ end }}
   {{ end }}

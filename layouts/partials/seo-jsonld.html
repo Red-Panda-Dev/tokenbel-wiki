@@ -1,0 +1,81 @@
+{{- $seo := partial "seo-values.html" . -}}
+{{- $websiteID := printf "%s#website" site.Home.Permalink -}}
+{{- $organizationID := printf "%s#organization" site.Home.Permalink -}}
+{{- $organization := dict
+  "@type" "Organization"
+  "@id" $organizationID
+  "name" site.Params.organizationName
+  "url" site.Params.mainSiteURL
+  "logo" (site.Params.organizationLogo | absURL)
+-}}
+
+{{- if .IsHome -}}
+  {{- $website := dict
+    "@type" "WebSite"
+    "@id" $websiteID
+    "name" site.Title
+    "url" site.Home.Permalink
+    "description" $seo.description
+    "publisher" (dict "@id" $organizationID)
+  -}}
+  {{- $graph := dict "@context" "https://schema.org" "@graph" (slice $website $organization) -}}
+  <script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>
+{{- else -}}
+  {{- $pageID := printf "%s#webpage" .Permalink -}}
+  {{- $breadcrumbID := printf "%s#breadcrumb" .Permalink -}}
+  {{- $items := slice -}}
+  {{- $position := 1 -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" "Главная" "item" site.Home.Permalink) -}}
+  {{- $position = add $position 1 -}}
+  {{- range .Ancestors.Reverse -}}
+    {{- if not .IsHome -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+      {{- $position = add $position 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+  {{- $breadcrumbs := dict "@type" "BreadcrumbList" "@id" $breadcrumbID "itemListElement" $items -}}
+  {{- $webPage := dict
+    "@type" "WebPage"
+    "@id" $pageID
+    "url" .Permalink
+    "name" $seo.title
+    "description" $seo.description
+    "isPartOf" (dict "@id" $websiteID)
+    "breadcrumb" (dict "@id" $breadcrumbID)
+    "inLanguage" site.Params.seo.language
+    "publisher" (dict "@id" $organizationID)
+  -}}
+  {{- $graphItems := slice $webPage $breadcrumbs $organization -}}
+  {{- if .IsPage -}}
+    {{- $articleID := printf "%s#article" .Permalink -}}
+    {{- $webPage = merge $webPage (dict "mainEntity" (dict "@id" $articleID)) -}}
+    {{- $article := dict
+      "@type" "Article"
+      "@id" $articleID
+      "headline" .Title
+      "description" $seo.description
+      "mainEntityOfPage" (dict "@id" $pageID)
+      "author" (dict "@id" $organizationID)
+      "publisher" (dict "@id" $organizationID)
+      "image" (dict "@type" "ImageObject" "url" $seo.image "caption" $seo.imageAlt)
+      "inLanguage" site.Params.seo.language
+    -}}
+    {{- if not .Date.IsZero -}}
+      {{- $article = merge $article (dict "datePublished" (.Date.Format "2006-01-02")) -}}
+    {{- end -}}
+    {{- if not .Lastmod.IsZero -}}
+      {{- $article = merge $article (dict "dateModified" (.Lastmod.Format "2006-01-02")) -}}
+    {{- end -}}
+    {{- $keywords := slice -}}
+    {{- range .GetTerms "tags" -}}
+      {{- $keywords = $keywords | append .LinkTitle -}}
+    {{- end -}}
+    {{- if gt (len $keywords) 0 -}}
+      {{- $article = merge $article (dict "keywords" $keywords) -}}
+    {{- end -}}
+    {{- $graphItems = slice $webPage $article $breadcrumbs $organization -}}
+  {{- end -}}
+  {{- $graph := dict "@context" "https://schema.org" "@graph" $graphItems -}}
+  <script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>
+{{- end -}}

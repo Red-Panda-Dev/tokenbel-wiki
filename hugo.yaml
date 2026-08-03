@@ -1,5 +1,5 @@
 baseURL: "https://wiki.tokenbel.info/"
-title: "Wiki TokenBel"
+title: "TokenBel Wiki"
 defaultContentLanguage: "ru"
 
 languages:
@@ -9,6 +9,8 @@ languages:
     weight: 1
 enableRobotsTXT: true
 enableGitInfo: false
+ignoreFiles:
+  - "AGENTS\\.md$"
 
 pagination:
   pagerSize: 12
@@ -17,7 +19,20 @@ taxonomies:
   tag: tags
 
 params:
-  description: "Справочные материалы, руководства и статистика TokenBel."
+  description: "TokenBel Wiki — подробные руководства, актуальная статистика рынка и справочные материалы о сервисе TokenBel и ценных бумагах Беларуси."
+  socialImage: "/og-default.png"
+  socialImageAlt: "TokenBel Wiki — руководства и статистика рынка Беларуси"
+  organizationName: "TokenBel"
+  organizationLogo: "/wiki_logo.webp"
+  seo:
+    titleMaxLength: 60
+    descriptionMaxLength: 155
+    descriptionMinLength: 120
+    homeTitle: "TokenBel Wiki — руководства и статистика рынка Беларуси"
+    descriptionSuffix: "Подробности, инструкции и статистика — в базе знаний TokenBel."
+    descriptionFallback: "TokenBel Wiki — подробные руководства, актуальная статистика рынка и справочные материалы о сервисе TokenBel и ценных бумагах Беларуси."
+    ogLocale: "ru_BY"
+    language: "ru-BY"
   mainSiteURL: "https://tokenbel.info/"
   dashboardURL: "https://dashboard.tokenbel.info/"
   tokensURL: "https://dashboard.tokenbel.info/tokens/"
