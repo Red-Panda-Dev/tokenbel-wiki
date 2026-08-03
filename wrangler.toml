@@ -1,12 +1,9 @@
 name = "tokenbel-wiki"
-main = "worker.mjs"
 compatibility_date = "2026-07-31"
 preview_urls = true
 
 [assets]
 directory = "./public"
-binding = "ASSETS"
-run_worker_first = ["/about/*", "/guides/*", "/news/*", "/policies/*", "/statistics/*", "/tags/*"]
 not_found_handling = "404-page"
 
 [[routes]]

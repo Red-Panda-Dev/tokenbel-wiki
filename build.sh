@@ -88,7 +88,6 @@ log_versions() {
 }
 
 build_site() {
-  node --test tests/pagination-worker.test.mjs
   "${HUGO_BIN}" --gc --minify --cleanDestinationDir --environment production
   python3 tests/check_seo.py public content
   python3 tests/check_pagination.py public content hugo.yaml

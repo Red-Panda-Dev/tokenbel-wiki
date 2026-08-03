@@ -79,7 +79,6 @@ check: css-check build
 	@grep -q 'База знаний TokenBel' public/index.html
 	@grep -q 'Страница не найдена' public/404.html
 	@grep -q 'noindex, follow' public/404.html
-	@$(DOCKER_RUN) npm run test:pagination
 	@$(PYTHON) tests/check_seo.py public content
 	@$(PYTHON) tests/check_pagination.py public content hugo.yaml
 	@printf '%s\n' 'Hugo build checks passed.'
