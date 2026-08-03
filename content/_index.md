@@ -1,6 +1,6 @@
 ---
 title: "База знаний TokenBel"
-description: "Руководства, статистика рынка и справочные материалы по работе с TokenBel."
+description: "TokenBel Wiki — руководства по сервису, статистика рынка и справочные материалы для инвесторов, работающих с ценными бумагами Беларуси."
 heroPrimaryLabel: "Открыть руководство"
 heroPrimaryURL: "/guides/"
 heroSecondaryLabel: "Перейти к TokenBel"

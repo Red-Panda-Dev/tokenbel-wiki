@@ -1,6 +1,6 @@
 ---
 title: "Статистика рынка токенов за 02.2026"
-description: "Изучили выпуски токенов на площадках Finstore, Fainex, Bynex, Whitebird осуществленные в феврале 2026 года."
+description: "Статистика рынка токенов за февраль 2026 года: выпуски на Finstore, Fainex, Bynex и Whitebird, эмитенты и динамика рынка."
 date: "2026-03-02"
 lastmod: "2026-03-02"
 draft: false

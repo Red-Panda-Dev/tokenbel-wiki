@@ -1,6 +1,6 @@
 ---
 title: "Разработка"
-description: "Основное хранилище — PostgreSQL 18.4 с pgvector и высокой доступностью; для временных данных используется Redis 8."
+description: "Как устроен TokenBel: PostgreSQL, pgvector, Redis, высокая доступность и технологические решения для хранения и обработки финансовых данных."
 date: "2025-11-15"
 lastmod: "2026-08-03"
 draft: false

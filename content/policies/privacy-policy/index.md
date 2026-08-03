@@ -1,6 +1,6 @@
 ---
 title: "Privacy Policy"
-description: "How TokenBel processes and protects users’ personal data."
+description: "Privacy Policy TokenBel: обработка и защита персональных данных, права пользователей и правила работы сервиса с информацией."
 date: 2025-12-06
 lastmod: 2025-12-06
 tags:
