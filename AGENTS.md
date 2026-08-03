@@ -47,6 +47,7 @@ wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./publ
 - Новая статья: leaf bundle `content/<section>/<slug>/index.md` с вложениями рядом.
 - Одноразовая миграция BookStack создаёт чистый Hugo content без `url`, `aliases`, legacy-адресов и BookStack metadata в `content/`. Связи с исходными страницами хранятся только в gitignored migration artifacts; изображения используют абсолютные CDN URL `https://cdn-wiki.tokenbel.info/wiki/assets/...`.
 - Не добавляйте внешние Hugo-темы и Sass-зависимости.
+- Для новых изображений не используйте article bundles: положите файл в gitignored `.wiki-media/inbox/`, добавьте image-only marker `upload:<inbox-relative-path>` и опубликуйте через `wiki-media`. CLI находится в `tools/wiki-media/`, публикует immutable R2 objects и не выполняет Git commit; старые `https://cdn-wiki.tokenbel.info/wiki/assets/...` не переписываются.
 - Визуальный reference — основной TokenBel: `../tbel/src/tbel/static/css/input.css`, `../tbel/src/tbel/templates/base.html`, `../tbel/src/tbel/templates/elements/header.html`. Не переносите dashboard-компоненты, AlpineJS или аналитику.
 - Для уникального layout используйте Tailwind utilities; для повторяющихся wiki-компонентов — стабильные semantic classes через `@apply` в `static/css/input.css`. Не формируйте Tailwind class names динамически.
 - После изменения `input.css` или Tailwind classes в шаблонах запустите `make css-build` и закоммитьте оба output-файла.

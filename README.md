@@ -8,6 +8,7 @@
 - GNU Make;
 - Git;
 - Node.js и npm (для Tailwind CSS 4 build dependencies).
+- Python 3.11+ (только для optional CLI `wiki-media`).
 
 Hugo запускается в Docker-образе `hugomods/hugo:0.164.0`, поэтому локальная версия Hugo не требуется и совпадает с версией сборки.
 
@@ -88,6 +89,19 @@ content/guides/ytm/
 ```
 
 Одноразовая миграция BookStack создаёт чистый Hugo content без `url`, `aliases`, legacy-адресов и BookStack metadata. Исходные связи остаются только в gitignored migration artifacts; изображения мигрированных статей используют абсолютные CDN URL `https://cdn-wiki.tokenbel.info/wiki/assets/...`.
+
+### Новые изображения
+
+Не коммитьте новые изображения в article bundles. Поместите их в gitignored `.wiki-media/inbox/` и добавьте в статью image marker, например `![Объём торгов](upload:statistics/trading-volume.png)`. Для пробелов используйте `<upload:statistics/Объём торгов.png>`. Затем CLI загружает проверенное изображение в immutable R2 и заменяет только `upload:` destination на CDN URL:
+
+```bash
+make media-install
+make media-publish-dry-run MEDIA_PATH=content/statistics
+make media-publish MEDIA_PATH=content/guides
+make media-validate
+```
+
+`wiki-media publish` поддерживает весь `content/`, directory scope и один `index.md`/`_index.md`; обычные `upload:` links запрещены. Старые migrated URLs под `https://cdn-wiki.tokenbel.info/wiki/assets/...` остаются валидными и не переписываются. Детали syntax, R2 и transaction/rollback есть в [tools/wiki-media/README.md](tools/wiki-media/README.md).
 
 ## Валидация
 
