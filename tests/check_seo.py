@@ -110,7 +110,11 @@ def front_matter_value(header: str, key: str) -> str | None:
     )
     if not value:
         return None
-    return next(part.strip() for part in value.group("double", "single", "bare") if part is not None)
+    return next(
+        part.strip()
+        for part in value.group("double", "single", "bare")
+        if part is not None
+    )
 
 
 def main() -> int:
@@ -126,13 +130,27 @@ def main() -> int:
             continue
         description = front_matter_value(header, "description")
         if description is None:
-            fail(errors, source, "front matter description is missing or must be a single-line scalar")
+            fail(
+                errors,
+                source,
+                "front matter description is missing or must be a single-line scalar",
+            )
         elif not 120 <= len(description) <= 155:
-            fail(errors, source, f"front matter description length is {len(description)}, expected 120–155")
+            fail(
+                errors,
+                source,
+                f"front matter description length is {len(description)}, expected 120–155",
+            )
         if source != content_root / "_index.md":
-            seo_title = front_matter_value(header, "seoTitle") or front_matter_value(header, "title")
+            seo_title = front_matter_value(header, "seoTitle") or front_matter_value(
+                header, "title"
+            )
             if not seo_title or len(seo_title) > 44:
-                fail(errors, source, "SEO title must be present and no longer than 44 characters before the site suffix")
+                fail(
+                    errors,
+                    source,
+                    "SEO title must be present and no longer than 44 characters before the site suffix",
+                )
 
     if not (public_root / "og-default.png").is_file():
         errors.append("public/og-default.png: missing social-image fallback")
@@ -168,7 +186,11 @@ def main() -> int:
             fail(errors, page, f"title length is {len(parser.title)}, expected 1–60")
         description = parser.meta.get("description", "")
         if not 120 <= len(description) <= 155:
-            fail(errors, page, f"description length is {len(description)}, expected 120–155")
+            fail(
+                errors,
+                page,
+                f"description length is {len(description)}, expected 120–155",
+            )
         missing = sorted(key for key in required_social if not parser.meta.get(key))
         if missing:
             fail(errors, page, f"missing social metadata: {', '.join(missing)}")
@@ -197,7 +219,11 @@ def main() -> int:
 
         expected_type = "article" if page in articles else "website"
         if parser.meta["og:type"] != expected_type:
-            fail(errors, page, f"og:type is {parser.meta['og:type']}, expected {expected_type}")
+            fail(
+                errors,
+                page,
+                f"og:type is {parser.meta['og:type']}, expected {expected_type}",
+            )
 
         if len(parser.json_ld) != 1:
             fail(errors, page, "expected exactly one JSON-LD graph")
@@ -232,21 +258,29 @@ def main() -> int:
             elif website.get("inLanguage") != "ru-BY":
                 fail(errors, page, "WebSite inLanguage must be ru-BY")
             elif website.get("publisher") != {"@id": expected_organization_id}:
-                fail(errors, page, "WebSite publisher must reference the shared Organization")
+                fail(
+                    errors,
+                    page,
+                    "WebSite publisher must reference the shared Organization",
+                )
             continue
 
         expected_types = {"WebPage", "BreadcrumbList", "Organization"}
         if page in articles:
             expected_types.add("Article")
         if not expected_types.issubset(types):
-            fail(errors, page, f"JSON-LD missing types: {sorted(expected_types - types)}")
+            fail(
+                errors, page, f"JSON-LD missing types: {sorted(expected_types - types)}"
+            )
             continue
         breadcrumb = graph_item(graph, "BreadcrumbList")
         webpage = graph_item(graph, "WebPage")
         if not breadcrumb or not breadcrumb.get("itemListElement"):
             fail(errors, page, "JSON-LD breadcrumb must contain items")
         if not webpage or webpage.get("publisher") != {"@id": expected_organization_id}:
-            fail(errors, page, "WebPage publisher must reference the shared Organization")
+            fail(
+                errors, page, "WebPage publisher must reference the shared Organization"
+            )
         if page in articles:
             article = graph_item(graph, "Article")
             required_article = {
@@ -265,9 +299,17 @@ def main() -> int:
             elif webpage.get("mainEntity") != {"@id": article.get("@id")}:
                 fail(errors, page, "WebPage.mainEntity must reference Article")
             elif article.get("author") != {"@id": expected_organization_id}:
-                fail(errors, page, "Article author must reference the shared Organization")
+                fail(
+                    errors,
+                    page,
+                    "Article author must reference the shared Organization",
+                )
             elif article.get("publisher") != {"@id": expected_organization_id}:
-                fail(errors, page, "Article publisher must reference the shared Organization")
+                fail(
+                    errors,
+                    page,
+                    "Article publisher must reference the shared Organization",
+                )
 
     nested_article = public_root / "guides/kak-eto-rabotaet/stranica-akcii/index.html"
     if nested_article.is_file():
@@ -283,7 +325,11 @@ def main() -> int:
         ]
         actual = [item.get("item") for item in items if isinstance(item, dict)]
         if actual != expected:
-            fail(errors, nested_article, f"breadcrumb path is {actual}, expected {expected}")
+            fail(
+                errors,
+                nested_article,
+                f"breadcrumb path is {actual}, expected {expected}",
+            )
 
     if errors:
         print("SEO validation failed:")
