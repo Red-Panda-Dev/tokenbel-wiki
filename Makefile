@@ -79,6 +79,7 @@ check: css-check build
 	@grep -q 'База знаний TokenBel' public/index.html
 	@grep -q 'Страница не найдена' public/404.html
 	@grep -q 'noindex, follow' public/404.html
+	@$(PYTHON) tests/check_seo.py public content
 	@printf '%s\n' 'Hugo build checks passed.'
 
 cloudflare-build:
