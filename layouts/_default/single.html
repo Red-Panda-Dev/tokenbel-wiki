@@ -1,10 +1,6 @@
 {{ define "main" }}
   <article class="page">
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="active-a" href="{{ site.Home.RelPermalink }}">Главная</a>
-      {{ with .CurrentSection }}<span aria-hidden="true">/</span><a class="active-a" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
-      <span aria-hidden="true">/</span><span aria-current="page" class="font-semibold text-black">{{ .Title }}</span>
-    </nav>
+    {{ partial "breadcrumbs.html" . }}
     <header class="flex flex-col gap-2 border-b border-gray-300 pb-2">
       <h1 class="text-3xl font-bold tracking-tight text-black sm:text-4xl">{{ .Title }}</h1>
       {{ with .Description }}<p class="text-lg leading-relaxed text-gray-700">{{ . }}</p>{{ end }}
