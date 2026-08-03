@@ -2,7 +2,7 @@
 
 Руководство для AI-агентов по репозиторию TokenBel Wiki.
 
-## Что это
+## Обзор репозитория
 
 Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets (без runtime-скрипта, bindings, KV). Внешних Hugo-тем нет — вся вёрстка локальная.
 
@@ -17,14 +17,14 @@ archetypes/            Шаблоны `hugo new`
 assets/                Зарезервировано Hugo assets/ (пусто; CSS-pipeline использует static/, а не assets/)
 scripts/               Зарезервировано (пусто; сборка — через Makefile/build.sh, а не скрипты здесь)
 docs/                  Документация развёртывания (deployment.md)
-tools/                 Изолированный Python CLI wiki-media (публикация изображений в Cloudflare R2; свой uv/pytest/Ruff)
+tools/                 Изолированный Python CLI wiki-media (публикация изображений в Cloudflare R2)
 hugo.yaml              Конфигурация сайта (язык ru, секции меню, taxonomies)
 Makefile               Локальная Docker-обёртка над Hugo
 build.sh               Pinned-сборка для Cloudflare (только Linux x86_64)
 wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./public)
 ```
 
-Не коммитьте и не правьте: `public/`, `resources/`, `.cache/`, `.wrangler/`, `.hugo_build.lock`, `node_modules/` — это артефакты сборки.
+**Не коммитьте и не правьте:** `public/`, `resources/`, `.cache/`, `.wrangler/`, `.hugo_build.lock`, `node_modules/` — это артефакты сборки.
 
 ## Архитектурные инварианты
 
@@ -68,7 +68,7 @@ make check     # проверить актуальность committed CSS и HT
 
 Перед завершением: `npm ci`, `make check` (или `hugo --gc --minify`), проверка 320 px, и наличие `public/index.html`, `public/404.html`. Изменения в `tools/wiki-media/` (Python) валидируются отдельно (`make lint`/`make test` и `make publish-dry-run`), см. `tools/wiki-media/AGENTS.md`.
 
-## Гоччи
+## Потенциальные ловушки
 
 - Канонический URL всегда `https://wiki.tokenbel.info/` (включая staging) — не вставляйте `localhost`/порт в canonical или ссылки.
 - Страница 404 должна отдавать `noindex, follow` и текст `Страница не найдена`.

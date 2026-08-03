@@ -39,7 +39,7 @@ layouts/
 ## Safe change rules
 
 - Не вставляйте `localhost`/порт в canonical или ссылки — канонический домен `https://wiki.tokenbel.info/`.
-- Новая иконка раздела → добавьте ветку в `section-card.html` И используйте то же значение в `content/_index.md`.
+- Новая иконка раздела → добавьте ветку в `section-card.html` и используйте то же значение в `content/_index.md`.
 - Не полагайтесь на Git-даты: `.Lastmod` в шаблонах берётся из front matter (`enableGitInfo: false`).
 
 ## Validation
