@@ -2,7 +2,7 @@
 title: "Статистика рынка токенов за 12.2025"
 description: "Статистика рынка токенов за декабрь 2025 года: выпуски, эмитенты и площадки Finstore, Fainex, Bynex и Whitebird за месяц."
 date: "2026-01-01"
-lastmod: "2026-03-02"
+lastmod: "2026-01-01"
 draft: false
 weight: 4
 ---
