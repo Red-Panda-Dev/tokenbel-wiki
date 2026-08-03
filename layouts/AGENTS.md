@@ -20,7 +20,7 @@ layouts/
 │   └── render-table.html    # Render hook таблиц Markdown
 └── partials/
     ├── head.html            # <head>: title, canonical, robots, OG, JSON-LD
-    ├── css.html             # Выбор output.css (dev) или tailwind.min.css (production)
+    ├── css.html             # Всегда линкует tailwind.min.css (захардкожено, без переключения окружения)
     ├── header.html / footer.html
     ├── page-dates.html      # «Опубликовано/Обновлено» из front matter — рендер-поверхность инварианта enableGitInfo: false
     ├── section-card.html    # Карточка раздела: рендер icon-enum
@@ -29,7 +29,7 @@ layouts/
 
 ## Local boundaries and invariants
 
-- CSS source — `static/css/input.css`; pinned standalone `@tailwindcss/cli` собирает committed `static/css/output.css` (dev) и `static/css/tailwind.min.css` (production). `partials/css.html` выбирает output в development и minified файл в production. Не добавляйте `.scss` / Sass `@import`.
+- CSS source — `static/css/input.css`; pinned standalone `@tailwindcss/cli` собирает committed `static/css/output.css` (unminified) и `static/css/tailwind.min.css` (minified). `partials/css.html` **всегда** линкует только `tailwind.min.css` (захардкожено, без переключения по окружению); `output.css` служит ссылкой для `make css-watch` и freshness-проверки `make css-check` и ни одним шаблоном не подключается. Не добавляйте `.scss` / Sass `@import`.
 - Для уникального layout используйте Tailwind utilities, а для повторяющихся wiki-компонентов — semantic classes через `@apply` в `static/css/input.css`. Все условные class strings должны быть полными literal mappings, а не динамическими фрагментами. После изменения templates/input.css выполните `make css-build` и закоммитьте оба CSS output-файла.
 - `head.html` управляет SEO: `canonical` = `.Permalink` (всегда production-домен), `noindex, follow` только для 404, OG-теги, JSON-LD на главной. Не ломайте логику canonical/robots.
 - `make check` жёстко ищет строки: `База знаний TokenBel` (home), `Страница не найдена` (404). Сохраняйте их дословно при рефакторинге.
@@ -44,4 +44,4 @@ layouts/
 
 ## Validation
 
-`npm ci`, `make css-build` и `make check` после правок шаблонов; проверьте подключение `output.css` в development и `tailwind.min.css` в production, canonical на домашней и 404, а также layout на ширине 320 px.
+`npm ci`, `make css-build` и `make check` после правок шаблонов; проверьте, что подключается именно `tailwind.min.css` (его линкует `partials/css.html` во всех окружениях), canonical на домашней и 404, а также layout на ширине 320 px.
