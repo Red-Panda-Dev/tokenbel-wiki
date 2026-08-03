@@ -22,8 +22,15 @@ params:
   description: "TokenBel Wiki — подробные руководства, актуальная статистика рынка и справочные материалы о сервисе TokenBel и ценных бумагах Беларуси."
   socialImage: "/og-default.png"
   socialImageAlt: "TokenBel Wiki — руководства и статистика рынка Беларуси"
+  socialImageType: "image/png"
+  socialImageWidth: 1200
+  socialImageHeight: 630
+  organizationID: "https://tokenbel.info/#organization"
   organizationName: "TokenBel"
   organizationLogo: "/wiki_logo.webp"
+  organizationSameAs:
+    - "https://t.me/tokenbel"
+    - "https://github.com/Red-Panda-Dev"
   seo:
     titleMaxLength: 60
     descriptionMaxLength: 155

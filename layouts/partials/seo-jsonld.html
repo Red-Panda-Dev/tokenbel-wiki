@@ -1,12 +1,13 @@
 {{- $seo := partial "seo-values.html" . -}}
 {{- $websiteID := printf "%s#website" site.Home.Permalink -}}
-{{- $organizationID := printf "%s#organization" site.Home.Permalink -}}
+{{- $organizationID := site.Params.organizationID -}}
 {{- $organization := dict
   "@type" "Organization"
   "@id" $organizationID
   "name" site.Params.organizationName
   "url" site.Params.mainSiteURL
   "logo" (site.Params.organizationLogo | absURL)
+  "sameAs" site.Params.organizationSameAs
 -}}
 
 {{- if .IsHome -}}
@@ -16,6 +17,7 @@
     "name" site.Title
     "url" site.Home.Permalink
     "description" $seo.description
+    "inLanguage" site.Params.seo.language
     "publisher" (dict "@id" $organizationID)
   -}}
   {{- $graph := dict "@context" "https://schema.org" "@graph" (slice $website $organization) -}}

@@ -146,6 +146,9 @@ def main() -> int:
         "og:locale",
         "og:image",
         "og:image:alt",
+        "og:image:type",
+        "og:image:width",
+        "og:image:height",
         "twitter:card",
         "twitter:title",
         "twitter:description",
@@ -176,6 +179,14 @@ def main() -> int:
             fail(errors, page, "og:locale must be ru_BY")
         if parser.meta["twitter:card"] != "summary_large_image":
             fail(errors, page, "twitter:card must be summary_large_image")
+        expected_image_metadata = {
+            "og:image:type": "image/png",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+        }
+        for key, expected in expected_image_metadata.items():
+            if parser.meta[key] != expected:
+                fail(errors, page, f"{key} must be {expected}")
         if not is_absolute_production_url(parser.meta["og:url"]):
             fail(errors, page, "og:url must be an absolute production URL")
         for key in ("og:image", "twitter:image"):
@@ -199,9 +210,29 @@ def main() -> int:
         if graph.get("@context") != "https://schema.org":
             fail(errors, page, "JSON-LD context must be schema.org")
         types = graph_types(graph)
+        organization = graph_item(graph, "Organization")
+        expected_organization_id = "https://tokenbel.info/#organization"
+        expected_same_as = [
+            "https://t.me/tokenbel",
+            "https://github.com/Red-Panda-Dev",
+        ]
+        if not organization or organization.get("@id") != expected_organization_id:
+            fail(errors, page, "Organization must use the shared TokenBel @id")
+        elif organization.get("url") != "https://tokenbel.info/":
+            fail(errors, page, "Organization URL must point to the main TokenBel site")
+        elif organization.get("sameAs") != expected_same_as:
+            fail(errors, page, "Organization sameAs must list official TokenBel pages")
+
         if page == public_root / "index.html":
-            if not {"WebSite", "Organization"}.issubset(types):
-                fail(errors, page, "home graph must contain WebSite and Organization")
+            website = graph_item(graph, "WebSite")
+            if not website:
+                fail(errors, page, "home graph must contain WebSite")
+            elif website.get("@id") != "https://wiki.tokenbel.info/#website":
+                fail(errors, page, "WebSite must use the wiki-specific @id")
+            elif website.get("inLanguage") != "ru-BY":
+                fail(errors, page, "WebSite inLanguage must be ru-BY")
+            elif website.get("publisher") != {"@id": expected_organization_id}:
+                fail(errors, page, "WebSite publisher must reference the shared Organization")
             continue
 
         expected_types = {"WebPage", "BreadcrumbList", "Organization"}
@@ -211,11 +242,13 @@ def main() -> int:
             fail(errors, page, f"JSON-LD missing types: {sorted(expected_types - types)}")
             continue
         breadcrumb = graph_item(graph, "BreadcrumbList")
+        webpage = graph_item(graph, "WebPage")
         if not breadcrumb or not breadcrumb.get("itemListElement"):
             fail(errors, page, "JSON-LD breadcrumb must contain items")
+        if not webpage or webpage.get("publisher") != {"@id": expected_organization_id}:
+            fail(errors, page, "WebPage publisher must reference the shared Organization")
         if page in articles:
             article = graph_item(graph, "Article")
-            webpage = graph_item(graph, "WebPage")
             required_article = {
                 "headline",
                 "description",
@@ -229,8 +262,12 @@ def main() -> int:
             }
             if not article or not required_article.issubset(article):
                 fail(errors, page, "Article is missing required fields")
-            elif not webpage or webpage.get("mainEntity") != {"@id": article.get("@id")}:
+            elif webpage.get("mainEntity") != {"@id": article.get("@id")}:
                 fail(errors, page, "WebPage.mainEntity must reference Article")
+            elif article.get("author") != {"@id": expected_organization_id}:
+                fail(errors, page, "Article author must reference the shared Organization")
+            elif article.get("publisher") != {"@id": expected_organization_id}:
+                fail(errors, page, "Article publisher must reference the shared Organization")
 
     nested_article = public_root / "guides/kak-eto-rabotaet/stranica-akcii/index.html"
     if nested_article.is_file():
