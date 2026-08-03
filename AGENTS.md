@@ -4,7 +4,7 @@
 
 ## Обзор репозитория
 
-Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets (без runtime-скрипта, bindings, KV). Внешних Hugo-тем нет — вся вёрстка локальная.
+Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets. Минимальный `worker.mjs` только переписывает валидный `?page=N` для списков в Hugo-ассеты `/page/N/`; runtime-данных, KV и серверного рендеринга нет. Внешних Hugo-тем нет — вся вёрстка локальная.
 
 ## Где работать
 
@@ -21,7 +21,8 @@ tools/                 Изолированный Python CLI wiki-media (пуб�
 hugo.yaml              Конфигурация сайта (язык ru, секции меню, taxonomies)
 Makefile               Локальная Docker-обёртка над Hugo
 build.sh               Pinned-сборка для Cloudflare (только Linux x86_64)
-wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./public)
+wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./public, ASSETS binding)
+worker.mjs           Query-param pagination rewrite → Hugo static assets
 ```
 
 **Не коммитьте и не правьте:** `public/`, `resources/`, `.cache/`, `.wrangler/`, `.hugo_build.lock`, `node_modules/` — это артефакты сборки.
@@ -71,6 +72,7 @@ make check     # проверить актуальность committed CSS и HT
 ## Потенциальные ловушки
 
 - Канонический URL всегда `https://wiki.tokenbel.info/` (включая staging) — не вставляйте `localhost`/порт в canonical или ссылки.
+- Пагинация списков: Hugo генерирует `/page/N/`, а `worker.mjs` принимает один валидный `?page=N` для маршрутов разделов и тегов и запрашивает соответствующий static asset. Не добавляйте клиентскую пагинацию или меняйте контракт rewrite без тестов.
 - Страница 404 должна отдавать `noindex, follow` и текст `Страница не найдена`.
 - Параметр `excludeFromRecent: true` исключает страницу из блока «Последние обновления».
 - Локальный путь сборки (Docker `make`) и Cloudflare (`build.sh`, Linux x86_64) различаются — не запускайте `build.sh` вне Linux x86_64.

@@ -1,6 +1,6 @@
 # Cloudflare deployment
 
-TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is not a Cloudflare Pages project, has no Worker runtime script, KV namespace, or origin server.
+TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is not a Cloudflare Pages project and has no KV namespace or origin server. The minimal `worker.mjs` runtime rewrites valid `?page=N` requests for section and tag lists to Hugo's pre-built `/page/N/` assets; all rendering remains static.
 
 ## Pinned build tools
 
@@ -27,7 +27,7 @@ The Hugo standard edition is intentional: pinned standalone `@tailwindcss/cli` c
 - Missing URL behavior: nearest Hugo `404.html` with HTTP `404`
 - Preview URLs: enabled in `wrangler.toml`
 
-`wrangler.toml` has no `main`, bindings, account ID, token, secret, or custom `build` hook. It declares the `wi.tokenbel.info` routes and enables Workers observability logs and traces. Omitting the `build` hook is intentional: current Workers Builds documentation does not honor Wrangler Custom Builds as its dashboard build step. It also prevents `npx` from resolving an unpinned Wrangler before `build.sh` has executed `npm ci`. Workers Builds runs `./build.sh` as its explicit build command, then runs `npm run deploy` using the lockfile-installed Wrangler.
+`wrangler.toml` declares `worker.mjs`, the `ASSETS` binding, and `run_worker_first` for content sections and tags so the Worker can normalize `?page=N` before asset matching. The script accepts one positive safe integer, maps page 1 to the list root and later pages to Hugo's `/page/N/` output, preserves unrelated query parameters, and returns `400` for malformed page values. It has no account ID, token, secret, or custom `build` hook. It declares the `wi.tokenbel.info` routes and enables Workers observability logs and traces. Omitting the `build` hook is intentional: current Workers Builds documentation does not honor Wrangler Custom Builds as its dashboard build step. It also prevents `npx` from resolving an unpinned Wrangler before `build.sh` has executed `npm ci`. Workers Builds runs `./build.sh` as its explicit build command, then runs `npm run deploy` using the lockfile-installed Wrangler.
 
 ## Local validation
 
@@ -92,6 +92,8 @@ Replace `<staging-domain>` after the first successful build and run:
 ```bash
 curl -I https://<staging-domain>/
 curl -I https://<staging-domain>/guides/
+curl -I 'https://<staging-domain>/news/?page=2'
+curl -I 'https://<staging-domain>/news/?page=invalid'
 curl -I https://<staging-domain>/non-existent-page/
 curl -I https://<staging-domain>/favicon.svg
 curl --silent --show-error https://<staging-domain>/non-existent-page/ | grep -q 'Страница не найдена'
@@ -99,7 +101,7 @@ curl -fsS https://<staging-domain>/robots.txt
 curl -fsS https://<staging-domain>/sitemap.xml
 ```
 
-Expected status codes are `200`, `200`, `404`, and `200`. Also review keyboard navigation, focus state, mobile layout, `tailwind.min.css`, favicon, section links, and PR-preview URL. The canonical URL intentionally remains `https://wiki.tokenbel.info/` even on staging; verify it has no `localhost` references.
+Expected status codes are `200`, `200`, `200`, `400`, `404`, and `200`. Verify that the query-param response contains only the second page's article cards and that unrelated query parameters are preserved by the rewrite. Also review keyboard navigation, focus state, mobile layout, `tailwind.min.css`, favicon, section links, and PR-preview URL. The canonical URL intentionally remains `https://wiki.tokenbel.info/` even on staging; verify it has no `localhost` references.
 
 A repeated `./build.sh` from the same commit must succeed and must not modify tracked files.
 
@@ -133,6 +135,7 @@ Rollback immediately if the homepage fails, TLS is not issued, static assets ret
 
 - [ ] `npm ci` passes.
 - [ ] `./build.sh` passes.
+- [ ] `npm run test:pagination` passes.
 - [ ] `npm run deploy:dry-run` passes.
 - [ ] `public/index.html` and `public/404.html` exist.
 - [ ] `public/public` does not exist.
