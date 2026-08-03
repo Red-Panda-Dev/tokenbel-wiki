@@ -14,7 +14,8 @@ Russian-language static knowledge base for TokenBel, built with Hugo and deploye
 * [Build System](build-system/) — Local Docker builds, pinned Cloudflare builds, and validation
 * [Media Publishing](media-publishing/) — Isolated Python CLI for image publishing to Cloudflare R2
 * [Deployment](deployment/) — Cloudflare Worker configuration and deployment workflow
-* [Configuration](configuration/) — Hugo, Node, and toolchain configuration files
+* [Configuration](configuration/) — Hugo, Node, toolchain configuration files, and LLM context
+* [Validation](validation/) — SEO and pagination validation scripts
 
 ## Quick Reference
 

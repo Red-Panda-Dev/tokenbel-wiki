@@ -1,5 +1,14 @@
 # Knowledge Bundle Update Log
 
+## 2026-08-03
+
+* **Update**: Added [Validation](validation/) domain with SEO validation and pagination validation scripts
+* **Creation**: Added [SEO Validation](validation/seo-validation.md) — validates rendered SEO metadata in Hugo output
+* **Creation**: Added [Pagination Validation](validation/pagination-validation.md) — validates Hugo list pagination in rendered output
+* **Creation**: Added [LLM Context](configuration/llms.txt.md) — documents the static/llms.txt file for AI agent context
+* **Update**: Updated root [index.md](index.md) to include Validation domain and LLM Context reference
+* **Update**: Updated [Configuration index](configuration/index.md) to include LLM Context
+
 ## 2025-01-04
 
 * **Initialization**: Created OKF knowledge bundle for TokenBel Wiki repository at `okf/`
