@@ -1,27 +1,31 @@
-{{- $pager := .pager -}}
-{{- $page := .page -}}
-{{- if gt $pager.TotalPages 1 -}}
-  <nav class="wiki-pagination" aria-label="Постраничная навигация">
+{{- $pager := .pager -}} {{- if gt $pager.TotalPages 1 -}}
+<nav class="wiki-pagination" aria-label="Постраничная навигация">
     <ol class="wiki-pagination-list">
-      {{ with $pager.Prev }}
+        {{ with $pager.Prev }}
         <li>
-          <a class="wiki-pagination-link" href="{{ if eq .PageNumber 1 }}{{ $page.RelPermalink }}{{ else }}{{ printf "%s?page=%d" $page.RelPermalink .PageNumber }}{{ end }}">Предыдущая<span class="sr-only"> страница</span></a>
+            <a class="wiki-pagination-link" href="{{ .URL }}"
+                >Предыдущая<span class="sr-only"> страница</span></a
+            >
         </li>
-      {{ end }}
-      {{ range $pager.Pagers }}
+        {{ end }} {{ range $pager.Pagers }}
         <li>
-          {{ if eq .PageNumber $pager.PageNumber }}
-            <span class="wiki-pagination-current" aria-current="page"><span class="sr-only">Страница </span>{{ .PageNumber }}</span>
-          {{ else }}
-            <a class="wiki-pagination-link" href="{{ if eq .PageNumber 1 }}{{ $page.RelPermalink }}{{ else }}{{ printf "%s?page=%d" $page.RelPermalink .PageNumber }}{{ end }}"><span class="sr-only">Страница </span>{{ .PageNumber }}</a>
-          {{ end }}
+            {{ if eq .PageNumber $pager.PageNumber }}
+            <span class="wiki-pagination-current" aria-current="page"
+                ><span class="sr-only">Страница </span>{{ .PageNumber }}</span
+            >
+            {{ else }}
+            <a class="wiki-pagination-link" href="{{ .URL }}"
+                ><span class="sr-only">Страница </span>{{ .PageNumber }}</a
+            >
+            {{ end }}
         </li>
-      {{ end }}
-      {{ with $pager.Next }}
+        {{ end }} {{ with $pager.Next }}
         <li>
-          <a class="wiki-pagination-link" href="{{ printf "%s?page=%d" $page.RelPermalink .PageNumber }}">Следующая<span class="sr-only"> страница</span></a>
+            <a class="wiki-pagination-link" href="{{ .URL }}"
+                >Следующая<span class="sr-only"> страница</span></a
+            >
         </li>
-      {{ end }}
+        {{ end }}
     </ol>
-  </nav>
+</nav>
 {{- end -}}

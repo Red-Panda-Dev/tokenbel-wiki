@@ -60,7 +60,9 @@ def direct_articles(directory: Path) -> list[Path]:
     )
 
 
-def output_path(public_root: Path, content_root: Path, directory: Path, page: int) -> Path:
+def output_path(
+    public_root: Path, content_root: Path, directory: Path, page: int
+) -> Path:
     relative = directory.relative_to(content_root)
     base = public_root / relative
     if page == 1:
@@ -85,7 +87,12 @@ def main() -> int:
             continue
 
         expected_pages = math.ceil(len(articles) / size)
-        first_page_alias = output_path(public_root, content_root, directory, 1).parent / "page" / "1" / "index.html"
+        first_page_alias = (
+            output_path(public_root, content_root, directory, 1).parent
+            / "page"
+            / "1"
+            / "index.html"
+        )
         if first_page_alias.is_file():
             fail(errors, first_page_alias, "must not generate a first-page alias")
         for page_number in range(1, expected_pages + 1):
@@ -107,9 +114,9 @@ def main() -> int:
                     fail(errors, path, "missing pagination navigation")
                 relative = directory.relative_to(content_root).as_posix()
                 base_url = "/" if relative == "." else f"/{relative}/"
-                expected_href = f"{base_url}?page=2"
+                expected_href = f"{base_url}page/2/"
                 if page_number == 1 and expected_href not in parser.pagination_links:
-                    fail(errors, path, f"missing query-parameter link {expected_href}")
+                    fail(errors, path, f"missing path-based link {expected_href}")
             elif parser.pagination:
                 fail(errors, path, "must not render pagination navigation")
 
