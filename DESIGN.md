@@ -1,166 +1,201 @@
 ---
-# Stable, reused design values. Evidence: static/css/input.css (@theme + @apply),
-# layouts/partials/head.html (Manrope), layouts/**/*.html.
 colors:
-  brand: blue-600        # primary actions, active links, focus rings, blockquote border
-  brand_hover: blue-700  # primary button hover bg
-  brand_text_hover: blue-900
-  page_bg: gray-50       # <body> background
-  card_bg: white
-  border: gray-300       # cards, header/footer bottom, section separators
-  border_subtle: gray-100 # table cells, active-link hover bg
-  body_text: gray-700    # descriptions, body prose, dates
-  heading_text: black    # all headings
-  code_bg: gray-900
+  primary: "#2563eb"
+  primary_hover: "#1d4ed8"
+  primary_light: "#1e40af"
+  text: "#000000"
+  text_secondary: "#374151"
+  text_muted: "#6b7280"
+  bg: "#f9fafb"
+  bg_card: "#ffffff"
+  border: "#d1d5db"
+  border_light: "#e5e7eb"
 typography:
-  font_sans: Manrope, Inter, system-ui, ...  # @theme --font-sans; loaded in partials/head.html
-  heading_weight: font-bold
-  tracking: tracking-tight # used on every heading
+  font_family: "Manrope, Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif"
+  locale: "ru-BY"
 rounded:
-  default: rounded-lg    # every card, button, image, tag, input, icon chip
-shadow:
-  rest: shadow-md        # cards, buttons, header, footer
-  hover: shadow-xl       # card hover only
+  default: "0.5rem"
+  card: "0.5rem"
+spacing:
+  unit: "0.5rem"
+  card_padding: "0.5rem"
+  card_padding_sm: "1rem"
+  card_padding_md: "1.5rem"
+  container: "1rem"
+components:
+  card: "wiki-card"
+  button_primary: "wiki-button-primary"
+  button_secondary: "wiki-button-secondary"
+  link: "active-a"
+  eyebrow: "eyebrow"
+  breadcrumbs: "breadcrumbs"
+  pagination: "wiki-pagination"
+  empty_state: "wiki-empty-state"
+  article: "article-content"
+  tag_list: "tag-list"
+  page_dates: "page-dates"
+  header_btn: "header_btn"
 ---
 
 # DESIGN.md
 
 ## Purpose
 
-Design contract for AI agents changing UI in the TokenBel Wiki — pages, templates,
-components, styles, and user-facing copy. Derive every visual decision from existing
-Hugo templates (`layouts/`) and the Tailwind source (`static/css/input.css`).
-
-Read alongside `AGENTS.md`, `ARCHITECTURE.md`, `layouts/AGENTS.md`, and
-`content/AGENTS.md`. Those define build invariants; this file defines the visual
-language and how to extend it consistently.
+This file defines UI rules for AI agents working on the TokenBel Wiki repository. Use it when changing pages, templates, components, styles, forms, filters, charts, or user-facing copy. See `AGENTS.md` for repository-wide rules and `ARCHITECTURE.md` for system architecture.
 
 ## Product feel
 
-- Documentation wiki: calm, text-first, scannable — not a marketing site, not a dashboard.
-- Card-based surfaces on a light gray (`gray-50`) canvas; white cards with a single blue accent.
-- Restrained two-color palette: **blue** for action/emphasis, **gray** for structure and text. No other hues without semantic precedent.
-- Generous touch targets (min `min-h-11` / 44px) and `rounded-lg` softness everywhere.
-- Russian only (locale `ru-BY`); all UI strings and content are Russian.
-- Server-rendered and useful by default; motion is subtle and guarded by `motion-reduce:transition-none`.
-- Trustworthy, factual tone — dates ("Опубликовано / Обновлено") and sources are first-class.
+- Documentation-like and data-focused knowledge base
+- Calm, restrained, and trustworthy presentation
+- Dense but scannable content layout
+- Russian language only (`ru-BY` locale)
+- Server-rendered static HTML — no client-side runtime
+- Public wiki style, not app-like dashboard
 
 ## Canonical UI examples
 
-- `layouts/_default/baseof.html` — page shell: `bg-gray-50`, fixed header, skip link, `<main id="main-content" class="container mx-auto mt-20">`, footer `mt-auto`.
-- `layouts/home.html` — landing layout: hero card → section grid → recent updates → external links. Contract for hero params.
-- `layouts/_default/single.html` — article page: breadcrumbs → header (title + description + dates) → `.article-content` → tag footer.
-- `layouts/_default/list.html` — section index: subsection cards above article cards, with a `.wiki-empty-state` fallback.
-- `layouts/404.html` — error/empty state pattern (keep strings `Страница не найдена`, `noindex, follow`).
-- `layouts/partials/section-card.html` — the one reusable card variant (icon chip + title + description).
-- `layouts/partials/header.html` — desktop nav + native `<details>` mobile menu (the only "interactive" component; no JS).
-- `layouts/partials/page-dates.html` — canonical date presentation (format `02.01.2006`).
-- `layouts/_markup/render-table.html` + `.article-content table` rules in `static/css/input.css` — table styling.
-- `static/css/input.css` — the full design contract: `@theme`, semantic component classes, prose overrides.
+- `layouts/_default/baseof.html` — page skeleton with header, main, footer
+- `layouts/home.html` — hero section, section cards grid, recent pages
+- `layouts/_default/list.html` — section listing with cards and pagination
+- `layouts/_default/single.html` — article page with breadcrumbs, dates, tags
+- `layouts/404.html` — error page with primary/secondary buttons
+- `layouts/partials/header.html` — fixed header with logo, nav, mobile menu
+- `layouts/partials/footer.html` — footer with external links
+- `layouts/partials/section-card.html` — section card with icon, title, description
+- `layouts/partials/recent-pages.html` — recent updates card list
+- `layouts/partials/pagination.html` — pagination component
+- `static/css/input.css` — Tailwind CSS 4 source with semantic component classes
 
 ## Layout rules
 
-- Wrap every page body in `.page` (`flex w-full flex-col gap-2`). It is the universal vertical-rhythm container.
-- Compose pages from `.wiki-card` sections stacked with the default `gap-2`; do not introduce free-floating content without a card.
-- Section order: breadcrumbs → header (`.eyebrow` label + `h1` + description) → body → optional footer.
-- Summary before details: every section/card leads with a short `text-gray-700` description, then detail.
-- Use the container from `baseof.html` (`container mx-auto`); do not add a second max-width wrapper inside.
-- Grids: `grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3` for card collections (see home sections). Single-column `grid gap-2` for article lists.
-- Fixed header is `h-16`; pages clear it via `main.mt-20`. Never remove the `mt-20` offset.
-- Footer is pinned with `mt-auto`; keep it last.
+- Use `layouts/_default/baseof.html` as the single page skeleton
+- Main content lives in a container with `mx-auto` and responsive padding
+- Fixed header at top with `z-50`, `border-b`, `bg-white`, `shadow-md`
+- Footer at bottom with `mt-auto` in the flex column
+- Skip-to-content link fixed top-left with focus state
+- Page content starts below header (`mt-20`) to avoid overlap
+- Cards use consistent `wiki-card` class: white background, gray-300 border, rounded-lg, shadow-md
+- Grid layouts prefer `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` with `gap-2`
+- Vertical rhythm uses `gap-2` between stacked elements
+- Section headers use `eyebrow` for category labels above `h2` titles
 
 ## Visual language
 
-- **Colors**: use only the palette in the frontmatter. Blue (`blue-600`) is reserved for primary actions, links, focus rings, and the blockquote accent. Gray conveys structure/body. Headings are `text-black`. Never introduce green/red/amber for status unless a concrete existing precedent exists.
-- **Typography**: headings are `font-bold tracking-tight text-black`; body/description is `text-gray-700`. Use `.eyebrow` (`text-xs font-bold tracking-widest uppercase`) as the small label above section titles.
-- **Headings scale** (observed): hero `text-4xl sm:text-5xl`, page `text-3xl sm:text-4xl`, section `text-2xl`, card title `text-lg`, list item `text-base`, meta `text-xs`.
-- **Radius**: `rounded-lg` for every surface — cards, buttons, images, tags, inputs, icon chips. Do not mix `rounded-md`/`rounded-xl`.
-- **Borders**: `border-gray-300` for card edges and separators; `border-gray-100` for table cells and the active-link hover surface.
-- **Shadows**: `shadow-md` at rest on cards/buttons/header/footer; `shadow-xl` only on card hover. Do not add elevation elsewhere.
-- **Images**: article images are centered and responsive via the `.article-content p > img` rules; `max-h-100` cap; `rounded-lg`.
-- Apply the frontmatter values through the semantic classes in `static/css/input.css` (`@apply`), not by scattering raw utilities — but when a one-off layout needs utilities, use the exact classes already in the templates.
+- **Colors**: Primary blue-600 (`#2563eb`) for actions/links; blue-700/900 for hover/focus states; gray-300 for borders; gray-700 for secondary text; white for card backgrounds; black for headings
+- **Typography**: Manrope (preferred) / Inter system stack; headings are `font-bold tracking-tight`; body text is `text-gray-700`; prose styling via `@tailwindcss/typography` plugin
+- **Spacing**: Consistent `gap-2` between elements; cards use `p-2` (mobile) to `p-6` (desktop); container padding `px-4`
+- **Borders/Radius**: `rounded-lg` for cards and buttons; `border border-gray-300` for card outlines
+- **Shadows**: `shadow-md` for cards and header; `hover:shadow-xl` for card hover states
+- **Icons**: SVG icons in section cards match `icon` enum values (`news`, `chart`, `guide`, `document`, `info`)
+- **Transitions**: Subtle `transition` on interactive elements; `motion-reduce:transition-none` for accessibility
+
+Token values are defined in frontmatter and implemented in `static/css/input.css`.
 
 ## Components and patterns
 
-All reusable component classes live in `static/css/input.css` and are the contract.
+- **Cards** (`wiki-card`): White background, gray-300 border, rounded corners, shadow. Used for sections, articles, recent pages. Hover state adds `shadow-xl`
+- **Buttons**: 
+  - Primary (`wiki-button-primary`): Blue-600 background, white text, hover:bg-blue-700
+  - Secondary (`wiki-button-secondary`): White background, gray-300 border, gray-700 text, hover:bg-gray-100
+- **Links** (`active-a`): Blue-600, hover:text-blue-900, focus ring with blue-600
+- **Eyebrow labels** (`eyebrow`): Uppercase, bold, tracking-widest, small text for section categories
+- **Breadcrumbs** (`breadcrumbs`): Flex wrap, gray-700 text, slash separators
+- **Pagination** (`wiki-pagination`): Centered, with previous/next links and numbered pages
+- **Empty states** (`wiki-empty-state`): Dashed gray-300 border, gray-50 background, gray-700 text
+- **Article content** (`article-content`): Prose styling with gray text, black headings, rounded images, bordered tables
+- **Tags** (`tag-list`): Flex wrap, white background, gray-300 border, hover:bg-gray-100
+- **Page dates** (`page-dates`): Small gray-700 text, published/updated timestamps
 
-- `.wiki-card` — bordered white surface, `rounded-lg`, `shadow-md`, hover `shadow-xl`. States: default (rest), hover (shadow lifts). Use for every grouped content block.
-- `.wiki-button-primary` — blue solid action, `min-h-11`. States: default → hover `bg-blue-700` → focus `ring-2 ring-blue-600`.
-- `.wiki-button-secondary` — white bordered action, `min-h-11`. States: default → hover `bg-gray-100 text-black` → focus `ring-2 ring-gray-500 ring-offset-2`.
-- `.active-a` — inline link: `text-blue-600` → hover `text-blue-900` → focus `ring-2 ring-blue-600`. Use for all in-content and card-title links.
-- `.eyebrow` — uppercase tracking label above a heading.
-- `.breadcrumbs` — `Главная / Раздел / Текущая`, with `aria-current="page"` on the last item.
-- `.page-dates` — `Опубликовано … / Обновлено …` row.
-- `.article-content` — `prose prose-gray` wrapper (typography plugin) with project overrides (tables, images, blockquote accent).
-- `.article-footer` — `border-t border-gray-300 pt-2` block for post-content elements (tags).
-- `.tag-list` — pill-style tag links (`rounded-lg border-gray-300`, hover `bg-gray-100`).
-- `.wiki-empty-state` — dashed `border-gray-300`, `bg-gray-50`, explanatory copy.
-- `.header_btn` — desktop nav item: default → hover `bg-gray-100` → focus `ring-2 ring-gray-400`; current page gets `aria-current="page"`.
-
-When a new reusable component is needed, add a semantic class with `@apply` to `static/css/input.css` rather than repeating long utility strings across templates.
+**Component states:**
+- Links: default (blue-600), hover (blue-900), focus (ring-2 ring-blue-600)
+- Buttons: default, hover (darker background), focus (ring-2)
+- Cards: default, hover (shadow-xl)
+- Pagination: current page uses `wiki-pagination-current` (blue-600 bg, white text), links use `wiki-pagination-link`
+- Mobile nav: uses `<details>` with hamburger/close icons, absolute positioned dropdown
 
 ## Interaction rules
 
-- This is a static Hugo site. **No JavaScript framework** — do not add client-only UI, fetch/AJAX, or hydration. Content must be fully useful in the server-rendered HTML.
-- The only interactive widget is the mobile menu in `header.html`, built from a native `<details>`/`<summary>` with CSS-only open/close (`group-open:hidden`). Prefer this pattern over any JS for disclosure.
-- All "interactions" are CSS transitions on hover/focus. Every transition must carry `motion-reduce:transition-none`.
-- Buttons/links: real `<a>`/`<button>` elements, never divs; each has a visible `:focus` ring (`focus:outline-none focus:ring-2`).
-- Loading states: none — pages are static. Do not fabricate spinners.
-- Empty states: use `.wiki-empty-state` with a short Russian explanation (see `list.html`, `recent-pages.html`).
+- Keep all content server-rendered and useful without JavaScript
+- Use small client-side enhancements only for mobile menu toggle (native `<details>`)
+- All interactive elements must be keyboard-reachable
+- Focus states use `focus:ring-2` with appropriate color (blue-600 for primary, gray-500 for secondary)
+- Skip-to-content link available at top-left, visible on focus
+- Mobile navigation uses native HTML `<details>` — no JavaScript required
+- Form preservation and validation are not applicable (static site with no forms)
+- Loading states not applicable (fully static)
 
 ## Data display rules
 
-- Dates: human format `02.01.2006` (DD.MM.YYYY) with a matching `datetime="YYYY-MM-DD"` attribute (see `page-dates.html`). Never use ISO strings or Git-derived dates (`enableGitInfo: false` — dates come only from front matter `date`/`lastmod`).
-- External product links (dashboard, tokens, bonds, shares, GitHub) come from `site.Params.*` in `hugo.yaml` — reference those params, do not hardcode URLs.
-- Financial/numeric data: this wiki is reference/documentation; when numbers appear, keep them inside `.article-content` prose or tables with units labeled in Russian. No live tickers.
+- Dates use `DD.MM.YYYY` format (e.g., `02.01.2006`)
+- Published/updated timestamps in `page-dates` partial use `time` elements with ISO dates
+- Tables use `article-content` styling: bordered, gray-100 header background, hoverable rows
+- Images are responsive with `max-w-full`, centered, rounded
+- Linked images render as full-width containers
+- Empty states use `wiki-empty-state` with helpful messages
+
+## Forms, filters, and validation
+
+- Not applicable — this is a static content site with no user input forms
+- Filtering is done via Hugo taxonomies and section organization, not client-side
 
 ## Tables and charts
 
-- Tables in articles get full styling only inside `.article-content` (borders `border-gray-100`, uppercase `gray-100` thead, hover `bg-gray-100` rows). Render hook: `layouts/_markup/render-table.html` honors Markdown column alignment.
-- Keep table density consistent: `text-sm`, `p-2` cells, as already defined — do not override per-table.
-- No charts library exists. Do not introduce one without explicit approval.
+- Tables: Full width, bordered, with gray-100 header row background. Rows have hover background. Cells have padding. See `article-content` in `static/css/input.css` and `layouts/_markup/render-table.html`
+- Charts: Not implemented in this static wiki; statistics are presented as Markdown tables or prose
+- Use Markdown tables for data presentation — they render via `render-table.html`
 
 ## User-facing text
 
-- Russian only. Interface and content strings are Russian; technical terms stay Russian where the product uses them.
-- Button labels are imperative: `На главную`, `Открыть руководство`.
-- Empty/error states are explanatory and calm: `Материалы этого раздела пока готовятся.`, `Возможно, адрес изменился или материал ещё не перенесён в новую wiki.`
-- Avoid implementation/English jargon in UI text. Do not expose template variables, param names, or build terms to readers.
-- Preserve these exact strings (checked by `make check`): `База знаний TokenBel` (home), `Страница не найдена` (404), plus `noindex, follow` on 404.
+- All text must be in Russian (`ru-BY` locale)
+- Use clear, direct language appropriate for financial/technical documentation
+- Button labels: Use action-oriented text like "Открыть руководство", "На главную", "Перейти к TokenBel"
+- Section labels: Use `eyebrow` for category indicators (e.g., "TokenBel Wiki", "Навигация", "Материалы")
+- Error states: Use clear messages like "Страница не найдена", "Материалы этого раздела пока готовятся"
+- Empty states: Use helpful messages like "Материалы появятся после переноса содержимого из текущей wiki"
+- Avoid technical implementation terms in user-facing text
 
 ## Accessibility basics
 
-- Skip link to `#main-content` is in `baseof.html`; keep `id="main-content"` on `<main>`.
-- Each major section uses `aria-labelledby` pointing at its heading `id` (see home/list/single).
-- Active navigation: `aria-current="page"` on current menu item and last breadcrumb.
-- All interactive elements have visible 44px targets (`min-h-11` / `min-w-11`) and `:focus` rings — do not remove them.
-- Icon-only controls carry `sr-only` labels or `aria-label` (see mobile menu `summary`).
-- Decorative SVGs use `aria-hidden="true"`; meaningful images have descriptive `alt`.
-- `motion-reduce:transition-none` is mandatory on every transition — preserve it.
-- Never convey status by color alone (the palette has no status colors anyway).
+- Use semantic HTML5 elements (`<header>`, `<main>`, `<footer>`, `<nav>`, `<article>`, `<section>`)
+- All interactive elements are keyboard-reachable via tab order
+- Visible focus indicators on all interactive elements (`focus:ring-2`)
+- Skip-to-content link at top of page (`#main-content`)
+- Avoid hover-only critical information — all content accessible via keyboard
+- Use `aria-label` and `aria-current` appropriately in navigation
+- Use `sr-only` for screen-reader-only text
+- Maintain readable contrast: black text on white, blue-600 on white, gray-700 on white
+- Mobile menu uses native `<details>` with proper labeling
 
 ## Do / Don't
 
 Do:
-- Reuse the semantic classes in `static/css/input.css` (`@apply`) for any repeated pattern.
-- Keep the blue+gray palette and `rounded-lg` / `shadow-md`→`shadow-xl` conventions.
-- Mirror the nearest existing template's structure (card → eyebrow+heading → description → body).
-- Run `make css-build` after touching `input.css` or template utility classes, then commit both `output.css` and `tailwind.min.css`.
-- Validate with `make check` and at 320px width before finishing.
+- Reuse existing `wiki-*` semantic classes from `static/css/input.css`
+- Follow the card-based layout pattern with `wiki-card`
+- Use `gap-2` for consistent vertical spacing
+- Use `rounded-lg` for card and button corners
+- Use blue-600 for primary actions and links
+- Use gray-300 borders and gray-700 text for secondary content
+- Preserve the fixed header and container layout
+- Keep Russian language throughout
+- Use `eyebrow` for section category labels
+- Run `make css-build` after changing `input.css` or templates
 
 Don't:
-- Don't introduce a third color family, new radius, or new shadow scale.
-- Don't add Sass/`.scss`, a JS framework, or client-side state.
-- Don't build Tailwind class strings dynamically — every class must be a complete literal token.
-- Don't link `output.css` in templates; only `tailwind.min.css` is wired in `partials/css.html`.
-- Don't use `localhost` or ports in `canonical`/links — canonical domain is always `https://wiki.tokenbel.info/`.
-- Don't commit new images into article bundles; use the `wiki-media` CDN marker (`upload:…`) per `content/AGENTS.md`.
-- Don't break the `make check` strings or remove `noindex, follow` from 404.
-- Don't redesign a whole page for a small change — extend the nearest existing pattern.
+- Introduce new colors without existing semantic precedent
+- Add JavaScript frameworks or runtime scripts
+- Use external Hugo themes or Sass/SCSS
+- Redesign whole pages for small changes
+- Change the canonical domain from `https://wiki.tokenbel.info/`
+- Break the SEO contracts (home title, 404 text, canonical URLs)
+- Use hover-only behavior for critical information
+- Add animations to data-heavy content without purpose
+- Dynamically generate Tailwind class names
 
 ## When unsure
 
-- Inspect the closest existing template (`single.html`, `list.html`, `home.html`, `section-card.html`) and copy its structure verbatim.
-- Prefer an existing semantic class over inventing utilities; if none fits, add one `@apply` class to `static/css/input.css`.
-- Keep diffs minimal and palette-literal; if a decision needs a new color, radius, or component, ask before introducing it.
-- Rebuild CSS (`make css-build`) and run `make check` to confirm nothing invariant broke.
+- Inspect the nearest existing page or component in `layouts/`
+- Follow the pattern used in `home.html`, `list.html`, or `single.html`
+- Check `static/css/input.css` for semantic component classes
+- Prefer existing `wiki-*` classes over new utility combinations
+- Keep changes minimal and consistent with surrounding context
+- Ask before introducing a new visual pattern or component variant

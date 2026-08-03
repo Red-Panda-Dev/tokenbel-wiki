@@ -50,12 +50,12 @@ Evidence anchors: `hugo.yaml`, `wrangler.toml`, `build.sh`, `Makefile`, `layouts
 ### Site Build Toolchain
 
 - Responsibility: Reproducible generation of `public/` from the Content, Presentation, and Configuration layers. Two alternative front-ends for two environments.
-- Code locations: `Makefile` (Docker/local path and CSS regeneration), `build.sh` (pinned Cloudflare path), `package.json` (Tailwind CLI and Wrangler scripts).
+- Code locations: `Makefile` (Docker/local path and CSS regeneration), `build.sh` (pinned Cloudflare path), `package.json` (Tailwind CLI and Wrangler scripts), `tests/` (validation scripts).
 - Entry points: `make css-build` / `make dev` / `make build` / `make check` (Docker, `hugomods/hugo:0.164.0`); `./build.sh` (native pinned Hugo 0.164.0 + Node 24.18.1, Linux x86_64 only); `make cloudflare-build` / `make deploy` wrap the package scripts.
 - Depends on: Content, Presentation, Site Configuration layers (consumes them as Hugo inputs).
 - Must not depend on: The Media Publishing Toolchain — Hugo never invokes `wiki-media`; media is already rewritten into `content/` before any build. Extended Hugo features and unpinned tools are disallowed (`build.sh` pins and checksum-verifies all binaries).
 - Owns: The `public/` artifact, `resources/`, `.cache/` (all build outputs, git-ignored per `.gitignore`).
-- Evidence: `Makefile`, `build.sh`, `package.json`, `.gitignore`.
+- Evidence: `Makefile`, `build.sh`, `package.json`, `.gitignore`, `tests/check_seo.py`, `tests/check_pagination.py`.
 
 ### Site Configuration & Static Assets
 
@@ -83,7 +83,7 @@ Evidence anchors: `hugo.yaml`, `wrangler.toml`, `build.sh`, `Makefile`, `layouts
    │   └──────────► content/  (mutates Markdown; never git-commits)       │
  inbox                                                                     │
    │                                                                       │
-hugo.yaml ──┐                                                              │ CDN URLs referenced
+ hugo.yaml ──┐                                                              │ CDN URLs referenced
 content/ ───┼──► Hugo (standard ed.) ──► public/ ──► Wrangler ──► Cloudflare Worker (static assets)
 layouts/ ───┤        ▲                       │
 static/  ───┘        │                       └─► 404.html fallback (HTTP 404)
@@ -96,7 +96,7 @@ The Hugo pipeline runs strictly left-to-right; build output never feeds back int
 
 ```text
 content/            Markdown + front matter; auto-assembled sections (news, statistics, guides, policies, about)
-archetypes/         `hugo new` template (`default.md`)
+archetypes/         `hugo new` template (default.md)
 layouts/            Local Hugo templates only — no theme
   _default/         baseof.html (skeleton), list.html (section), single.html (article)
   _markup/          render-table.html (Markdown table render hook)
@@ -109,13 +109,14 @@ hugo.yaml           site config: baseURL, ru locale, menus, params, taxonomies
 tools/wiki-media/   isolated Python CLI: publish/validate/cleanup → immutable R2 + CDN (own uv/Ruff/pytest)
   src/wiki_media/   cli, publisher, r2, transaction, keys, config, discovery, images, markdown, models, reporting
 Makefile            Docker-based local dev/build/check + media-* wrappers
+tests/              validation scripts: check_seo.py, check_pagination.py
 build.sh            pinned Cloudflare build (Linux x86_64, checksum-verified Hugo+Node)
 package.json        Tailwind CLI and Wrangler scripts
 wrangler.toml       Cloudflare Worker Static Assets config
 docs/deployment.md  deployment, staging, rollback, pinned-tool rationale
 ```
 
-Generated/build areas excluded from the model: `public/`, `resources/`, `.cache/`, `.wrangler/`, `node_modules/`, `.hugo_build.lock`, `tools/wiki-media/.venv/`, `.wiki-media/` (all git-ignored by `.gitignore`). `assets/` and `scripts/` are reserved and empty.
+Generated/build areas excluded from the model: `public/`, `resources/`, `.cache/`, `.wrangler/`, `.hugo_build.lock`, `node_modules/`, `.wiki-media/`, `tools/wiki-media/.venv/`. `assets/` and `scripts/` are reserved and empty.
 
 ## 4. Life of a Request / Primary Data Flow
 
@@ -129,12 +130,10 @@ Generated/build areas excluded from the model: `public/`, `resources/`, `.cache/
 6. Output or side effect: Self-contained `public/` directory with `tailwind.min.css` and a root `404.html`.
 
 Architectural boundaries crossed:
-
 - Content front matter → template rendering (data contract only).
 - `static/css/input.css` → pinned Tailwind CLI → committed `static/css/tailwind.min.css` → Hugo static copy.
 
 Evidence:
-
 - `Makefile`, `build.sh`, `layouts/partials/head.html`, `layouts/home.html`, `layouts/_default/list.html`, `layouts/partials/recent-pages.html`.
 
 ### Media publish flow — inbox images to immutable R2 + CDN
@@ -147,12 +146,10 @@ Evidence:
 6. Output or side effect: `transaction.py` stages Markdown rewrites and atomically promotes them into `content/` with rollback backups under `.wiki-media/run/`; no Git commit is performed. Resulting `https://cdn-wiki.tokenbel.info/wiki/media/images/...` URLs are then ordinary references consumed by the next Hugo build.
 
 Architectural boundaries crossed:
-
 - `content/` Markdown ↔ external R2/CDN (the only source path that leaves the repo).
 - Separate Python/uv runtime, fully outside the Hugo/Node build.
 
 Evidence:
-
 - `tools/wiki-media/src/wiki_media/publisher.py`, `r2.py`, `transaction.py`, `keys.py`, `config.py`, `tools/wiki-media/AGENTS.md`.
 
 ### Request flow — runtime serving at Cloudflare
@@ -165,11 +162,9 @@ Evidence:
 6. Output or side effect: Matched file (200) or nearest `404.html` with HTTP 404 (`not_found_handling = "404-page"`); canonical `<link>` always points at `https://wiki.tokenbel.info/`.
 
 Architectural boundaries crossed:
-
 - Build artifact (`public/`) → edge runtime (immutable handoff).
 
 Evidence:
-
 - `wrangler.toml`, `layouts/partials/head.html`, `docs/deployment.md`.
 
 ## 5. Architectural Invariants & Constraints
@@ -224,6 +219,7 @@ This `ARCHITECTURE.md` owns the global architecture map: layers, dependency dire
 - `tools/wiki-media/AGENTS.md` — local rules for the media CLI: boundaries, R2-immutable contract, safe-change rules.
 - `tools/wiki-media/README.md` — canonical `wiki-media` commands, `upload:` authoring syntax, R2 credentials, and rollback.
 - `docs/deployment.md` — authoritative deployment runbook: pinned tools, Workers Builds setup, staging, cutover, rollback.
+- `DESIGN.md` — visual design contract: palette, typography, components, interaction and accessibility rules.
 - `README.md` — project overview, local-run requirements, and contributor structure guide.
 
-No ADRs, package READMEs (besides the tool above), schema docs, or `DESIGN.md` exist in the repository; their absence does not limit architecture understanding because the site is configuration- and template-driven with no API surface or code modules to document.
+No ADRs, package READMEs, or schema docs exist in the repository; their absence does not limit architecture understanding because the site is configuration- and template-driven with no API surface or code modules to document.

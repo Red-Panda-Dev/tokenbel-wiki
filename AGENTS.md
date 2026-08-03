@@ -2,6 +2,11 @@
 
 Руководство для AI-агентов по репозиторию TokenBel Wiki.
 
+## Scope and inheritance
+
+Applies to: entire repository.
+This is the root instruction file; all other `AGENTS.md` files inherit from and refine this guidance.
+
 ## Обзор репозитория
 
 Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets (без runtime-скрипта, bindings, KV). Внешних Hugo-тем нет — вся вёрстка локальная.
@@ -38,6 +43,7 @@ wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./publ
 Читайте по необходимости:
 
 - Архитектурные или кросс-модульные правки → `ARCHITECTURE.md` (каноническая карта слоёв, зависимостей и инвариантов)
+- Правки UI, визуального стиля, дизайн-системы → `DESIGN.md` (визуальный контракт, цветовая палитра, типографика)
 - Правки контента, front matter, структуры разделов → `content/AGENTS.md`
 - Правки шаблонов, SEO-мета, иконок, CSS-подключения → `layouts/AGENTS.md`
 - Правки media-publisher CLI `wiki-media` (Python, R2) → `tools/wiki-media/AGENTS.md`
