@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+import os
 import hashlib
 from pathlib import Path
 
@@ -9,7 +10,7 @@ from PIL import Image
 
 from wiki_media import r2
 from wiki_media.keys import cdn_url, object_key
-from wiki_media.config import find_repository_root
+from wiki_media.config import find_repository_root, load_credentials_from_dotenv
 from wiki_media.images import validate_image, resolve_inbox_path
 from wiki_media.models import CliError, ImageAsset, IntegrityError, WikiMediaError
 from wiki_media.markdown import rewrite, scan_images
@@ -83,6 +84,24 @@ def test_scope_discovery_and_nested_cwd(tmp_path, monkeypatch):
     monkeypatch.chdir(root / "content/guides")
     assert find_repository_root() == root
     assert [p.name for p in discover_content_files(root, resolve_scope(root, "content/guides"))] == ["index.md"]
+
+
+def test_dotenv_loads_missing_credentials_without_overriding_environment(tmp_path, monkeypatch):
+    dotenv = tmp_path / ".env"
+    dotenv.write_text(
+        "# local R2 credentials\nAWS_S3_URL=https://account.r2.cloudflarestorage.com\n"
+        "export AWS_ACCESS_KEY_ID='from-dotenv'\nAWS_SECRET_ACCESS_KEY=secret-value\n",
+        encoding="utf-8",
+    )
+    for key in ("AWS_S3_URL", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"):
+        monkeypatch.delenv(key, raising=False)
+    monkeypatch.setenv("AWS_ACCESS_KEY_ID", "from-shell")
+
+    load_credentials_from_dotenv(dotenv)
+
+    assert os.environ["AWS_S3_URL"] == "https://account.r2.cloudflarestorage.com"
+    assert os.environ["AWS_ACCESS_KEY_ID"] == "from-shell"
+    assert os.environ["AWS_SECRET_ACCESS_KEY"] == "secret-value"
 
 
 @pytest.mark.parametrize("value", ["../content", "content/../guides", "/tmp/x"])

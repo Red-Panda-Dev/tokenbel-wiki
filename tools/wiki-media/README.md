@@ -57,7 +57,19 @@ wiki-media cleanup [--dry-run]
 
 Scope может быть всем `content/`, поддеревом или ровно `index.md`/`_index.md`. `cleanup` всегда сканирует весь `content/` и никогда не обращается к R2.
 
-`publish --dry-run` без `--remote`, `validate` без `--remote` и `cleanup --dry-run` не требуют credentials. R2 publish uses only `AWS_S3_URL`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+`publish --dry-run` без `--remote`, `validate` без `--remote` и `cleanup --dry-run` не требуют credentials.
+
+### R2 credentials
+
+Для remote publish CLI автоматически читает `tools/wiki-media/.env`; exported variables shell имеют приоритет над значениями из файла. `.env` не требует отдельной Python dependency и не должен попадать в Git:
+
+```dotenv
+AWS_S3_URL=https://<account-id>.r2.cloudflarestorage.com
+AWS_ACCESS_KEY_ID=<r2-access-key-id>
+AWS_SECRET_ACCESS_KEY=<r2-secret-access-key>
+```
+
+`AWS_S3_URL` — HTTPS S3 API endpoint Cloudflare R2, а не `https://cdn-wiki.tokenbel.info`.
 
 ## Immutable destination
 

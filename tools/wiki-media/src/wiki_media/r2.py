@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from .keys import object_key
-from .config import R2_REGION, R2_BUCKET_NAME, R2_UPLOAD_CONCURRENCY
+from .config import R2_REGION, R2_BUCKET_NAME, R2_UPLOAD_CONCURRENCY, load_credentials_from_dotenv
 from .images import open_unchanged
 from .models import CliError, ImageAsset, RemoteError, IntegrityError
 
@@ -26,6 +26,7 @@ _TRANSIENT = {
 
 
 def make_client():
+    load_credentials_from_dotenv()
     endpoint = os.environ.get("AWS_S3_URL", "")
     access = os.environ.get("AWS_ACCESS_KEY_ID", "")
     secret = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
