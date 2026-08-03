@@ -32,7 +32,7 @@ content/
 - Не задавайте `icon` вне enum — иконка будет неверной без ошибки сборки.
 - Даты: `lastmod` показывается пользователям (`Обновлено ...`). Git-даты не используются (`enableGitInfo: false`), обновляйте `date`/`lastmod` осознанно.
 - Одноразовая миграция BookStack создаёт чистые leaf bundles без `url`, `aliases`, legacy-адресов и BookStack metadata. Связи с исходниками остаются только в gitignored migration artifacts; изображения используют абсолютные CDN URL `https://cdn-wiki.tokenbel.info/wiki/assets/...`, а не локальные вложения.
-- Новые изображения не коммитьте в leaf bundles. Храните их только в gitignored `.wiki-media/inbox/` и используйте image marker `![alt](upload:section/file.png)` (для пробелов: `<upload:section/file name.png>`). `wiki-media publish` заменяет marker на content-addressed CDN URL после R2 verification; обычные ссылки с `upload:` запрещены.
+- Новые изображения не коммитьте в leaf bundles. Храните их только в gitignored `.wiki-media/inbox/` и используйте image marker `![alt](upload:section/file.png)`; для имён с пробелами — `![alt](<upload:section/file name.png>)` (угловые скобки обрамляют URL внутри markdown-синтаксиса, не отдельный marker). `wiki-media publish` заменяет marker на content-addressed CDN URL после R2 verification; не-image ссылки с `upload:` запрещены. Контракт marker'а и R2-логика — в `tools/wiki-media/AGENTS.md` и `tools/wiki-media/README.md`.
 
 ## Validation
 

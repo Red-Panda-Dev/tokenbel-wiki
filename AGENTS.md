@@ -17,6 +17,7 @@ archetypes/            Шаблоны `hugo new`
 assets/                Зарезервировано Hugo assets/ (пусто; CSS-pipeline использует static/, а не assets/)
 scripts/               Зарезервировано (пусто; сборка — через Makefile/build.sh, а не скрипты здесь)
 docs/                  Документация развёртывания (deployment.md)
+tools/                 Изолированный Python CLI wiki-media (публикация изображений в Cloudflare R2; свой uv/pytest/Ruff)
 hugo.yaml              Конфигурация сайта (язык ru, секции меню, taxonomies)
 Makefile               Локальная Docker-обёртка над Hugo
 build.sh               Pinned-сборка для Cloudflare (только Linux x86_64)
@@ -39,6 +40,7 @@ wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./publ
 - Архитектурные или кросс-модульные правки → `ARCHITECTURE.md` (каноническая карта слоёв, зависимостей и инвариантов)
 - Правки контента, front matter, структуры разделов → `content/AGENTS.md`
 - Правки шаблонов, SEO-мета, иконок, CSS-подключения → `layouts/AGENTS.md`
+- Правки media-publisher CLI `wiki-media` (Python, R2) → `tools/wiki-media/AGENTS.md`
 - Развёртывание, staging, rollback, pinned-инструменты → `docs/deployment.md`
 
 ## Правила изменений
@@ -64,7 +66,7 @@ make check     # проверить актуальность committed CSS и HT
 
 `make check` жёстко проверяет: наличие `База знаний TokenBel` в `index.html`, `Страница не найдена` и `noindex, follow` в `404.html`. Не ломайте эти строки при рефакторинге.
 
-Перед завершением: `npm ci`, `make check` (или `hugo --gc --minify`), проверка 320 px, и наличие `public/index.html`, `public/404.html`.
+Перед завершением: `npm ci`, `make check` (или `hugo --gc --minify`), проверка 320 px, и наличие `public/index.html`, `public/404.html`. Изменения в `tools/wiki-media/` (Python) валидируются отдельно (`make lint`/`make test` и `make publish-dry-run`), см. `tools/wiki-media/AGENTS.md`.
 
 ## Гоччи
 
