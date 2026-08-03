@@ -4,4 +4,5 @@
 /node_modules/
 /.cache/
 /.wrangler/
+/.wiki-media/
 .DS_Store

@@ -4,6 +4,7 @@ HUGO_VERSION ?= 0.164.0
 HUGO_IMAGE ?= hugomods/hugo:$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
+PYTHON ?= python3
 
 DOCKER_RUN_BASE = docker run --rm \
 	--user "$$(id -u):$$(id -g)" \
@@ -22,7 +23,7 @@ DOCKER_CLEAN = docker run --rm \
 	--entrypoint /bin/sh \
 	$(HUGO_IMAGE)
 
-.PHONY: help version dependencies css-build css-watch css-check dev serve build production check clean cloudflare-build deploy deploy-dry-run
+.PHONY: help version dependencies css-build css-watch css-check dev serve build production check clean cloudflare-build deploy deploy-dry-run media-install media-publish media-publish-dry-run media-validate
 
 help:
 	@printf '%s\n' \
@@ -35,6 +36,10 @@ help:
 		'make cloudflare-build  Run the pinned Cloudflare production build' \
 		'make deploy-dry-run    Validate the Cloudflare deploy without publishing' \
 		'make deploy            Publish the Cloudflare Worker and static assets' \
+		'make media-install     Install the isolated wiki-media CLI' \
+		'make media-publish     Publish upload: images (MEDIA_PATH is optional)' \
+		'make media-publish-dry-run  Plan publish without writes' \
+		'make media-validate    Validate media markers and images' \
 		'make version   Print the pinned Hugo version' \
 		'make clean     Remove generated Hugo files'
 
@@ -84,6 +89,18 @@ deploy-dry-run: cloudflare-build
 
 deploy: cloudflare-build
 	@npm run deploy
+
+media-install:
+	@$(PYTHON) -m pip install -e tools/wiki-media
+
+media-publish:
+	@$(PYTHON) -m wiki_media publish $(MEDIA_PATH)
+
+media-publish-dry-run:
+	@$(PYTHON) -m wiki_media publish $(MEDIA_PATH) --dry-run
+
+media-validate:
+	@$(PYTHON) -m wiki_media validate $(MEDIA_PATH)
 
 clean:
 	@$(DOCKER_CLEAN) -c 'rm -rf /src/public /src/resources /src/.hugo_build.lock /src/.cache'
