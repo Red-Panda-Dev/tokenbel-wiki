@@ -61,6 +61,10 @@
     @apply mt-0 mb-0;
 }
 
+.article-content pre {
+    @apply mt-0 mb-0 bg-gray-200 border-gray-300 border rounded-lg text-black;
+}
+
 .article-content ul {
     @apply pl-4;
 }
