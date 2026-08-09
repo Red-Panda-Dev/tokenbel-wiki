@@ -7,4 +7,4 @@
 {{- $extra := "" -}}
 {{- with .Title -}}{{- $extra = printf " title=%q" . -}}{{- end -}}
 {{- if $isImage -}}{{- $extra = printf `%s target="_blank" rel="noopener noreferrer"` $extra -}}{{- end -}}
-<a href="{{ $dest }}"{{ $extra | safeHTMLAttr }}>{{ .Text | safeHTML }}</a>
+<a href="{{ $dest }}" class="active-a"{{ $extra | safeHTMLAttr }}>{{ .Text | safeHTML }}</a>
