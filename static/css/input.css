@@ -87,6 +87,14 @@
     @apply mx-auto block h-auto max-w-full;
 }
 
+/* Mermaid diagrams: center the rendered SVG horizontally inside its figure.
+   mermaid.js emits the svg with width=100% and a max-width clamped to the
+   diagram's natural size, so narrower diagrams would otherwise sit
+   left-aligned in the article column. */
+.article-content .mermaid svg {
+    @apply block mx-auto;
+}
+
 .article-content li {
     @apply mt-0 mb-0 pl-0;
 }
