@@ -1,0 +1,10 @@
+{{- /* render-link hook: see layouts/AGENTS.md. Image-links open in a new tab. */ -}}
+{{- $dest := .Destination -}}
+{{- $isImage := false -}}
+{{- range $ext := slice ".png" ".jpg" ".jpeg" ".webp" ".gif" ".svg" ".avif" -}}
+  {{- if hasSuffix (lower $dest) $ext -}}{{- $isImage = true -}}{{- end -}}
+{{- end -}}
+{{- $extra := "" -}}
+{{- with .Title -}}{{- $extra = printf " title=%q" . -}}{{- end -}}
+{{- if $isImage -}}{{- $extra = printf `%s target="_blank" rel="noopener noreferrer"` $extra -}}{{- end -}}
+<a href="{{ $dest }}"{{ $extra | safeHTMLAttr }}>{{ .Text | safeHTML }}</a>

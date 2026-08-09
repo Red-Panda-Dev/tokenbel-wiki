@@ -17,7 +17,9 @@ layouts/
 │   ├── list.html            # Список статей раздела (сортировка по Lastmod)
 │   └── single.html          # Одна статья
 ├── _markup/
-│   └── render-table.html    # Render hook таблиц Markdown
+│   ├── render-codeblock-mermaid.html  # Render hook ```mermaid блоков (включает mermaid.js loader)
+│   ├── render-link.html    # Render hook ссылок: image-links `[![alt](url)](url)` → `target="_blank"` (new tab)
+│   └── render-table.html   # Render hook таблиц Markdown
 └── partials/
     ├── head.html            # <head>: title, canonical, robots, OG, JSON-LD
     ├── css.html             # Всегда линкует tailwind.min.css (захардкожено, без переключения окружения)
@@ -35,6 +37,7 @@ layouts/
 - `make check` жёстко ищет строки: `База знаний TokenBel` (home), `Страница не найдена` (404). Сохраняйте их дословно при рефакторинге.
 - Icon-enum в `section-card.html` ({news, chart, guide, document, info}) должно совпадать со значениями `icon` в `content/<section>/_index.md` (см. `content/AGENTS.md`).
 - `home.html` читает hero-параметры из front matter главной (`heroPrimaryLabel/URL`, `heroSecondaryLabel/URL`) — это контракт с `content/_index.md`.
+- `render-link.html` добавляет `target="_blank" rel="noopener noreferrer"` только для image-links (destination с image-extension: content-addressed `wiki/media/images/...` и migrated `wiki/assets/...`); обычные Markdown-ссылки рендерятся как standard same-tab якоря. Это контракт с `wiki-media`: markdown `upload:` markers публикуются как `[![alt](url)](url)` (см. `tools/wiki-media/AGENTS.md`), чтобы изображение было кликабельным и открывалось в новой вкладке.
 
 ## Safe change rules
 
