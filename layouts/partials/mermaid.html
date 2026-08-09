@@ -2,24 +2,49 @@
 layouts/_default/_markup/render-codeblock-mermaid.html during content rendering,
 which runs before this partial in baseof.html. */ -}} {{- with .Page.Store.Get
 "hasMermaid" -}}
-<svg class="mermaid-sketch-def" width="0" height="0" aria-hidden="true" focusable="false">
-  <filter id="mermaid-sketch" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
-    <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="turb" />
-    <feDisplacementMap in="SourceGraphic" in2="turb" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
-  </filter>
+<svg
+    class="mermaid-sketch-def"
+    width="0"
+    height="0"
+    aria-hidden="true"
+    focusable="false"
+>
+    <filter
+        id="mermaid-sketch"
+        x="-15%"
+        y="-15%"
+        width="130%"
+        height="130%"
+        color-interpolation-filters="sRGB"
+    >
+        <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.012"
+            numOctaves="2"
+            seed="3"
+            result="turb"
+        />
+        <feDisplacementMap
+            in="SourceGraphic"
+            in2="turb"
+            scale="3.5"
+            xChannelSelector="R"
+            yChannelSelector="G"
+        />
+    </filter>
 </svg>
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({
-    startOnLoad: false,
-    look: "handDrawn",
-    theme: "neutral",
-    securityLevel: "loose",
-    flowchart: { useMaxWidth: true, htmlLabels: true },
-    themeVariables: {
-      fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif",
-    },
-  });
-  await mermaid.run({ querySelector: ".mermaid" });
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+        startOnLoad: false,
+        look: "handDrawn",
+        theme: "neutral",
+        securityLevel: "loose",
+        flowchart: { useMaxWidth: true, htmlLabels: true },
+        themeVariables: {
+            fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif",
+        },
+    });
+    await mermaid.run({ querySelector: ".mermaid" });
 </script>
 {{- end -}}
