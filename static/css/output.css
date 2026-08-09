@@ -388,6 +388,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
   .overflow-y-auto {
     overflow-y: auto;
   }
@@ -429,6 +432,9 @@
   }
   .p-1 {
     padding: var(--spacing);
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -509,6 +515,9 @@
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
+  }
+  .whitespace-pre {
+    white-space: pre;
   }
   .text-black {
     color: var(--color-black);
@@ -1300,7 +1309,7 @@
   margin-top: calc(var(--spacing) * 3);
   margin-bottom: calc(var(--spacing) * 2);
 }
-.article-content p, .article-content ul {
+.article-content p, .article-content figure, .article-content ul {
   margin-top: 0;
   margin-bottom: 0;
 }

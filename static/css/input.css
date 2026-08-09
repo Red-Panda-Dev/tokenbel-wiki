@@ -57,6 +57,7 @@
 }
 
 .article-content p,
+.article-content figure,
 .article-content ul {
     @apply mt-0 mb-0;
 }

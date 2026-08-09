@@ -1,0 +1,18 @@
+{{- /* Conditionally load mermaid.js. The flag is set by
+layouts/_default/_markup/render-codeblock-mermaid.html during content rendering,
+which runs before this partial in baseof.html. */ -}} {{- with .Page.Store.Get
+"hasMermaid" -}}
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "neutral",
+    securityLevel: "loose",
+    flowchart: { useMaxWidth: true, htmlLabels: true },
+    themeVariables: {
+      fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif",
+    },
+  });
+  await mermaid.run({ querySelector: ".mermaid" });
+</script>
+{{- end -}}
