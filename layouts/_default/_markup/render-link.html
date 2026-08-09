@@ -6,5 +6,5 @@ slice ".png" ".jpg" ".jpeg" ".webp" ".gif" ".svg" ".avif" -}} {{- if hasSuffix
 {{- if $isImage -}}{{- $extra = printf `%s target="_blank" rel="noopener
 noreferrer"` $extra -}}{{- end -}}
 <a href="{{ $dest }}" class="active-a" {{ $extra | safeHTMLAttr }}
-    >{{ .Text | safeHTML }}</a
+  >{{ .Text | safeHTML }}</a
 >
