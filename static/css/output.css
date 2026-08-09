@@ -1346,6 +1346,9 @@
   margin-inline: auto;
   display: block;
 }
+.article-content .mermaid svg g.edgePaths > path {
+  filter: url(#mermaid-sketch);
+}
 .article-content li {
   margin-top: 0;
   margin-bottom: 0;

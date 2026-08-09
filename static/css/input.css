@@ -95,6 +95,14 @@
     @apply block mx-auto;
 }
 
+/* Hand-drawn connector lines. mermaid's handDrawn look roughens node shapes but
+   leaves edges as near-straight strokes; this displacement filter (defined in
+   layouts/partials/mermaid.html) adds visible waviness to the edge paths so the
+   connecting lines match the hand-drawn nodes. */
+.article-content .mermaid svg g.edgePaths > path {
+    filter: url(#mermaid-sketch);
+}
+
 .article-content li {
     @apply mt-0 mb-0 pl-0;
 }
