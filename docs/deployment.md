@@ -4,14 +4,14 @@ TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is n
 
 ## Pinned build tools
 
-| Tool | Version | Purpose |
-| --- | --- | --- |
-| Hugo | `0.164.0` (standard Linux x86_64 release) | Static-site build |
-| Node.js | `24.18.1` | Runs npm, Tailwind CSS CLI, and Wrangler |
-| Tailwind CSS | `4.3.3` | Tailwind CSS core dependency |
-| Tailwind CLI | `4.3.2` | CLI compiler for committed static CSS |
-| Tailwind Typography | `0.5.20` | Styles Markdown article content |
-| Wrangler | `4.118.0` | Validates and deploys the Worker |
+| Tool                | Version                                   | Purpose                                  |
+| ------------------- | ----------------------------------------- | ---------------------------------------- |
+| Hugo                | `0.164.0` (standard Linux x86_64 release) | Static-site build                        |
+| Node.js             | `24.18.1`                                 | Runs npm, Tailwind CSS CLI, and Wrangler |
+| Tailwind CSS        | `4.3.3`                                   | Tailwind CSS core dependency             |
+| Tailwind CLI        | `4.3.2`                                   | CLI compiler for committed static CSS    |
+| Tailwind Typography | `0.5.20`                                  | Styles Markdown article content          |
+| Wrangler            | `4.118.0`                                 | Validates and deploys the Worker         |
 
 The Hugo standard edition is intentional: pinned standalone `@tailwindcss/cli` compiles `static/css/input.css` into committed `static/css/output.css` and minified `static/css/tailwind.min.css`; Hugo only copies static files and does not need Dart Sass or the Extended edition.
 
