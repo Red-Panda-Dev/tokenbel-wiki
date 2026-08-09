@@ -47,7 +47,7 @@ def build_plan(root: Path, supplied_scope: str | None) -> PublishPlan:
         errors.extend(_error(path, error) for error in parse_errors)
         article = ArticlePlan(path, source, sha256_text(source))
         for item in scanned:
-            occurrence = Occurrence(path, item.destination, item.span, item.kind)
+            occurrence = Occurrence(path, item.destination, item.span, item.kind, item.construct)
             try:
                 local = resolve_inbox_path(root, item.destination)
                 asset = assets.get(local)

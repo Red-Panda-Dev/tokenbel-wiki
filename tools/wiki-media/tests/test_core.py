@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from wiki_media import r2
+from wiki_media import r2, publisher
 from wiki_media.keys import cdn_url, object_key
 from wiki_media.config import find_repository_root, load_credentials_from_dotenv
 from wiki_media.images import validate_image, resolve_inbox_path
@@ -217,7 +217,7 @@ class Client:
         self.data = data
         self.head = head
         self.calls = []
-        self.body = None
+        self.body: Body | None = None
 
     def head_object(self, **kwargs):
         self.calls.append(("head", kwargs))
@@ -264,6 +264,7 @@ def test_r2_upload_verifies_hash_closes_body_and_fixed_bucket(tmp_path):
     asset, data = asset_for_r2(tmp_path)
     client = Client(data)
     assert r2.publish_one(client, asset) == "uploaded"
+    assert client.body is not None
     assert (
         client.body.closed_by_tool
         and {call[1]["Bucket"] for call in client.calls} == {"tokenbel-wiki"}
@@ -284,3 +285,21 @@ def test_r2_remote_hash_mismatch(tmp_path):
     client = Client(b"wrong")
     with pytest.raises(IntegrityError):
         r2.publish_one(client, asset)
+
+
+def test_publish_wraps_markdown_image_as_clickable_link(tmp_path, monkeypatch):
+    """Markdown upload: markers become clickable image-links [![alt](url)](url)
+    so the Hugo render-link hook can open them in a new tab. Alt text, title and
+    surrounding bytes survive byte-for-byte; repeated occurrences of the same
+    asset deduplicate to one R2 object."""
+    root = make_root(tmp_path)
+    image = root / ".wiki-media/inbox/statistics/a.png"
+    png(image)
+    data = image.read_bytes()
+    sha = hashlib.sha256(data).hexdigest()
+    url = f"https://cdn-wiki.tokenbel.info/wiki/media/images/{sha[:2]}/{sha}.png"
+    target = article(root, '![A](upload:statistics/a.png "T") text ![B](upload:statistics/a.png)\n')
+    monkeypatch.setattr(publisher, "make_client", lambda: Client(data))
+    report = publish(root, None, dry_run=False, remote=False)
+    assert not report["validation_errors"]
+    assert target.read_text(encoding="utf-8") == f'[![A]({url} "T")]({url}) text [![B]({url})]({url})\n'

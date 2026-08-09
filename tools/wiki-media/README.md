@@ -76,3 +76,5 @@ AWS_SECRET_ACCESS_KEY=<r2-secret-access-key>
 Bucket is always `tokenbel-wiki`; prefix is always `wiki/media/images`; CDN is always `https://cdn-wiki.tokenbel.info`.
 
 The object key is `wiki/media/images/<sha[:2]>/<sha><canonical-extension>`. The tool validates all local images before remote writes, checks existing objects without overwriting mismatches, uploads/verifies remote SHA-256, stages exact-span rewrites, and atomically promotes them with rollback backups. It never deletes R2 objects or commits Git changes.
+
+Published Markdown images are emitted as clickable image-links `[![alt](url)](url)` (wrapping the whole `![alt](…)` construct, so alt text and title survive byte-for-byte). The Hugo `render-link` hook at `layouts/_default/_markup/render-link.html` adds `target="_blank" rel="noopener noreferrer"` to any link whose destination is an image file, so each published image opens full-size in a new browser tab; ordinary links keep rendering as standard same-tab anchors.

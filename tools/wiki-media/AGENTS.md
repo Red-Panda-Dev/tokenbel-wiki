@@ -21,7 +21,7 @@ tools/wiki-media/
 │   ├── discovery.py      # поиск `upload:` markers; scope: content/ | поддерево | один index.md
 │   ├── images.py         # Pillow-валидация локальных изображений, размеры, SHA-256
 │   ├── keys.py           # content-addressed ключ объекта R2
-│   ├── markdown.py       # exact-span rewrite `upload:` → CDN URL
+│   ├── markdown.py       # exact-span scan + rewrite `upload:` → кликабельный CDN image-link `[![alt](url)](url)`
 │   ├── transaction.py    # атомарный staging rewrite + rollback-бэкапы
 │   ├── r2.py             # boto3 R2-клиент (upload, head, verify; без overwrite/delete)
 │   ├── publisher.py      # оркестрация publish (dry-run vs --remote)
@@ -45,7 +45,7 @@ tools/wiki-media/
 - Не меняйте bucket/prefix/CDN и схему object key — это нарушит иммутабельность и оставит orphan-объекты.
 - Сохраняйте поведение «без overwrite/delete R2» и SHA-256 verification при любой правке `r2.py`/`publisher.py`/`transaction.py`.
 - Не хардкодьте credentials и не выводите их в логи/отчёты (`reporting.py`).
-- Перед правкой шаблонов rewrites проверяйте exact-span матчинг в `markdown.py` — rewrite должен затрагивать только destination `upload:`, не окружающий текст.
+- Перед правкой шаблонов rewrites проверяйте exact-span матчинг в `markdown.py`: markdown image marker `![alt](upload:…)` заменяется на кликабельный image-link `[![alt](url)](url)` — wrapping всего `![…](…)` construct, alt/title сохраняются байт-в-байт; HTML `<img src="upload:…">` получает только переписанный `src`. Атрибут `target="_blank"` (new tab) добавляет Hugo render-link hook `layouts/_default/_markup/render-link.html` (см. `layouts/AGENTS.md`) — сам CLI Markdown `target=` выразить не может.
 
 ## Validation
 

@@ -12,6 +12,7 @@ class ImageDestination:
     destination: str
     span: SourceSpan
     kind: str
+    construct: SourceSpan | None = None  # whole ![alt](...) span; markdown images only
 
 
 def _line_col(text: str, pos: int) -> tuple[int, int]:
@@ -171,12 +172,26 @@ def scan_images(text: str, include_all: bool = False) -> tuple[list[ImageDestina
                         if value.startswith("upload:"):
                             line, col = _line_col(text, start)
                             if bang:
-                                images.append(ImageDestination(value, SourceSpan(start, finish, line, col), "markdown"))
+                                images.append(
+                                    ImageDestination(
+                                        value,
+                                        SourceSpan(start, finish, line, col),
+                                        "markdown",
+                                        SourceSpan(i, end + 1, *_line_col(text, i)),
+                                    )
+                                )
                             else:
                                 errors.append(f"upload: is only allowed in an image at {line}:{col}")
                         elif bang and include_all:
                             line, col = _line_col(text, start)
-                            images.append(ImageDestination(value, SourceSpan(start, finish, line, col), "markdown"))
+                            images.append(
+                                ImageDestination(
+                                    value,
+                                    SourceSpan(start, finish, line, col),
+                                    "markdown",
+                                    SourceSpan(i, end + 1, *_line_col(text, i)),
+                                )
+                            )
                     i = end + 1
                     continue
         # HTML ordinary links may not contain upload: destinations.

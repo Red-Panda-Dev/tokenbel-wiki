@@ -42,6 +42,7 @@ class Occurrence:
     destination: str
     span: SourceSpan
     kind: str  # markdown or html
+    construct: SourceSpan | None = None  # whole ![alt](...) span; markdown images only
 
 
 @dataclass(frozen=True)

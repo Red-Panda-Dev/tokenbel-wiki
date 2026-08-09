@@ -28,7 +28,19 @@ def stage_rewrites(run_dir: Path, plan, url_for_asset) -> list[tuple[ArticlePlan
             current = handle.read()
         if sha256_text(current) != article.sha256:
             raise RewriteError(f"article changed after planning: {article.path}")
-        replacements = [(occ.span, url_for_asset(plan.occurrence_assets[occ])) for occ in article.occurrences]
+        replacements = []
+        for occ in article.occurrences:
+            url = url_for_asset(plan.occurrence_assets[occ])
+            if occ.kind == "markdown" and occ.construct is not None:
+                # Wrap the image as a clickable self-link [![alt](url)](url). The
+                # Hugo render-link hook adds target="_blank" so it opens in a new
+                # tab. Swap the destination inside the original construct so any
+                # alt text / title survives byte-for-byte.
+                head, tail = occ.construct.start, occ.construct.end
+                inner = current[head : occ.span.start] + url + current[occ.span.end : tail]
+                replacements.append((occ.construct, f"[{inner}]({url})"))
+            else:
+                replacements.append((occ.span, url))
         changed = rewrite(current, replacements)
         remaining, errors = scan_images(changed)
         if errors or remaining:
