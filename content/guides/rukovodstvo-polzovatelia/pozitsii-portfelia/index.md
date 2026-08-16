@@ -240,7 +240,7 @@ flowchart TD
 
 Для металлов предусмотрены два режима.
 
-[![Модальное окно добавления позиции драгоценного металла](https://cdn-wiki.tokenbel.info/wiki/media/images/f5/f5b17fc2cb6987c90d7a9f580f258b1c21fb41f19db7abfcf28c336bb5f90c07.png)](https://cdn-wiki.tokenbel.info/wiki/media/images/f5/f5b17fc2cb6987c90d7a9f580f258b1c21fb41f19db7abfcf28c336bb5f90c07.png)
+[![Модальное окно добавления позиции драгоценного металла](https://cdn-wiki.tokenbel.info/wiki/media/images/10/100e3cbf73eeee388bf402e4c3087ddbefdb6bcba0b4aac44435de308426d17c.png)](https://cdn-wiki.tokenbel.info/wiki/media/images/10/100e3cbf73eeee388bf402e4c3087ddbefdb6bcba0b4aac44435de308426d17c.png)
 
 ##### Режим «Новая позиция»
 
