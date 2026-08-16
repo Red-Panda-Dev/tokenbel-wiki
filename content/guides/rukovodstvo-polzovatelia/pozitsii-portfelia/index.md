@@ -240,6 +240,8 @@ flowchart TD
 
 Для металлов предусмотрены два режима.
 
+Подробные рекомендации по выбору и покупке металлов в Беларуси приведены в [гайде по инвестициям в драгоценные металлы](https://wiki.tokenbel.info/guides/rukovodstvo-polzovatelia/investicii-v-dragmetally-v-belarusi/).
+
 [![Модальное окно добавления позиции драгоценного металла](https://cdn-wiki.tokenbel.info/wiki/media/images/10/100e3cbf73eeee388bf402e4c3087ddbefdb6bcba0b4aac44435de308426d17c.png)](https://cdn-wiki.tokenbel.info/wiki/media/images/10/100e3cbf73eeee388bf402e4c3087ddbefdb6bcba0b4aac44435de308426d17c.png)
 
 ##### Режим «Новая позиция»
