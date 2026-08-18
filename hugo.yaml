@@ -12,6 +12,23 @@ enableGitInfo: false
 ignoreFiles:
   - "AGENTS\\.md$"
 
+# Markdown-версии страниц (content negotiation: Accept: text/markdown → /path/index.md,
+# см. worker.js). HTML остаётся форматом по умолчанию.
+mediaTypes:
+  text/markdown:
+    suffixes: ["md"]
+outputFormats:
+  Markdown:
+    mediaType: text/markdown
+    baseName: index
+    isPlainText: true
+outputs:
+  home: ["HTML", "Markdown"]
+  page: ["HTML", "Markdown"]
+  section: ["HTML", "Markdown"]
+  taxonomy: ["HTML", "Markdown"]
+  term: ["HTML", "Markdown"]
+
 pagination:
   disableAliases: true
   pagerSize: 8

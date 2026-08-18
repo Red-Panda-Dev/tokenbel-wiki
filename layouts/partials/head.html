@@ -12,6 +12,9 @@
 <meta name="description" content="{{ $seo.description }}">
 {{ if not $is404 }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{ with .OutputFormats.Get "markdown" }}
+    <link rel="alternate" type="text/markdown" href="{{ .Permalink }}">
+  {{ end }}
   <meta property="og:title" content="{{ $seo.title }}">
   <meta property="og:description" content="{{ $seo.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
