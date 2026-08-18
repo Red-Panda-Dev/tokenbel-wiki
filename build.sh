@@ -91,6 +91,7 @@ build_site() {
   "${HUGO_BIN}" --gc --minify --cleanDestinationDir --environment production
   python3 tests/check_seo.py public content
   python3 tests/check_pagination.py public content hugo.yaml
+  python3 tests/check_markdown.py public
 }
 
 main() {

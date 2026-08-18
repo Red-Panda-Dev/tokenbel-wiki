@@ -6,17 +6,17 @@ PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
 PYTHON ?= python3
 
-DOCKER_RUN_BASE = docker run --rm \
+DOCKER_RUN_BASE=docker run --rm \
 	--user "$$(id -u):$$(id -g)" \
 	--volume "$(CURDIR):/src" \
 	--workdir /src
 
-DOCKER_RUN = $(DOCKER_RUN_BASE) $(HUGO_IMAGE)
-DOCKER_DEV = $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
+DOCKER_RUN := $(DOCKER_RUN_BASE) $(HUGO_IMAGE)
+DOCKER_DEV := $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
 
-DOCKER_SHELL = $(DOCKER_RUN_BASE) --entrypoint /bin/sh $(HUGO_IMAGE)
+DOCKER_SHELL := $(DOCKER_RUN_BASE) --entrypoint /bin/sh $(HUGO_IMAGE)
 
-DOCKER_CLEAN = docker run --rm \
+DOCKER_CLEAN=docker run --rm \
 	--user 0:0 \
 	--volume "$(CURDIR):/src" \
 	--workdir /src \
@@ -73,14 +73,17 @@ build production: clean
 	@$(DOCKER_RUN) hugo --gc --minify --environment production
 
 check: css-check build
-	@test -f static/css/tailwind.min.css
-	@test -f public/index.html
-	@test -f public/404.html
+	@[ -f static/css/tailwind.min.css ]
+	@[ -f public/index.html ]
+	@[ -f public/404.html ]
+	@[ -f worker.js ]
+	@[ -f public/index.md ]
 	@grep -q 'База знаний TokenBel' public/index.html
 	@grep -q 'Страница не найдена' public/404.html
 	@grep -q 'noindex, follow' public/404.html
 	@$(PYTHON) tests/check_seo.py public content
 	@$(PYTHON) tests/check_pagination.py public content hugo.yaml
+	@$(PYTHON) tests/check_markdown.py public
 	@printf '%s\n' 'Hugo build checks passed.'
 
 cloudflare-build:
