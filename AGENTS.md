@@ -9,7 +9,7 @@ This is the root instruction file; all other `AGENTS.md` files inherit from and 
 
 ## Обзор репозитория
 
-Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets с единственным runtime-скриптом `worker.js` (content negotiation `Accept: text/markdown`; без KV/bindings, кроме `ASSETS`). Внешних Hugo-тем нет — вся вёрстка локальная.
+Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets с runtime-скриптом `worker.js` (content negotiation `Accept: text/markdown` и Link-заголовки главной; без KV/bindings, кроме `ASSETS`). Внешних Hugo-тем нет — вся вёрстка локальная.
 
 ## Где работать
 
@@ -38,7 +38,7 @@ worker.js             Единственный runtime-скрипт Worker: Acce
 - `enableGitInfo: false` → даты берутся только из front matter (`date`/`lastmod`); `lastmod` показывается в UI.
 - Все тексты интерфейса и контента — на русском (locale `ru-BY`).
 - Разделы (`news`, `statistics`, `guides`, `policies`, `about`) автособираются из `content/`; пункты меню — в `hugo.yaml`.
-- Worker имеет ровно одну runtime-обязанность: content negotiation — запросы с `Accept: text/markdown` получают Hugo-generated `index.md` (output format `Markdown` в `hugo.yaml`), остальное проходит в статику без изменений; нет md-варианта (404, `/page/N/`) — прозрачный фолбэк на HTML. Новая runtime-логика — только по отдельному архитектурному решению.
+- Worker имеет ровно две runtime-обязанности: (1) content negotiation — запросы с `Accept: text/markdown` получают Hugo-generated `index.md` (output format `Markdown` в `hugo.yaml`), остальное проходит в статику без изменений; нет md-варианта (404, `/page/N/`) — прозрачный фолбэк на HTML; (2) Link-заголовки главной для агентного обнаружения (RFC 8288/9727): `describedby` на `/llms.txt` и `/sitemap.xml` (проверяет `tests/check_link_headers.mjs`). Relation types из RFC 9727/8631 (`api-catalog`, `service-desc`, `service-doc`) не применяются — у сайта нет API. Новая runtime-логика — только по отдельному архитектурному решению.
 
 ## Маршрутизация контекста
 

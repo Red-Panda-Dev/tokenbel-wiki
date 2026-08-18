@@ -5,6 +5,7 @@ HUGO_IMAGE ?= hugomods/hugo:$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
 PYTHON ?= python3
+NODE ?= node
 
 DOCKER_RUN_BASE=docker run --rm \
 	--user "$$(id -u):$$(id -g)" \
@@ -78,12 +79,14 @@ check: css-check build
 	@[ -f public/404.html ]
 	@[ -f worker.js ]
 	@[ -f public/index.md ]
+	@[ -f public/llms.txt ]
 	@grep -q 'База знаний TokenBel' public/index.html
 	@grep -q 'Страница не найдена' public/404.html
 	@grep -q 'noindex, follow' public/404.html
 	@$(PYTHON) tests/check_seo.py public content
 	@$(PYTHON) tests/check_pagination.py public content hugo.yaml
 	@$(PYTHON) tests/check_markdown.py public
+	@$(NODE) --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/check_link_headers.mjs
 	@printf '%s\n' 'Hugo build checks passed.'
 
 cloudflare-build:

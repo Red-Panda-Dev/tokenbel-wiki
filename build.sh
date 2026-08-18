@@ -92,6 +92,7 @@ build_site() {
   python3 tests/check_seo.py public content
   python3 tests/check_pagination.py public content hugo.yaml
   python3 tests/check_markdown.py public
+  node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/check_link_headers.mjs
 }
 
 main() {
