@@ -9,11 +9,16 @@
  *    статические ассеты без изменений. Если Markdown-варианта нет (404,
  *    /page/N/ пагинация, статика) — прозрачный фолбэк на HTML.
  *
- * 2. Link-заголовки обнаружения (RFC 8288/9727): ответы главной получают
+ * 2. Обогащение обнаружения (RFC 8288/9727): ответы главной получают
  *    `Link` с зарегистрированным relation type `describedby` (RFC 6903) на
  *    машиночитаемые описания сайта — /llms.txt и /sitemap.xml. Relation types
  *    из RFC 9727/8631 (api-catalog, service-desc, service-doc) не применяются:
- *    у сайта нет API.
+ *    у сайта нет API. Кроме того, discovery-документы с кириллицей (/llms.txt,
+ *    /auth.md) получают явный `charset=utf-8`: Static Assets не добавляет
+ *    charset к text/markdown и text/plain, и клиенты без него неверно
+ *    декодируют UTF-8 (CP1252-моджибейк); файл _headers тут не вариант — его
+ *    правила не применяются к ответам, прошедшим через Worker при
+ *    run_worker_first (документация Cloudflare Static Assets).
  */
 
 const STATIC_EXT =
@@ -49,6 +54,26 @@ function withHomepageLinks(response) {
   for (const link of HOMEPAGE_LINKS) {
     headers.append("link", link);
   }
+  return new Response(response.body, {
+    status: response.status,
+    headers,
+  });
+}
+
+// Discovery-документы с кириллицей: Static Assets отдаёт text/markdown и
+// text/plain без charset — выставляем его явно (см. шапку файла, п. 2).
+const DISCOVERY_TYPES = {
+  "/auth.md": "text/markdown; charset=utf-8",
+  "/llms.txt": "text/plain; charset=utf-8",
+};
+
+function withDiscoveryCharset(response, pathname) {
+  const type = DISCOVERY_TYPES[pathname];
+  if (type === undefined || response.status !== 200) {
+    return response;
+  }
+  const headers = new Headers(response.headers);
+  headers.set("content-type", type);
   return new Response(response.body, {
     status: response.status,
     headers,
@@ -94,6 +119,7 @@ export default {
       if (isHomepage(pathname)) {
         response = withHomepageLinks(response);
       }
+      response = withDiscoveryCharset(response, pathname);
     } catch {
       // URL неразборчив — оставляем ответ как есть.
     }

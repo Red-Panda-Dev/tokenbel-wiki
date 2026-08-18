@@ -1,9 +1,12 @@
 /**
- * Юнит-тест runtime worker.js: Link-заголовки главной (RFC 8288/9727)
- * и regression-контроль content negotiation.
+ * Юнит-тест runtime worker.js: Link-заголовки главной (RFC 8288/9727),
+ * charset discovery-документов (/llms.txt, /auth.md) и regression-контроль
+ * content negotiation.
  *
  * Запуск: node tests/check_link_headers.mjs  (входит в `make check` и build.sh).
  * env.ASSETS-биндинг заменяется стабом, реальная сеть не используется.
+ * Стаб повторяет production Static Assets: text/markdown и text/plain
+ * отдаются БЕЗ charset — worker обязан добавить его сам.
  */
 
 import worker from "../worker.js";
@@ -18,12 +21,20 @@ const env = {
         typeof input === "string" ? new URL(input) : new URL(input.url);
       const path = url.pathname;
       const body =
-        path === "/index.md" ? "# База знаний TokenBel\n" : "<html></html>";
+        path === "/index.md"
+          ? "# База знаний TokenBel\n"
+          : path === "/auth.md"
+            ? "# auth.md — доступ агентов к TokenBel Wiki\n"
+            : path === "/llms.txt" || path === "/robots.txt"
+              ? "# TokenBel Wiki\n"
+              : "<html></html>";
       const type = path.endsWith(".md")
-        ? "text/markdown; charset=utf-8"
-        : path.endsWith(".css")
-          ? "text/css"
-          : "text/html; charset=utf-8";
+        ? "text/markdown"
+        : path.endsWith(".txt")
+          ? "text/plain"
+          : path.endsWith(".css")
+            ? "text/css"
+            : "text/html; charset=utf-8";
       return new Response(path.startsWith("/missing/") ? null : body, {
         status: path.startsWith("/missing/") ? 404 : 200,
         headers: { "content-type": type },
@@ -120,6 +131,42 @@ async function get(path, accept = "text/html,application/xhtml+xml") {
   check("missing has no link headers", linkHeader(missing), "");
 }
 
+// --- Charset discovery-документов (Static Assets в проде отдаёт их без charset) ---
+{
+  const auth = await get("/auth.md");
+  check(
+    "auth.md gains charset",
+    auth.headers.get("content-type"),
+    "text/markdown; charset=utf-8",
+  );
+  check("auth.md has no link headers", linkHeader(auth), "");
+
+  // /auth.md — статический ассет: Accept: text/markdown не включает negotiation.
+  const authMd = await get("/auth.md", "text/markdown");
+  check(
+    "auth.md markdown accept same content-type",
+    authMd.headers.get("content-type"),
+    "text/markdown; charset=utf-8",
+  );
+  check("auth.md static asset: no vary", authMd.headers.get("vary"), null);
+
+  const llms = await get("/llms.txt");
+  check(
+    "llms.txt gains charset",
+    llms.headers.get("content-type"),
+    "text/plain; charset=utf-8",
+  );
+  check("llms.txt has no link headers", linkHeader(llms), "");
+
+  // Отрицательный контроль: прочие text/plain Worker не трогает.
+  const robots = await get("/robots.txt");
+  check(
+    "robots.txt content-type untouched",
+    robots.headers.get("content-type"),
+    "text/plain",
+  );
+}
+
 // --- Content negotiation regression ---
 {
   const md = await get("/news/article/", "text/markdown");
@@ -144,5 +191,5 @@ if (failures > 0) {
   process.exit(1);
 }
 console.log(
-  "Link header validation passed (homepage + negotiation regression).",
+  "Link header validation passed (homepage + discovery charset + negotiation regression).",
 );
