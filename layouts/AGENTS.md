@@ -11,11 +11,14 @@ This file defines only local differences для шаблонов и презен
 ```text
 layouts/
 ├── home.html                # Главная: hero + site.Sections.ByWeight + recent
+├── home.markdown.md         # Markdown-версия главной (output format Markdown для Accept-негоциации)
 ├── 404.html                 # 404: фиксированный текст и кнопки
 ├── _default/
 │   ├── baseof.html          # Каркас <html>, partials head/header/footer, блок main
 │   ├── list.html            # Список статей раздела (сортировка по Lastmod)
-│   └── single.html          # Одна статья
+│   ├── single.html          # Одна статья
+│   ├── single.markdown.md   # Markdown-версия статьи: H1 + description + .RawContent
+│   └── list.markdown.md     # Markdown-версия раздела/таксономии: H1 + подразделы + список статей
 ├── _markup/
 │   ├── render-codeblock-mermaid.html  # Render hook ```mermaid блоков (включает mermaid.js loader)
 │   ├── render-link.html    # Render hook ссылок: image-links `[![alt](url)](url)` → `target="_blank"` (new tab)
@@ -33,7 +36,8 @@ layouts/
 
 - CSS source — `static/css/input.css`; pinned standalone `@tailwindcss/cli` собирает committed `static/css/output.css` (unminified) и `static/css/tailwind.min.css` (minified). `partials/css.html` **всегда** линкует только `tailwind.min.css` (захардкожено, без переключения по окружению); `output.css` служит ссылкой для `make css-watch` и freshness-проверки `make css-check` и ни одним шаблоном не подключается. Не добавляйте `.scss` / Sass `@import`.
 - Для уникального layout используйте Tailwind utilities, а для повторяющихся wiki-компонентов — semantic classes через `@apply` в `static/css/input.css`. Все условные class strings должны быть полными literal mappings, а не динамическими фрагментами. После изменения templates/input.css выполните `make css-build` и закоммитьте оба CSS output-файла.
-- `head.html` управляет SEO: `canonical` = `.Permalink` (всегда production-домен), `noindex, follow` только для 404, OG-теги, JSON-LD на главной. Не ломайте логику canonical/robots.
+- `head.html` управляет SEO: `canonical` = `.Permalink` (всегда production-домен), `noindex, follow` только для 404, OG-теги, JSON-LD на главной, а также `<link rel="alternate" type="text/markdown">` на страницы с Markdown-версией. Не ломайте логику canonical/robots.
+- `*.markdown.md` — шаблоны output format `Markdown` (см. `hugo.yaml` `outputs`) для `worker.js`-негоциации `Accept: text/markdown`. Они используют `.RawContent` (render hooks НЕ применяются — намеренно: агентам нужен исходный Markdown) и обязаны начинаться с `# {{ .Title }}` (это проверяет `tests/check_markdown.py`). HTML-шаблоны остаются каноническими; не дублируйте в Markdown-шаблонах разметку/стили.
 - `make check` жёстко ищет строки: `База знаний TokenBel` (home), `Страница не найдена` (404). Сохраняйте их дословно при рефакторинге.
 - Icon-enum в `section-card.html` ({news, chart, guide, document, info}) должно совпадать со значениями `icon` в `content/<section>/_index.md` (см. `content/AGENTS.md`).
 - `home.html` читает hero-параметры из front matter главной (`heroPrimaryLabel/URL`, `heroSecondaryLabel/URL`) — это контракт с `content/_index.md`.

@@ -9,7 +9,7 @@ This is the root instruction file; all other `AGENTS.md` files inherit from and 
 
 ## Обзор репозитория
 
-Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets (без runtime-скрипта, bindings, KV). Внешних Hugo-тем нет — вся вёрстка локальная.
+Статическая русскоязычная база знаний TokenBel, собираемая Hugo и публикуемая на `https://wiki.tokenbel.info/` как Cloudflare Worker со Static Assets с единственным runtime-скриптом `worker.js` (content negotiation `Accept: text/markdown`; без KV/bindings, кроме `ASSETS`). Внешних Hugo-тем нет — вся вёрстка локальная.
 
 ## Где работать
 
@@ -26,7 +26,8 @@ tools/                 Изолированный Python CLI wiki-media (пуб�
 hugo.yaml              Конфигурация сайта (язык ru, секции меню, taxonomies)
 Makefile               Локальная Docker-обёртка над Hugo
 build.sh               Pinned-сборка для Cloudflare (только Linux x86_64)
-wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./public)
+wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./public, run_worker_first)
+worker.js             Единственный runtime-скрипт Worker: Accept-негоциация text/markdown → index.md
 ```
 
 **Не коммитьте и не правьте:** `public/`, `resources/`, `.cache/`, `.wrangler/`, `.hugo_build.lock`, `node_modules/` — это артефакты сборки.
@@ -37,6 +38,7 @@ wrangler.toml         Конфиг Cloudflare Worker (static assets dir = ./publ
 - `enableGitInfo: false` → даты берутся только из front matter (`date`/`lastmod`); `lastmod` показывается в UI.
 - Все тексты интерфейса и контента — на русском (locale `ru-BY`).
 - Разделы (`news`, `statistics`, `guides`, `policies`, `about`) автособираются из `content/`; пункты меню — в `hugo.yaml`.
+- Worker имеет ровно одну runtime-обязанность: content negotiation — запросы с `Accept: text/markdown` получают Hugo-generated `index.md` (output format `Markdown` в `hugo.yaml`), остальное проходит в статику без изменений; нет md-варианта (404, `/page/N/`) — прозрачный фолбэк на HTML. Новая runtime-логика — только по отдельному архитектурному решению.
 
 ## Маршрутизация контекста
 
@@ -70,7 +72,7 @@ make dev       # live-reload сервер (Docker, Hugo 0.164.0 через hugom
 make check     # проверить актуальность committed CSS и HTML-вывод
 ```
 
-`make check` жёстко проверяет: наличие `База знаний TokenBel` в `index.html`, `Страница не найдена` и `noindex, follow` в `404.html`. Не ломайте эти строки при рефакторинге.
+`make check` жёстко проверяет: наличие `База знаний TokenBel` в `index.html`, `Страница не найдена` и `noindex, follow` в `404.html`, существование `worker.js` и `public/index.md`, а также `tests/check_markdown.py` — парность `index.md` у каждой `index.html` (кроме пагинатора). Не ломайте эти строки при рефакторинге.
 
 Перед завершением: `npm ci`, `make check` (или `hugo --gc --minify`), проверка 320 px, и наличие `public/index.html`, `public/404.html`. Изменения в `tools/wiki-media/` (Python) валидируются отдельно (`make lint`/`make test` и `make publish-dry-run`), см. `tools/wiki-media/AGENTS.md`.
 
