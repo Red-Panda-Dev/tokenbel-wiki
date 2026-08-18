@@ -100,13 +100,14 @@ curl -I https://<staging-domain>/favicon.svg
 curl --silent --show-error https://<staging-domain>/non-existent-page/ | grep -q 'Страница не найдена'
 curl -fsS https://<staging-domain>/robots.txt
 curl -fsS https://<staging-domain>/sitemap.xml
+curl -fsS https://<staging-domain>/auth.md
 curl -fsS -H 'Accept: text/markdown' -D - -o /dev/null https://<staging-domain>/ | grep -i '^content-type: text/markdown'
 curl -fsS -H 'Accept: text/markdown' https://<staging-domain>/ | head -n 1
 curl -fsS -H 'Accept: text/markdown' -D - -o /dev/null https://<staging-domain>/css/tailwind.min.css | grep -i '^content-type: text/css'
 curl -fsS -D - -o /dev/null https://<staging-domain>/ | grep -i "^link:.*describedby"
 ```
 
-The Markdown line must start with `# База знаний TokenBel`; the CSS request with the markdown `Accept` header must still return `text/css` (static assets are never rewritten). The Link check must return exactly two lines — `</llms.txt>; rel="describedby"; type="text/plain"` and `</sitemap.xml>; rel="describedby"; type="application/xml"` (agent discovery per RFC 8288/9727; they must also appear on the markdown-negotiated homepage, whose `Accept: text/markdown` request carries the same `Link` headers). Also verify `Vary: Accept` on negotiated responses and that `/news/page/2/` with `Accept: text/markdown` falls back to `text/html`.
+The Markdown line must start with `# База знаний TokenBel`; the `auth.md` response must be Markdown starting with an H1 containing `auth.md` (self-contained agent-auth document: anonymous-only access, no registration endpoints, no OAuth well-knowns — the wiki has no API or protected resources); the CSS request with the markdown `Accept` header must still return `text/css` (static assets are never rewritten). The Link check must return exactly two lines — `</llms.txt>; rel="describedby"; type="text/plain"` and `</sitemap.xml>; rel="describedby"; type="application/xml"` (agent discovery per RFC 8288/9727; they must also appear on the markdown-negotiated homepage, whose `Accept: text/markdown` request carries the same `Link` headers). Also verify `Vary: Accept` on negotiated responses and that `/news/page/2/` with `Accept: text/markdown` falls back to `text/html`.
 
 Expected status codes are `200`, `200`, `200`, `404`, and `200`. Verify that the second pager contains only the remaining article cards. Also review keyboard navigation, focus state, mobile layout, `tailwind.min.css`, favicon, section links, and PR-preview URL. The canonical URL intentionally remains `https://wiki.tokenbel.info/` even on staging; verify it has no `localhost` references.
 
