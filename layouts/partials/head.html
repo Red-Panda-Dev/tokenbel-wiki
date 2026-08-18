@@ -15,6 +15,10 @@
   {{ with .OutputFormats.Get "markdown" }}
     <link rel="alternate" type="text/markdown" href="{{ .Permalink }}">
   {{ end }}
+  {{ if .IsHome }}
+    <link rel="describedby" type="text/plain" href="{{ "llms.txt" | absURL }}">
+    <link rel="describedby" type="application/xml" href="{{ "sitemap.xml" | absURL }}">
+  {{ end }}
   <meta property="og:title" content="{{ $seo.title }}">
   <meta property="og:description" content="{{ $seo.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
