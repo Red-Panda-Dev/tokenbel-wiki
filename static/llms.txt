@@ -18,6 +18,7 @@
 
 - [Главная страница Wiki](https://wiki.tokenbel.info/): обзор разделов и последних обновлений.
 - [Карта сайта](https://wiki.tokenbel.info/sitemap.xml): полный список индексируемых страниц Wiki.
+- [auth.md](https://wiki.tokenbel.info/auth.md): правила доступа и аутентификации для агентов (регистрация не требуется, доступ анонимный).
 
 ## Optional
 
