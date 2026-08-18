@@ -80,7 +80,9 @@ check: css-check build
 	@[ -f worker.js ]
 	@[ -f public/index.md ]
 	@[ -f public/llms.txt ]
+	@[ -f public/auth.md ]
 	@grep -q 'База знаний TokenBel' public/index.html
+	@head -n 1 public/auth.md | grep -q 'auth\.md'
 	@grep -q 'Страница не найдена' public/404.html
 	@grep -q 'noindex, follow' public/404.html
 	@$(PYTHON) tests/check_seo.py public content

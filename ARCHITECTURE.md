@@ -60,7 +60,7 @@ Evidence anchors: `hugo.yaml`, `wrangler.toml`, `build.sh`, `Makefile`, `layouts
 ### Site Configuration & Static Assets
 
 - Responsibility: Global site identity, navigation, external link catalog, and immutable files served as-is.
-- Code locations: `hugo.yaml`, `static/` (`favicon.svg`, `wiki_logo.*`, `css/`).
+- Code locations: `hugo.yaml`, `static/` (`favicon.svg`, `wiki_logo.*`, `css/`, `llms.txt`, `auth.md`).
 - Entry points: `hugo.yaml` (`baseURL`, `languages.ru`, `taxonomies`, `menus.main`, `params.*`).
 - Depends on: Nothing (root configuration).
 - Owns: Canonical domain `https://wiki.tokenbel.info/`, section menu order, dashboard/tokens/market external URLs.
@@ -106,7 +106,7 @@ layouts/            Local Hugo templates only — no theme
   home.markdown.md  Markdown variant of the home page
   404.html          fixed 404 copy and actions
 static/css/         input.css source; output.css and tailwind.min.css committed CLI output
-static/             immutable files served verbatim (CSS, favicon.svg, wiki_logo.*)
+static/             immutable files served verbatim (CSS, favicon.svg, wiki_logo.*, llms.txt, auth.md)
 hugo.yaml           site config: baseURL, ru locale, menus, params, taxonomies
 tools/wiki-media/   isolated Python CLI: publish/validate/cleanup → immutable R2 + CDN (own uv/Ruff/pytest)
   src/wiki_media/   cli, publisher, r2, transaction, keys, config, discovery, images, markdown, models, reporting
@@ -201,7 +201,7 @@ Evidence:
 
 - Rule: The deployed unit is static-first — the only Worker code is `worker.js`, whose runtime duties are exactly two: `Accept: text/markdown` negotiation and homepage `Link` discovery headers (`describedby` → `/llms.txt`, `/sitemap.xml`); no KV, no bindings beyond `ASSETS`, no other runtime logic; `public/` is its sole input.
 - Rationale: Agent-friendly delivery (markdown representations and RFC 8288/9727 Link discovery) with minimal runtime surface and cost; zone-level Cloudflare "Markdown for Agents" requires a Pro+ plan, unavailable on the current Free plan. RFC 9727/8631 API relation types (`api-catalog`, `service-desc`, `service-doc`) are intentionally not advertised — the wiki exposes no API.
-- Enforcement / Signals: `wrangler.toml` declares `main = "worker.js"`, `[assets] binding = "ASSETS"`, `run_worker_first = true`, and no KV/secrets; `tests/check_markdown.py` + `tests/check_link_headers.mjs` (Node unit test with stubbed `ASSETS` binding) + `make check` verify `worker.js`, `public/index.md`, `public/llms.txt`, `index.md` siblings of every content `index.html` (paginator pages excluded, HTML fallback by design), and the homepage Link headers; new runtime logic requires a separate architectural decision (`AGENTS.md`).
+- Enforcement / Signals: `wrangler.toml` declares `main = "worker.js"`, `[assets] binding = "ASSETS"`, `run_worker_first = true`, and no KV/secrets; `tests/check_markdown.py` + `tests/check_link_headers.mjs` (Node unit test with stubbed `ASSETS` binding) + `make check` verify `worker.js`, `public/index.md`, `public/llms.txt`, `public/auth.md` (self-contained agent-auth contract per the auth.md spec: anonymous-only, no registration endpoints, no OAuth metadata — the wiki has no API; H1 must contain `auth.md`), `index.md` siblings of every content `index.html` (paginator pages excluded, HTML fallback by design), and the homepage Link headers; new runtime logic requires a separate architectural decision (`AGENTS.md`).
 
 - Rule: Cloudflare builds use pinned, checksum-verified tooling and run only on Linux x86_64.
 - Rationale: Reproducible production builds.
