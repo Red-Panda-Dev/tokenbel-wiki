@@ -95,6 +95,8 @@ build_site() {
   node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/check_link_headers.mjs
   test -f public/auth.md
   head -n 1 public/auth.md | grep -q 'auth\.md'
+  test -f public/.well-known/api-catalog
+  test -f public/openapi.json
 }
 
 main() {

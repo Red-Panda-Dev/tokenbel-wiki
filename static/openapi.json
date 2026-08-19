@@ -1,0 +1,233 @@
+{
+  "$schema": "https://spec.openapis.org/oas/3.1/schema/2022-10-07",
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TokenBel Wiki — интерфейс только для чтения",
+    "summary": "Публичная база знаний TokenBel как анонимный read-only HTTP-сервис",
+    "description": "TokenBel Wiki — статическая база знаний. Доступ анонимный: без регистрации, ключей и аутентификации (правила доступа — /auth.md). Каждая страница отдаётся в HTML; при заголовке `Accept: text/markdown` возвращается предгенерированная Markdown-версия той же страницы (content negotiation, ответ помечен `Vary: Accept`). Страницы без Markdown-варианта (например, пагинация `/page/N/`) прозрачно возвращают HTML. Изменяющих операций нет — интерфейс строго read-only. Каталог API: `/.well-known/api-catalog` (RFC 9727).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://wiki.tokenbel.info"
+    }
+  ],
+  "security": [],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Главная страница базы знаний",
+        "description": "HTML-представление или Markdown-представление (см. заголовок Accept). Ответ содержит Link-заголовки `describedby` на /llms.txt и /sitemap.xml (RFC 8288/9727).",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "`text/html` (по умолчанию, отдают браузеры) либо `text/markdown` — предгенерированная Markdown-версия страницы.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "examples": ["text/html", "text/markdown"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Главная страница; медиатип зависит от заголовка Accept.",
+            "headers": {
+              "Link": {
+                "description": "Машиночитаемые описания сайта: `</llms.txt>; rel=\"describedby\"`, `</sitemap.xml>; rel=\"describedby\"`.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Vary": {
+                "description": "`Accept` — присутствует только у Markdown-представления.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{path}": {
+      "get": {
+        "summary": "Страница базы знаний или discovery-документ",
+        "description": "Любой путь вики (например, `news/chto-takoe-token`), возможно с вложенными сегментами. Правила те же, что у главной: HTML по умолчанию, Markdown при `Accept: text/markdown`; если Markdown-варианта нет (пагинация `/page/N/`), прозрачно возвращается HTML. Публичные discovery-документы: `/llms.txt`, `/auth.md`, `/robots.txt`, `/sitemap.xml`, `/.well-known/api-catalog`.",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "description": "Путь страницы или discovery-документа без ведущего слэша; может содержать вложенные сегменты.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "`text/html` (по умолчанию) либо `text/markdown` — Markdown-версия страницы, если она существует.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "examples": ["text/html", "text/markdown"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Запрошенный ресурс; медиатип — text/html, text/markdown, text/plain, application/xml или application/linkset+json в зависимости от пути.",
+            "headers": {
+              "Vary": {
+                "description": "`Accept` — присутствует только у ответов, сгенерированных по Markdown-неготиации.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/linkset+json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Страница не найдена; отдаётся страница 404 с `noindex, follow`.",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "summary": "Карта базы знаний для агентов (llms.txt)",
+        "description": "Обзор разделов и навигации по базе знаний на русском языке; отдаётся как `text/plain; charset=utf-8`.",
+        "responses": {
+          "200": {
+            "description": "llms.txt в кодировке UTF-8.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth.md": {
+      "get": {
+        "summary": "Правила доступа для агентов (auth.md)",
+        "description": "Самодостаточный документ о доступе: анонимный доступ, регистрации нет, OAuth-эндпоинтов нет; отдаётся как `text/markdown; charset=utf-8`.",
+        "responses": {
+          "200": {
+            "description": "auth.md в кодировке UTF-8.",
+            "content": {
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/robots.txt": {
+      "get": {
+        "summary": "Правила для краулеров (robots.txt)",
+        "description": "Политика для поисковых и AI-краулеров с директивами Content-Signal.",
+        "responses": {
+          "200": {
+            "description": "robots.txt.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sitemap.xml": {
+      "get": {
+        "summary": "Карта сайта (sitemap.xml)",
+        "responses": {
+          "200": {
+            "description": "XML-карта сайта.",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/.well-known/api-catalog": {
+      "get": {
+        "summary": "Каталог API (RFC 9727)",
+        "description": "Документ linkset+json (RFC 9264): единственный API — этот read-only интерфейс; `service-desc` → /openapi.json, `service-doc` → /llms.txt, `service-meta` → /auth.md.",
+        "responses": {
+          "200": {
+            "description": "Каталог API в формате application/linkset+json.",
+            "content": {
+              "application/linkset+json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

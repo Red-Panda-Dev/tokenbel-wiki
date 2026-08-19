@@ -81,6 +81,8 @@ check: css-check build
 	@[ -f public/index.md ]
 	@[ -f public/llms.txt ]
 	@[ -f public/auth.md ]
+	@[ -f public/.well-known/api-catalog ]
+	@[ -f public/openapi.json ]
 	@grep -q 'База знаний TokenBel' public/index.html
 	@head -n 1 public/auth.md | grep -q 'auth\.md'
 	@grep -q 'Страница не найдена' public/404.html

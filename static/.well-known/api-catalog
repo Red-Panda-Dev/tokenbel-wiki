@@ -1,0 +1,28 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://wiki.tokenbel.info/",
+      "service-desc": [
+        {
+          "href": "https://wiki.tokenbel.info/openapi.json",
+          "type": "application/vnd.oai.openapi+json",
+          "title": "OpenAPI 3.1 — read-only интерфейс вики"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://wiki.tokenbel.info/llms.txt",
+          "type": "text/plain",
+          "title": "llms.txt — карта базы знаний для агентов"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://wiki.tokenbel.info/auth.md",
+          "type": "text/markdown",
+          "title": "auth.md — правила доступа: анонимно, без регистрации"
+        }
+      ]
+    }
+  ]
+}

@@ -1,17 +1,30 @@
 /**
  * Юнит-тест runtime worker.js: Link-заголовки главной (RFC 8288/9727),
- * charset discovery-документов (/llms.txt, /auth.md) и regression-контроль
- * content negotiation.
+ * канонические content-type discovery-документов (/llms.txt, /auth.md,
+ * /.well-known/api-catalog — RFC 9727) и regression-контроль content
+ * negotiation.
  *
  * Запуск: node tests/check_link_headers.mjs  (входит в `make check` и build.sh).
  * env.ASSETS-биндинг заменяется стабом, реальная сеть не используется.
  * Стаб повторяет production Static Assets: text/markdown и text/plain
- * отдаются БЕЗ charset — worker обязан добавить его сам.
+ * отдаются БЕЗ charset, файлу без расширения (/api-catalog) content-type
+ * не присваивается вовсе — worker обязан выставить его сам. Тело каталога
+ * и openapi.json читаются из static/, чтобы тест проверял реальные файлы.
  */
 
+import { readFileSync } from "node:fs";
 import worker from "../worker.js";
 
 const BASE = "https://wiki.tokenbel.info";
+
+const apiCatalogBody = readFileSync(
+  new URL("../static/.well-known/api-catalog", import.meta.url),
+  "utf8",
+);
+const openapiBody = readFileSync(
+  new URL("../static/openapi.json", import.meta.url),
+  "utf8",
+);
 
 // Объект окружения Worker: env.ASSETS — заменяем стабом, реальная сеть не используется.
 const env = {
@@ -27,17 +40,28 @@ const env = {
             ? "# auth.md — доступ агентов к TokenBel Wiki\n"
             : path === "/llms.txt" || path === "/robots.txt"
               ? "# TokenBel Wiki\n"
-              : "<html></html>";
-      const type = path.endsWith(".md")
-        ? "text/markdown"
-        : path.endsWith(".txt")
-          ? "text/plain"
-          : path.endsWith(".css")
-            ? "text/css"
-            : "text/html; charset=utf-8";
+              : path === "/.well-known/api-catalog"
+                ? apiCatalogBody
+                : path === "/openapi.json"
+                  ? openapiBody
+                  : "<html></html>";
+      const headers = {};
+      if (path === "/.well-known/api-catalog") {
+        // Файл без расширения: production Static Assets не определяет content-type.
+      } else if (path.endsWith(".md")) {
+        headers["content-type"] = "text/markdown";
+      } else if (path.endsWith(".txt")) {
+        headers["content-type"] = "text/plain";
+      } else if (path.endsWith(".css")) {
+        headers["content-type"] = "text/css";
+      } else if (path.endsWith(".json")) {
+        headers["content-type"] = "application/json";
+      } else {
+        headers["content-type"] = "text/html; charset=utf-8";
+      }
       return new Response(path.startsWith("/missing/") ? null : body, {
         status: path.startsWith("/missing/") ? 404 : 200,
-        headers: { "content-type": type },
+        headers,
       });
     },
   },
@@ -167,6 +191,68 @@ async function get(path, accept = "text/html,application/xhtml+xml") {
   );
 }
 
+// --- /.well-known/api-catalog (RFC 9727) и /openapi.json ---
+{
+  const res = await get("/.well-known/api-catalog");
+  check("api-catalog status", res.status, 200);
+  check(
+    "api-catalog gains linkset+json type",
+    res.headers.get("content-type"),
+    "application/linkset+json",
+  );
+  check("api-catalog has no link headers", linkHeader(res), "");
+  check("api-catalog static asset: no vary", res.headers.get("vary"), null);
+
+  // RFC 9727 §2: HEAD тоже должен отдавать каталог.
+  const head = await worker.fetch(
+    new Request(`${BASE}/.well-known/api-catalog`, { method: "HEAD" }),
+    env,
+  );
+  check(
+    "api-catalog HEAD content-type",
+    head.headers.get("content-type"),
+    "application/linkset+json",
+  );
+
+  const entry = (await res.json()).linkset?.[0];
+  check("linkset anchor", entry?.anchor, `${BASE}/`);
+  check(
+    "linkset service-desc href",
+    entry?.["service-desc"]?.[0]?.href,
+    `${BASE}/openapi.json`,
+  );
+  check(
+    "linkset service-doc href",
+    entry?.["service-doc"]?.[0]?.href,
+    `${BASE}/llms.txt`,
+  );
+  check(
+    "linkset service-meta href",
+    entry?.["service-meta"]?.[0]?.href,
+    `${BASE}/auth.md`,
+  );
+
+  const specRes = await get("/openapi.json");
+  check(
+    "openapi.json content-type untouched",
+    specRes.headers.get("content-type"),
+    "application/json",
+  );
+  check("openapi.json has no link headers", linkHeader(specRes), "");
+}
+
+// --- Исходник openapi.json в static/ ---
+{
+  const spec = JSON.parse(openapiBody);
+  check("openapi version", spec.openapi, "3.1.0");
+  check("openapi server", spec.servers?.[0]?.url, BASE);
+  check(
+    "openapi documents the catalog path",
+    Object.hasOwn(spec.paths, "/.well-known/api-catalog"),
+    true,
+  );
+}
+
 // --- Content negotiation regression ---
 {
   const md = await get("/news/article/", "text/markdown");
@@ -191,5 +277,5 @@ if (failures > 0) {
   process.exit(1);
 }
 console.log(
-  "Link header validation passed (homepage + discovery charset + negotiation regression).",
+  "Link header validation passed (homepage + discovery docs + api-catalog + negotiation regression).",
 );

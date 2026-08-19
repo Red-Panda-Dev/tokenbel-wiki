@@ -12,13 +12,18 @@
  * 2. Обогащение обнаружения (RFC 8288/9727): ответы главной получают
  *    `Link` с зарегистрированным relation type `describedby` (RFC 6903) на
  *    машиночитаемые описания сайта — /llms.txt и /sitemap.xml. Relation types
- *    из RFC 9727/8631 (api-catalog, service-desc, service-doc) не применяются:
- *    у сайта нет API. Кроме того, discovery-документы с кириллицей (/llms.txt,
- *    /auth.md) получают явный `charset=utf-8`: Static Assets не добавляет
- *    charset к text/markdown и text/plain, и клиенты без него неверно
- *    декодируют UTF-8 (CP1252-моджибейк); файл _headers тут не вариант — его
- *    правила не применяются к ответам, прошедшим через Worker при
- *    run_worker_first (документация Cloudflare Static Assets).
+ *    из RFC 8631 применяются в каталоге API /.well-known/api-catalog (RFC
+ *    9727): service-desc → /openapi.json, service-doc → /llms.txt,
+ *    service-meta → /auth.md; на Link-заголовки главной они сознательно не
+ *    добавляются — главная отдаёт ровно два describedby. Discovery-документы
+ *    получают канонический Content-Type: явный `charset=utf-8` у
+ *    кириллических /llms.txt и /auth.md (Static Assets не добавляет charset
+ *    к text/markdown и text/plain, и клиенты без него неверно декодируют
+ *    UTF-8 — CP1252-моджибейк) и `application/linkset+json` у
+ *    /.well-known/api-catalog (у файла нет расширения, поэтому Static Assets
+ *    не определяет content-type). Файл _headers тут не вариант — его правила
+ *    не применяются к ответам, прошедшим через Worker при run_worker_first
+ *    (документация Cloudflare Static Assets).
  */
 
 const STATIC_EXT =
@@ -60,14 +65,16 @@ function withHomepageLinks(response) {
   });
 }
 
-// Discovery-документы с кириллицей: Static Assets отдаёт text/markdown и
-// text/plain без charset — выставляем его явно (см. шапку файла, п. 2).
+// Discovery-документы: Static Assets отдаёт их с неполным content-type —
+// без charset у text/markdown и text/plain, без типа вовсе у файла без
+// расширения. Выставляем канонический тип явно (см. шапку файла, п. 2).
 const DISCOVERY_TYPES = {
   "/auth.md": "text/markdown; charset=utf-8",
   "/llms.txt": "text/plain; charset=utf-8",
+  "/.well-known/api-catalog": "application/linkset+json",
 };
 
-function withDiscoveryCharset(response, pathname) {
+function withDiscoveryTypes(response, pathname) {
   const type = DISCOVERY_TYPES[pathname];
   if (type === undefined || response.status !== 200) {
     return response;
@@ -119,7 +126,7 @@ export default {
       if (isHomepage(pathname)) {
         response = withHomepageLinks(response);
       }
-      response = withDiscoveryCharset(response, pathname);
+      response = withDiscoveryTypes(response, pathname);
     } catch {
       // URL неразборчив — оставляем ответ как есть.
     }
