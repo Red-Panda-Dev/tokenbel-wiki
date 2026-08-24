@@ -20,6 +20,9 @@ zone_name = "tokenbel.info"
 pattern = "wiki.tokenbel.info"
 custom_domain = true
 
+[placement]
+mode = "smart"
+
 [observability]
 [observability.logs]
 enabled = true
