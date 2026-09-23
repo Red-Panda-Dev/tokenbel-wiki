@@ -22,7 +22,7 @@ weight: 3
 Такой метод интеграции подходит не только для специализированных систем, но и для популярных приложений управления финансами, например **GnuCash**, где данные о токенах и компаниях могут использоваться для учёта и анализа.</p>
 <p id="bkmrk-%D0%9E%D0%B1%D1%80%D0%B0%D1%89%D0%B0%D1%82%D1%8C%D1%81%D1%8F-%D0%B7%D0%B0-%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1"><a href="https://cdn-wiki.tokenbel.info/wiki/assets/images/78/5ea4726a7b5b2ff2.png" target="_blank" rel="noopener"><img class="align-center" src="https://cdn-wiki.tokenbel.info/wiki/assets/images/78/5ea4726a7b5b2ff2.png" alt="screenshot-20251124-153507.png" width="919" height="432"></a>
 
-Обращаться за подробной Swagger документацией к администрации через [Контакты](/about/o-nas/kontakty/).
+Подробная Swagger-документация доступна в [файле спецификации OpenAPI](https://static.tokenbel.info/files/open-swagger.yml).
 
 ## RSS
 
