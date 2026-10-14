@@ -5,5 +5,6 @@
 /.cache/
 /.wrangler/
 /.wiki-media/
+/tools/wiki-media/.env
 .DS_Store
 .osgrep
