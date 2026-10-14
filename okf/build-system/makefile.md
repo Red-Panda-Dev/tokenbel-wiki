@@ -6,12 +6,12 @@ description: Docker-based local development and build wrapper for TokenBel Wiki
 
 # Makefile
 
-The `Makefile` provides a **Docker-based** wrapper for local development, building, and validation. It uses the `hugomods/hugo:0.164.0` Docker image to ensure consistent Hugo versions across development environments.
+The `Makefile` provides a **Docker-based** wrapper for local development, building, and validation. It uses the `hugomods/hugo:0.168.0` Docker image to ensure consistent Hugo versions across development environments.
 
 ## Docker Configuration
 
 ```makefile
-HUGO_VERSION ?= 0.164.0
+HUGO_VERSION ?= 0.168.0
 HUGO_IMAGE ?= hugomods/hugo:$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
@@ -29,7 +29,7 @@ DOCKER_DEV = $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
 **Key features:**
 - Runs as current user (`--user "$$(id -u):$$(id -g)"`) for file permission consistency
 - Mounts current directory as `/src` in container
-- Uses Hugo 0.164.0 standard edition via Docker
+- Uses Hugo 0.168.0 standard edition via Docker
 
 ## Targets
 

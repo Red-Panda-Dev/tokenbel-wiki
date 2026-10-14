@@ -72,7 +72,7 @@ Deployment workflow for TokenBel Wiki, including staging validation and producti
 
 Runs the complete production build:
 1. Verifies Linux x86_64 platform
-2. Downloads and verifies Hugo 0.164.0
+2. Downloads and verifies Hugo 0.168.0
 3. Downloads and verifies Node.js 24.18.1
 4. Installs Node.js dependencies (`npm ci`)
 5. Logs versions

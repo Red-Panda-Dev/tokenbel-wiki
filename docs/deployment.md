@@ -6,7 +6,7 @@ TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is n
 
 | Tool                | Version                                   | Purpose                                  |
 | ------------------- | ----------------------------------------- | ---------------------------------------- |
-| Hugo                | `0.164.0` (standard Linux x86_64 release) | Static-site build                        |
+| Hugo                | `0.168.0` (standard Linux x86_64 release) | Static-site build                        |
 | Node.js             | `24.18.1`                                 | Runs npm, Tailwind CSS CLI, and Wrangler |
 | Tailwind CSS        | `4.3.3`                                   | Tailwind CSS core dependency             |
 | Tailwind CLI        | `4.3.2`                                   | CLI compiler for committed static CSS    |

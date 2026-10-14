@@ -10,7 +10,7 @@
 - Node.js и npm (для Tailwind CSS 4 build dependencies).
 - Python 3.11+ (только для optional CLI `wiki-media`).
 
-Hugo запускается в Docker-образе `hugomods/hugo:0.164.0`, поэтому локальная версия Hugo не требуется и совпадает с версией сборки.
+Hugo запускается в Docker-образе `hugomods/hugo:0.168.0`, поэтому локальная версия Hugo не требуется и совпадает с версией сборки.
 
 ## Локальный запуск
 

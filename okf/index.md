@@ -21,7 +21,7 @@ Russian-language static knowledge base for TokenBel, built with Hugo and deploye
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
-| Static Site | Hugo 0.164.0 (standard) | Markdown → HTML generation |
+| Static Site | Hugo 0.168.0 (standard) | Markdown → HTML generation |
 | CSS | Tailwind CSS 4 | Styling via committed static files |
 | Media | Python 3.11+ CLI | Image publishing to R2/CDN |
 | Deployment | Cloudflare Worker | Static asset hosting |

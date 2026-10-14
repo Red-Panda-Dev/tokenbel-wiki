@@ -1,5 +1,10 @@
 # Knowledge Bundle Update Log
 
+## 2026-10-14
+
+* **Update**: Pinned Hugo version bumped from 0.164.0 to 0.168.0 in [Build Script](build-system/build-script.md) and [Makefile](build-system/makefile.md); mirrored in [Architectural Invariants](architecture/invariants.md), [Dependency Graph](architecture/dependency-graph.md), [Staging Workflow](deployment/staging.md), and root [index.md](index.md)
+* **Note**: `hugomods/hugo:0.168.0` Docker image is not published yet; local Docker targets (`make dev`/`make check`) stay broken until hugomods catches up, while `build.sh` (native pinned download) builds with 0.168.0
+
 ## 2026-08-03
 
 * **Update**: Added [Validation](validation/) domain with SEO validation and pagination validation scripts

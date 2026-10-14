@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 
-HUGO_VERSION ?= 0.164.0
+HUGO_VERSION ?= 0.168.0
 HUGO_IMAGE ?= hugomods/hugo:$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/

@@ -69,7 +69,7 @@ These are the **non-negotiable rules** that define the system's architectural bo
 
 - **Rule**: Cloudflare builds use pinned, checksum-verified tooling
 - **Rationale**: Reproducible production builds
-- **Enforcement**: `build.sh` requires Linux x86_64, performs SHA-256 checks, pins Hugo 0.164.0 / Node 24.18.1 / Wrangler 4.118.0
+- **Enforcement**: `build.sh` requires Linux x86_64, performs SHA-256 checks, pins Hugo 0.168.0 / Node 24.18.1 / Wrangler 4.118.0
 - **Signals**: `build.sh` `require_linux_x64` check and checksum verification
 
 ## R2 Immutable Objects

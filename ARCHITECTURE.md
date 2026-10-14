@@ -8,7 +8,7 @@ The core is a classic static-site-generator pipeline. Markdown content in `conte
 
 A second, independent toolchain coexists alongside the site build. `tools/wiki-media/` is an isolated Python 3.11+ CLI (own `uv`/`pyproject.toml`, `boto3`/`Pillow`) that publishes new images from a gitignored `.wiki-media/inbox/` to immutable Cloudflare R2 objects and rewrites `upload:` markers in `content/` to `cdn-wiki.tokenbel.info` CDN URLs. It never participates in the Hugo build and never performs a Git commit (`tools/wiki-media/AGENTS.md`).
 
-Two site-build entrypoints target different environments. Local development and validation run Hugo inside `hugomods/hugo:0.164.0` via the `Makefile`; Cloudflare production builds run `build.sh`, which downloads pinned Hugo and Node binaries, verifies SHA-256 checksums, and is restricted to Linux x86_64 (`build.sh`, `Makefile`). The runtime model is: every request passes through `worker.js` (`run_worker_first = true`); requests without `Accept: text/markdown` (browsers, assets) are forwarded to the deployed `public/` unchanged, while negotiated requests are rewritten to the sibling `index.md` asset with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`, falling back to HTML when no Markdown variant exists (404 paths, `/page/N/` paginator pages); unmatched paths fall back to the nearest `404.html` with HTTP 404 (`wrangler.toml` `not_found_handling = "404-page"`).
+Two site-build entrypoints target different environments. Local development and validation run Hugo inside `hugomods/hugo:0.168.0` via the `Makefile`; Cloudflare production builds run `build.sh`, which downloads pinned Hugo and Node binaries, verifies SHA-256 checksums, and is restricted to Linux x86_64 (`build.sh`, `Makefile`). The runtime model is: every request passes through `worker.js` (`run_worker_first = true`); requests without `Accept: text/markdown` (browsers, assets) are forwarded to the deployed `public/` unchanged, while negotiated requests are rewritten to the sibling `index.md` asset with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`, falling back to HTML when no Markdown variant exists (404 paths, `/page/N/` paginator pages); unmatched paths fall back to the nearest `404.html` with HTTP 404 (`wrangler.toml` `not_found_handling = "404-page"`).
 
 Evidence anchors: `hugo.yaml`, `wrangler.toml`, `build.sh`, `Makefile`, `layouts/`, `tools/wiki-media/pyproject.toml`, `docs/deployment.md`.
 
@@ -51,7 +51,7 @@ Evidence anchors: `hugo.yaml`, `wrangler.toml`, `build.sh`, `Makefile`, `layouts
 
 - Responsibility: Reproducible generation of `public/` from the Content, Presentation, and Configuration layers. Two alternative front-ends for two environments.
 - Code locations: `Makefile` (Docker/local path and CSS regeneration), `build.sh` (pinned Cloudflare path), `package.json` (Tailwind CLI and Wrangler scripts), `tests/` (validation scripts).
-- Entry points: `make css-build` / `make dev` / `make build` / `make check` (Docker, `hugomods/hugo:0.164.0`); `./build.sh` (native pinned Hugo 0.164.0 + Node 24.18.1, Linux x86_64 only); `make cloudflare-build` / `make deploy` wrap the package scripts.
+- Entry points: `make css-build` / `make dev` / `make build` / `make check` (Docker, `hugomods/hugo:0.168.0`); `./build.sh` (native pinned Hugo 0.168.0 + Node 24.18.1, Linux x86_64 only); `make cloudflare-build` / `make deploy` wrap the package scripts.
 - Depends on: Content, Presentation, Site Configuration layers (consumes them as Hugo inputs).
 - Must not depend on: The Media Publishing Toolchain — Hugo never invokes `wiki-media`; media is already rewritten into `content/` before any build. Extended Hugo features and unpinned tools are disallowed (`build.sh` pins and checksum-verifies all binaries).
 - Owns: The `public/` artifact, `resources/`, `.cache/` (all build outputs, git-ignored per `.gitignore`).
@@ -205,7 +205,7 @@ Evidence:
 
 - Rule: Cloudflare builds use pinned, checksum-verified tooling and run only on Linux x86_64.
 - Rationale: Reproducible production builds.
-- Enforcement / Signals: `build.sh` (`require_linux_x64`, SHA-256 checks, pinned Hugo 0.164.0 / Node 24.18.1 / Wrangler 4.118.0 via `package.json`); `docs/deployment.md`.
+- Enforcement / Signals: `build.sh` (`require_linux_x64`, SHA-256 checks, pinned Hugo 0.168.0 / Node 24.18.1 / Wrangler 4.118.0 via `package.json`); `docs/deployment.md`.
 
 - Rule: R2 media objects are content-addressed and immutable — never overwrite mismatched content, never delete, always verify remote SHA-256.
 - Rationale: Deduplication, durability, and safe re-publishing of Markdown.

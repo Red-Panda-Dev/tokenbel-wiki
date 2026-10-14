@@ -27,12 +27,12 @@ require_linux_x64() {
 ## Pinned Versions
 
 ```bash
-HUGO_VERSION="0.164.0"
+HUGO_VERSION="0.168.0"
 NODE_VERSION="24.18.1"
 TZ="Europe/Amsterdam"
 ```
 
-**Hugo**: Standard edition 0.164.0 (not Extended)
+**Hugo**: Standard edition 0.168.0 (not Extended)
 **Node.js**: 24.18.1 (LTS version matching Cloudflare environment)
 **Timezone**: Europe/Amsterdam (matches production timezone)
 
@@ -50,7 +50,7 @@ NODE_DIR="${TOOLS_DIR}/node-v${NODE_VERSION}-linux-x64"
 - `.cache/tools` — Downloaded tool binaries
 
 **Binary locations:**
-- `.cache/tools/hugo-0.164.0/hugo` — Hugo binary
+- `.cache/tools/hugo-0.168.0/hugo` — Hugo binary
 - `.cache/tools/node-v24.18.1-linux-x64/` — Node.js installation
 
 ## Logging
@@ -67,7 +67,7 @@ All build steps are logged with `[build]` prefix for visibility in Cloudflare Wo
 
 ### install_hugo()
 
-Downloads and installs Hugo 0.164.0 standard edition:
+Downloads and installs Hugo 0.168.0 standard edition:
 
 ```bash
 install_hugo() {
@@ -183,7 +183,7 @@ log_versions() {
 
 **Output**:
 ```
-[build] Hugo: hugo v0.164.0+extended linux/amd64 BuildDate=unknown
+[build] Hugo: hugo v0.168.0+extended linux/amd64 BuildDate=unknown
 [build] Node.js: v24.18.1
 [build] npm: 10.8.2
 [build] TZ: Europe/Amsterdam

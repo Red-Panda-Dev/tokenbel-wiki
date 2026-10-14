@@ -94,7 +94,7 @@ description: Component dependencies and architectural boundaries in TokenBel Wik
 - **Linked**: Only `tailwind.min.css` is referenced in templates
 
 ### Pinned Dependencies
-- **Hugo**: 0.164.0 (standard edition) — both Docker and native
+- **Hugo**: 0.168.0 (standard edition) — both Docker and native
 - **Node.js**: 24.18.1 (Cloudflare build only)
 - **@tailwindcss/cli**: 4.3.2
 - **wrangler**: 4.118.0
