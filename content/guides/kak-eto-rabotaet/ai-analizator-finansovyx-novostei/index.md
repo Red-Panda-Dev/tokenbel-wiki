@@ -20,8 +20,8 @@ flowchart TD
     C --> D["Выделяются факты и участники"]
     D --> E["Проверяется, не было ли такой новости"]
     E --> F["Появляется готовое событие"]
-    classDef violet stroke:#9773A6,stroke-width:2px,fill:#ffffff,color:#333
-    classDef gold stroke:#D6B656,stroke-width:2px,fill:#ffffff,color:#333
+    classDef violet stroke:#9773A6,stroke-width:2px,color:#333
+    classDef gold stroke:#D6B656,stroke-width:2px,color:#333
     class A violet
     class B,C,D,E,F gold
 ```
@@ -162,8 +162,8 @@ flowchart TD
     B -- "Нет или есть конфликт" --> D["Создаётся отдельное событие"]
     C --> E["Пользователь не видит дубль"]
     D --> F["Пользователь видит новую запись"]
-    classDef violet stroke:#9773A6,stroke-width:2px,fill:#ffffff,color:#333
-    classDef gold stroke:#D6B656,stroke-width:2px,fill:#ffffff,color:#333
+    classDef violet stroke:#9773A6,stroke-width:2px,color:#333
+    classDef gold stroke:#D6B656,stroke-width:2px,color:#333
     class B,C,D violet
     class A,E,F gold
 ```
@@ -223,8 +223,8 @@ flowchart LR
     C --> D["Событие"]
     D --> E["Дубликаты"]
     E --> F["Готовая новость"]
-    classDef violet stroke:#9773A6,stroke-width:2px,fill:#ffffff,color:#333
-    classDef gold stroke:#D6B656,stroke-width:2px,fill:#ffffff,color:#333
+    classDef violet stroke:#9773A6,stroke-width:2px,color:#333
+    classDef gold stroke:#D6B656,stroke-width:2px,color:#333
     class A,B,C,D,E violet
     class F gold
 ```
