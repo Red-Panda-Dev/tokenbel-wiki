@@ -37,15 +37,15 @@ TokenBelInfoBot/1.0.0 (+https://tokenbel.info/contacts)
 
 ### Какие данные собирает бот
 
-| Источник | Данные | Режим опроса |
-| --- | --- | --- |
-| `api.nbrb.by` — Национальный банк Республики Беларусь | официальные курсы иностранных валют | 2 раза в сутки |
-| Fainex | выпуски и предложения токенов на первичном и вторичном рынке, статусы продаж | каждые 7–16 минут в торговые часы; каждые 6–12 часов вне торгов |
-| ByNex | выпуски токенов, графики дивидендов и погашений | каждые 7 минут в торговые часы (вт–сб); каждые 6 часов вне торгов |
-| WhiteBird | выпуски первичного рынка | каждые 3 часа в торговые часы |
-| `bikratings.by` — бизнес-рейтинговое агентство | кредитные, репутационные, ESG и сервисные рейтинги компаний | раз в сутки по будням |
-| Новостные разделы белорусских финансовых СМИ и платформ (myfin.by, neg.by, minfin.gov.by, officelife.media, probusiness.io, fainex.by, bcse.by) | статьи о финансовом рынке | регулярно в течение дня, небольшими пакетами |
-| Сайты платформ и эмитентов | документы выпуска (whitepaper), логотипы компаний | по мере появления новых выпусков |
+| Источник                                                                                                                                        | Данные                                                                       | Режим опроса                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------- |
+| `api.nbrb.by` — Национальный банк Республики Беларусь                                                                                           | официальные курсы иностранных валют                                          | 2 раза в сутки                   |
+| Fainex                                                                                                                                          | выпуски и предложения токенов на первичном и вторичном рынке, статусы продаж | периодически                     |
+| ByNex                                                                                                                                           | выпуски токенов, графики дивидендов и погашений                              | периодически                     |
+| WhiteBird                                                                                                                                       | выпуски первичного рынка                                                     | периодически                     |
+| `bikratings.by` — бизнес-рейтинговое агентство                                                                                                  | кредитные, репутационные, ESG и сервисные рейтинги компаний                  | периодически                     |
+| Новостные разделы белорусских финансовых СМИ и платформ (myfin.by, neg.by, minfin.gov.by, officelife.media, probusiness.io, fainex.by, bcse.by) | статьи о финансовом рынке                                                    | регулярно в течение дня          |
+| Сайты платформ и эмитентов                                                                                                                      | документы выпуска (whitepaper), логотипы компаний                            | по мере появления новых выпусков |
 
 ### Как работает бот
 
@@ -111,15 +111,15 @@ Requests originate from Cloudflare infrastructure (Workers) and TokenBel's own s
 
 ### What the bot collects
 
-| Source | Data | Polling schedule |
-| --- | --- | --- |
-| `api.nbrb.by` — National Bank of the Republic of Belarus | official foreign exchange rates | twice a day |
-| Fainex | token issuances and offers on the primary and secondary market, sale statuses | every 7–16 minutes during trading hours; every 6–12 hours otherwise |
-| ByNex | token issuances, dividend and redemption schedules | every 7 minutes during trading hours (Tue–Sat); every 6 hours otherwise |
-| WhiteBird | primary-market issuances | every 3 hours during trading hours |
-| `bikratings.by` — business rating agency | credit, reputation, ESG and service ratings of companies | once a day on weekdays |
-| News sections of Belarusian financial media and platforms (myfin.by, neg.by, minfin.gov.by, officelife.media, probusiness.io, fainex.by, bcse.by) | financial market articles | regularly throughout the day, in small batches |
-| Platform and issuer websites | issuance documents (whitepapers), company logos | as new issuances appear |
+| Source                                                                                                                                            | Data                                                                          | Polling schedule             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ---------------------------- |
+| `api.nbrb.by` — National Bank of the Republic of Belarus                                                                                          | official foreign exchange rates                                               | twice a day                  |
+| Fainex                                                                                                                                            | token issuances and offers on the primary and secondary market, sale statuses | periodically                 |
+| ByNex                                                                                                                                             | token issuances, dividend and redemption schedules                            | periodically                 |
+| WhiteBird                                                                                                                                         | primary-market issuances                                                      | periodically                 |
+| `bikratings.by` — business rating agency                                                                                                          | credit, reputation, ESG and service ratings of companies                      | periodically                 |
+| News sections of Belarusian financial media and platforms (myfin.by, neg.by, minfin.gov.by, officelife.media, probusiness.io, fainex.by, bcse.by) | financial market articles                                                     | regularly throughout the day |
+| Platform and issuer websites                                                                                                                      | issuance documents (whitepapers), company logos                               | as new issuances appear      |
 
 ### How the bot works
 
