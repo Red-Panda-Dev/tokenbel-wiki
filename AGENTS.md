@@ -34,7 +34,7 @@ worker.js             Единственный runtime-скрипт Worker: Acce
 
 ## Архитектурные инварианты
 
-- Hugo **standard** edition (не Extended): Tailwind CSS 4 предварительно собирается pinned `@tailwindcss/cli` из `static/css/input.css`; Hugo только копирует committed static CSS. Dart Sass / `.scss` запрещены. Обоснование — в `docs/deployment.md`.
+- Единая редакция Hugo (с v0.170.0 extended-сборка и LibSass упразднены): Tailwind CSS 4 предварительно собирается pinned `@tailwindcss/cli` из `static/css/input.css`; Hugo только копирует committed static CSS. Dart Sass / `.scss` запрещены. Обоснование — в `docs/deployment.md`.
 - `enableGitInfo: false` → даты берутся только из front matter (`date`/`lastmod`); `lastmod` показывается в UI.
 - Все тексты интерфейса и контента — на русском (locale `ru-BY`).
 - Разделы (`news`, `statistics`, `guides`, `policies`, `about`) автособираются из `content/`; пункты меню — в `hugo.yaml`.
@@ -69,7 +69,7 @@ worker.js             Единственный runtime-скрипт Worker: Acce
 ```bash
 npm ci        # установить pinned build dependencies, включая Tailwind CSS 4
 make css-build # пересобрать committed static/css/output.css и tailwind.min.css
-make dev       # live-reload сервер (Docker, Hugo 0.168.0 через hugomods)
+make dev       # live-reload сервер (Docker, Hugo 0.170.0 через официальный образ ghcr.io/gohugoio/hugo)
 make check     # проверить актуальность committed CSS и HTML-вывод
 ```
 

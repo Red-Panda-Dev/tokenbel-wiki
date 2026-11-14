@@ -10,15 +10,15 @@ These are the **non-negotiable rules** that define the system's architectural bo
 
 ## Hugo Edition
 
-- **Rule**: Use Hugo **standard** edition, not Extended
+- **Rule**: Use the single Hugo edition (v0.170.0 removed the extended/LibSass build); no Sass pipeline
 - **Rationale**: Tailwind CSS 4 uses plain CSS source; no Sass/SCSS compilation needed
-- **Enforcement**: `build.sh` downloads `hugo_${HUGO_VERSION}_linux-amd64.tar.gz` (standard edition)
+- **Enforcement**: `build.sh` downloads `hugo_${HUGO_VERSION}_linux-amd64.tar.gz`
 - **Signals**: Absence of `theme/` directory, `.scss` files, or Dart Sass dependencies
 
 ## CSS Pipeline
 
 - **Rule**: Tailwind CSS 4 compiles from single plain-CSS source
-- **Rationale**: Keeps Hugo standard edition while preserving reproducible CSS build
+- **Rationale**: Keeps Hugo without a Sass pipeline while preserving reproducible CSS build
 - **Enforcement**: `make css-build` regenerates committed static output; `make css-check` detects stale CSS
 - **Signals**: `static/css/input.css` (source), `static/css/output.css` (dev), `static/css/tailwind.min.css` (prod)
 
@@ -69,7 +69,7 @@ These are the **non-negotiable rules** that define the system's architectural bo
 
 - **Rule**: Cloudflare builds use pinned, checksum-verified tooling
 - **Rationale**: Reproducible production builds
-- **Enforcement**: `build.sh` requires Linux x86_64, performs SHA-256 checks, pins Hugo 0.168.0 / Node 24.18.1 / Wrangler 4.118.0
+- **Enforcement**: `build.sh` requires Linux x86_64, performs SHA-256 checks, pins Hugo 0.170.0 / Node 24.18.1 / Wrangler 4.118.0
 - **Signals**: `build.sh` `require_linux_x64` check and checksum verification
 
 ## R2 Immutable Objects

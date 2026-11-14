@@ -6,21 +6,26 @@ description: Docker-based local development and build wrapper for TokenBel Wiki
 
 # Makefile
 
-The `Makefile` provides a **Docker-based** wrapper for local development, building, and validation. It uses the `hugomods/hugo:0.168.0` Docker image to ensure consistent Hugo versions across development environments.
+The `Makefile` provides a **Docker-based** wrapper for local development, building, and validation. It uses the official `ghcr.io/gohugoio/hugo:v0.170.0` Docker image to ensure consistent Hugo versions across development environments.
 
 ## Docker Configuration
 
 ```makefile
-HUGO_VERSION ?= 0.168.0
-HUGO_IMAGE ?= hugomods/hugo:$(HUGO_VERSION)
+HUGO_VERSION ?= 0.170.0
+HUGO_IMAGE ?= ghcr.io/gohugoio/hugo:v$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
 PYTHON ?= python3
 
+# The official Hugo image entrypoint (/entrypoint.sh) may run `npm i` when it
+# finds a package.json and would prepend `hugo` to its arguments, so pin the
+# entrypoint to the hugo binary and pass subcommands directly.
 DOCKER_RUN_BASE = docker run --rm \
 	--user "$$(id -u):$$(id -g)" \
 	--volume "$(CURDIR):/src" \
-	--workdir /src
+	--workdir /src \
+	--env HUGO_CACHEDIR=/src/.cache/hugo \
+	--entrypoint hugo
 
 DOCKER_RUN = $(DOCKER_RUN_BASE) $(HUGO_IMAGE)
 DOCKER_DEV = $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
@@ -29,7 +34,8 @@ DOCKER_DEV = $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
 **Key features:**
 - Runs as current user (`--user "$$(id -u):$$(id -g)"`) for file permission consistency
 - Mounts current directory as `/src` in container
-- Uses Hugo 0.168.0 standard edition via Docker
+- Overrides the image `HUGO_CACHEDIR=/cache` (owned by the image's `hugo` user) with the project-local `/src/.cache/hugo`
+- Uses Hugo 0.170.0 (single edition; the extended build was removed in v0.170.0) via Docker
 
 ## Targets
 
@@ -53,7 +59,7 @@ Displays all available make targets with descriptions.
 
 ```makefile
 version:
-	@$(DOCKER_RUN) hugo version
+	@$(DOCKER_RUN) version
 ```
 
 Prints the Hugo version from the Docker image.
@@ -113,7 +119,7 @@ Verifies that committed CSS files match current Tailwind CLI output:
 
 ```makefile
 dev: clean
-	@$(DOCKER_DEV) hugo server \
+	@$(DOCKER_DEV) server \
 		--buildDrafts \
 		--buildFuture \
 		--bind 0.0.0.0 \
@@ -139,7 +145,7 @@ Runs Hugo's live-reloading development server:
 
 ```makefile
 build production: clean
-	@$(DOCKER_RUN) hugo --gc --minify --environment production
+	@$(DOCKER_RUN) --gc --minify --environment production
 ```
 
 Builds the production site into `public/` directory:

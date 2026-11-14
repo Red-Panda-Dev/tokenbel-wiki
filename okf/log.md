@@ -1,5 +1,11 @@
 # Knowledge Bundle Update Log
 
+## 2026-11-14
+
+* **Update**: Pinned Hugo version bumped from 0.168.0 to 0.170.0 across [Build Script](build-system/build-script.md), [Makefile](build-system/makefile.md), [Architectural Invariants](architecture/invariants.md), [Dependency Graph](architecture/dependency-graph.md), [Staging Workflow](deployment/staging.md), and root [index.md](index.md)
+* **Migration**: Replaced the stale `hugomods/hugo` image (last versioned tag 0.165.0) with the official `ghcr.io/gohugoio/hugo:v0.170.0` image; the `Makefile` now pins the container entrypoint to the `hugo` binary (the official image entrypoint prepends `hugo` to its arguments and may run `npm i` when it finds a `package.json`), passes Hugo subcommands directly, and overrides the image `HUGO_CACHEDIR=/cache` with project-local `/src/.cache/hugo`; npm-based targets (`dependencies`, `css-build`, `css-watch`) run through a shell entrypoint — this also fixes the previously broken Docker targets noted on 2026-10-14
+* **Note**: Hugo v0.170.0 removed the extended (LibSass) build, leaving a single edition; `css.Sass` with `transpiler: libsass` now errors and `hugo.IsExtended` always returns `false` — none of which affects this repository (no Sass pipeline, no shortcodes, no passthrough), and `plainify`/`truncate` template usage was re-validated via `make check`
+
 ## 2026-10-14
 
 * **Update**: Pinned Hugo version bumped from 0.164.0 to 0.168.0 in [Build Script](build-system/build-script.md) and [Makefile](build-system/makefile.md); mirrored in [Architectural Invariants](architecture/invariants.md), [Dependency Graph](architecture/dependency-graph.md), [Staging Workflow](deployment/staging.md), and root [index.md](index.md)

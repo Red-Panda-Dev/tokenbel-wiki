@@ -6,14 +6,14 @@ TokenBel Wiki is deployed as a **Cloudflare Worker with Static Assets**. It is n
 
 | Tool                | Version                                   | Purpose                                  |
 | ------------------- | ----------------------------------------- | ---------------------------------------- |
-| Hugo                | `0.168.0` (standard Linux x86_64 release) | Static-site build                        |
+| Hugo                | `0.170.0` (Linux x86_64 release; single edition since v0.170.0 dropped the extended build) | Static-site build                        |
 | Node.js             | `24.18.1`                                 | Runs npm, Tailwind CSS CLI, and Wrangler |
 | Tailwind CSS        | `4.3.3`                                   | Tailwind CSS core dependency             |
 | Tailwind CLI        | `4.3.2`                                   | CLI compiler for committed static CSS    |
 | Tailwind Typography | `0.5.20`                                  | Styles Markdown article content          |
 | Wrangler            | `4.118.0`                                 | Validates and deploys the Worker         |
 
-The Hugo standard edition is intentional: pinned standalone `@tailwindcss/cli` compiles `static/css/input.css` into committed `static/css/output.css` and minified `static/css/tailwind.min.css`; Hugo only copies static files and does not need Dart Sass or the Extended edition.
+There is only one Hugo edition since v0.170.0 removed the extended (LibSass) build, so the standard/extended distinction no longer exists; the project still compiles CSS outside Hugo: pinned standalone `@tailwindcss/cli` compiles `static/css/input.css` into committed `static/css/output.css` and minified `static/css/tailwind.min.css`; Hugo only copies static files and does not use Dart Sass.
 
 `build.sh` downloads Hugo and Node only when the pinned local cache is absent, validates each download against the upstream SHA-256 checksum list, sets `TZ=Europe/Amsterdam` and `HUGO_CACHEDIR=.cache/hugo`, runs `npm ci`, then performs one Hugo production build. It deliberately does not fetch Git history because `enableGitInfo: false` in `hugo.yaml`.
 

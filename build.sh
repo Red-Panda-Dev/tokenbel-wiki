@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-HUGO_VERSION="0.168.0"
+HUGO_VERSION="0.170.0"
 NODE_VERSION="24.18.1"
 TZ="Europe/Amsterdam"
 HUGO_CACHEDIR="${PWD}/.cache/hugo"
@@ -32,7 +32,7 @@ install_hugo() {
   local download_dir
   download_dir="$(mktemp -d)"
 
-  log "Downloading Hugo v${HUGO_VERSION} standard edition"
+  log "Downloading Hugo v${HUGO_VERSION}"
   curl --fail --location --silent --show-error --output "${download_dir}/${archive}" "${release_url}/${archive}"
   curl --fail --location --silent --show-error --output "${download_dir}/checksums.txt" "${release_url}/hugo_${HUGO_VERSION}_checksums.txt"
   (

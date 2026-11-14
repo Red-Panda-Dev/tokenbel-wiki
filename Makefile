@@ -1,16 +1,21 @@
 SHELL := /bin/sh
 
-HUGO_VERSION ?= 0.168.0
-HUGO_IMAGE ?= hugomods/hugo:$(HUGO_VERSION)
+HUGO_VERSION ?= 0.170.0
+HUGO_IMAGE ?= ghcr.io/gohugoio/hugo:v$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
 PYTHON ?= python3
 NODE ?= node
 
+# The official Hugo image entrypoint (/entrypoint.sh) may run `npm i` when it
+# finds a package.json and would prepend `hugo` to its arguments, so pin the
+# entrypoint to the hugo binary and pass subcommands directly.
 DOCKER_RUN_BASE=docker run --rm \
 	--user "$$(id -u):$$(id -g)" \
 	--volume "$(CURDIR):/src" \
-	--workdir /src
+	--workdir /src \
+	--env HUGO_CACHEDIR=/src/.cache/hugo \
+	--entrypoint hugo
 
 DOCKER_RUN := $(DOCKER_RUN_BASE) $(HUGO_IMAGE)
 DOCKER_DEV := $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
@@ -45,22 +50,22 @@ help:
 		'make clean     Remove generated Hugo files'
 
 version:
-	@$(DOCKER_RUN) hugo version
+	@$(DOCKER_RUN) version
 
 dependencies:
-	@$(DOCKER_RUN) npm ci --include=optional --os=linux --cpu=x64 --libc=musl
+	@$(DOCKER_SHELL) -ec 'npm ci --include=optional --os=linux --cpu=x64 --libc=musl'
 
 css-build: dependencies
-	@$(DOCKER_RUN) npm run css:build
+	@$(DOCKER_SHELL) -ec 'npm run css:build'
 
 css-watch: dependencies
-	@$(DOCKER_RUN) npm run css:watch
+	@$(DOCKER_SHELL) -ec 'npm run css:watch'
 
 css-check: dependencies
 	@$(DOCKER_SHELL) -ec 'output=$$(mktemp); minified=$$(mktemp); trap "rm -f $$output $$minified" EXIT; NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o $$output >/dev/null; NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o $$minified --minify >/dev/null; diff -q static/css/output.css $$output >/dev/null && diff -q static/css/tailwind.min.css $$minified >/dev/null || { printf "%s\\n" "Tailwind output is stale; run make css-build and commit static/css/output.css and static/css/tailwind.min.css." >&2; exit 1; }'
 
 dev: clean
-	@$(DOCKER_DEV) hugo server \
+	@$(DOCKER_DEV) server \
 		--buildDrafts \
 		--buildFuture \
 		--bind 0.0.0.0 \
@@ -71,7 +76,7 @@ dev: clean
 serve: dev
 
 build production: clean
-	@$(DOCKER_RUN) hugo --gc --minify --environment production
+	@$(DOCKER_RUN) --gc --minify --environment production
 
 check: css-check build
 	@[ -f static/css/tailwind.min.css ]
