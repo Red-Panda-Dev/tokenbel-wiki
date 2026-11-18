@@ -23,6 +23,7 @@ assets/                Зарезервировано Hugo assets/ (пусто; 
 scripts/               Зарезервировано (пусто; сборка — через Makefile/build.sh, а не скрипты здесь)
 docs/                  Документация развёртывания (deployment.md)
 tools/                 Изолированный Python CLI wiki-media (публикация изображений в Cloudflare R2)
+.agents/skills/        Проектные скиллы агентов (digest-to-news: новость из дайджеста)
 hugo.yaml              Конфигурация сайта (язык ru, секции меню, taxonomies)
 Makefile               Локальная Docker-обёртка над Hugo
 build.sh               Pinned-сборка для Cloudflare (только Linux x86_64)
@@ -48,6 +49,7 @@ worker.js             Единственный runtime-скрипт Worker: Acce
 - Архитектурные или кросс-модульные правки → `ARCHITECTURE.md` (каноническая карта слоёв, зависимостей и инвариантов)
 - Правки UI, визуального стиля, дизайн-системы → `DESIGN.md` (визуальный контракт, цветовая палитра, типографика)
 - Правки контента, front matter, структуры разделов → `content/AGENTS.md`
+- Новость из дайджеста (путь к md-файлу) → `.agents/skills/digest-to-news/SKILL.md`
 - Правки шаблонов, SEO-мета, иконок, CSS-подключения → `layouts/AGENTS.md`
 - Правки media-publisher CLI `wiki-media` (Python, R2) → `tools/wiki-media/AGENTS.md`
 - Развёртывание, staging, rollback, pinned-инструменты → `docs/deployment.md`
