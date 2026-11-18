@@ -32,7 +32,7 @@ tags:
 
 Все три страницы доступны из главного меню в разделе «Статистика».
 
-[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/180/16fa487c91c608d1.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/180/16fa487c91c608d1.png)
+[![Пример страницы с динамикой торговли акциями](https://cdn-wiki.tokenbel.info/wiki/assets/images/180/16fa487c91c608d1.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/180/16fa487c91c608d1.png)
 Пример страницы с динамикой торговли акциями
 
 ---
@@ -45,15 +45,15 @@ tags:
 * **Публичный портфель с аналитикой:** на странице публичного портфеля добавили вкладки и переключатель валюты. Можно смотреть позиции, историю и аналитику.
 * **Группировка по типу инструмента:** в таблице позиций портфеля расширились варианты группировок - по компании, валюте или типа инструмента.
 
-[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/181/99952970babeae46.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/181/99952970babeae46.png)
+[![Пример части новой вкладки портфеля «История»](https://cdn-wiki.tokenbel.info/wiki/assets/images/181/99952970babeae46.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/181/99952970babeae46.png)
 Пример части новой вкладки портфеля - История
 
 ### Для компаний и эмитентов
 
 * **Ссылка на токены компании:** на странице эмитента появилась ссылка на все выпущенные токены. Удобнее переходить к инструментам, не возвращаясь в каталог.
-* **Ссылка на справку:** на страницах облигаций появилась ссылка на [вики-статью с объяснением терминов и расчетов](/guides/rukovodstvo-polzovatelia/stranica-obligacii/).
+* **Ссылка на справку:** на страницах облигаций появилась ссылка на [вики-статью с объяснением терминов и расчетов](/guides/kak-eto-rabotaet/stranica-obligacii/).
 
-[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/182/680cc386118b5f22.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/182/680cc386118b5f22.png)
+[![Страница компании со ссылкой на токены](https://cdn-wiki.tokenbel.info/wiki/assets/images/182/680cc386118b5f22.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/182/680cc386118b5f22.png)
 
 Страница компании со ссылкой на токены
 
@@ -63,7 +63,7 @@ tags:
 * **Каталог акций с фильтрами:** добавили фильтры по наличию дивидендов, обороту и количеству сделок за месяц. Проще искать активно торгуемые бумаги.
 * **Добавление в портфель из любого места:** модальное окно «добавить в портфель» вынесли в общий компонент. Работает одинаково на всех страницах инструментов.
 
-[![](https://cdn-wiki.tokenbel.info/wiki/assets/images/184/31dce19f1ebd9fd2.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/184/31dce19f1ebd9fd2.png)
+[![Фильтры для списка акций](https://cdn-wiki.tokenbel.info/wiki/assets/images/184/31dce19f1ebd9fd2.png)](https://cdn-wiki.tokenbel.info/wiki/assets/images/184/31dce19f1ebd9fd2.png)
 Фильтры для списка акций
 
 ---
