@@ -1,5 +1,11 @@
 # Knowledge Bundle Update Log
 
+## 2026-11-25
+
+* **Migration**: Replaced CDN-hosted Mermaid.js with [locally bundled Pele 1.13.0](../assets/js/diagrams.js) for HTML diagrams. Articles and Markdown output retain their original `mermaid` fences. The [browser check](../tests/check_diagrams.py) verified all 18 diagrams on 7 pages, including node and branch labels, at 320 and 1280 px.
+
+* Updated the Hugo pin to 0.170.1 for both the [Docker build](build-system/makefile.md) and the [native build](build-system/build-script.md).
+
 ## 2026-11-14
 
 * **Update**: Pinned Hugo version bumped from 0.168.0 to 0.170.0 across [Build Script](build-system/build-script.md), [Makefile](build-system/makefile.md), [Architectural Invariants](architecture/invariants.md), [Dependency Graph](architecture/dependency-graph.md), [Staging Workflow](deployment/staging.md), and root [index.md](index.md)
