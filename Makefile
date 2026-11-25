@@ -64,7 +64,7 @@ css-watch: dependencies
 css-check: dependencies
 	@$(DOCKER_SHELL) -ec 'output=$$(mktemp); minified=$$(mktemp); trap "rm -f $$output $$minified" EXIT; NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o $$output >/dev/null; NODE_ENV=production npx @tailwindcss/cli -i static/css/input.css -o $$minified --minify >/dev/null; diff -q static/css/output.css $$output >/dev/null && diff -q static/css/tailwind.min.css $$minified >/dev/null || { printf "%s\\n" "Tailwind output is stale; run make css-build and commit static/css/output.css and static/css/tailwind.min.css." >&2; exit 1; }'
 
-dev: clean
+dev: clean dependencies
 	@$(DOCKER_DEV) server \
 		--buildDrafts \
 		--buildFuture \
@@ -75,7 +75,7 @@ dev: clean
 
 serve: dev
 
-build production: clean
+build production: clean dependencies
 	@$(DOCKER_RUN) --gc --minify --environment production
 
 check: css-check build

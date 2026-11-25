@@ -19,7 +19,7 @@ layouts/               Локальные Hugo-шаблоны и partials (бе�
 static/css/input.css  Tailwind CSS 4 source; output.css и tailwind.min.css — committed CLI output
 static/                Статики, включая committed Tailwind output и favicon.svg
 archetypes/            Шаблоны `hugo new`
-assets/                Зарезервировано Hugo assets/ (пусто; CSS-pipeline использует static/, а не assets/)
+assets/                Hugo собирает assets/js/diagrams.js с pinned Pele только для страниц с Mermaid-схемами; CSS-pipeline использует static/
 scripts/               Зарезервировано (пусто; сборка — через Makefile/build.sh, а не скрипты здесь)
 docs/                  Документация развёртывания (deployment.md)
 tools/                 Изолированный Python CLI wiki-media (публикация изображений в Cloudflare R2)

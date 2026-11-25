@@ -20,7 +20,7 @@ layouts/
 │   ├── single.markdown.md   # Markdown-версия статьи: H1 + description + .RawContent
 │   └── list.markdown.md     # Markdown-версия раздела/таксономии: H1 + подразделы + список статей
 ├── _markup/
-│   ├── render-codeblock-mermaid.html  # Render hook ```mermaid блоков (включает mermaid.js loader)
+│   ├── render-codeblock-mermaid.html  # Render hook ```mermaid блоков (включает локальный загрузчик Pele)
 │   ├── render-link.html    # Render hook ссылок: image-links `[![alt](url)](url)` → `target="_blank"` (new tab)
 │   └── render-table.html   # Render hook таблиц Markdown
 └── partials/

@@ -87,20 +87,15 @@
     @apply mx-auto block h-auto max-w-full;
 }
 
-/* Mermaid diagrams: center the rendered SVG horizontally inside its figure.
-   mermaid.js emits the svg with width=100% and a max-width clamped to the
-   diagram's natural size, so narrower diagrams would otherwise sit
-   left-aligned in the article column. */
-.article-content .mermaid svg {
-    @apply block mx-auto;
+/* Pele wraps labels to the available width. If branches still exceed it,
+   scroll the figure rather than shrinking its labels to illegible sizes. */
+.mermaid-figure {
+    --pele-font: var(--font-sans);
 }
 
-/* Hand-drawn connector lines. mermaid's handDrawn look roughens node shapes but
-   leaves edges as near-straight strokes; this displacement filter (defined in
-   layouts/partials/mermaid.html) adds visible waviness to the edge paths so the
-   connecting lines match the hand-drawn nodes. */
-.article-content .mermaid svg g.edgePaths > path {
-    filter: url(#mermaid-sketch);
+.mermaid-figure svg.pele {
+    @apply block mx-auto;
+    max-width: none !important; /* Override Pele's inline fit-to-width style. */
 }
 
 .article-content li {

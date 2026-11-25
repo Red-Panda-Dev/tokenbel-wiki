@@ -7,7 +7,7 @@
 - Docker;
 - GNU Make;
 - Git;
-- Node.js и npm (для Tailwind CSS 4 build dependencies).
+- Node.js и npm (сборка Tailwind CSS 4 и локального рендерера схем Pele).
 - Python 3.11+ (только для optional CLI `wiki-media`).
 
 Hugo запускается в официаль���ом Docker-образе `ghcr.io/gohugoio/hugo:v0.170.0`, поэтому локальная версия Hugo не требуется и совпадает с версией сборки.
@@ -53,6 +53,12 @@ make clean             удалить артефакты сборки
 ```
 
 `make serve` — алиас для `make dev`. Переменная `HUGO_IMAGE` позволяет переопределить Docker-образ, а `HUGO_VERSION` — версию Hugo.
+
+### Схемы в статьях
+
+Пишите схемы в обычных блоках ` ```mermaid `. Hugo подключает локальную сборку Pele только к HTML-страницам со схемами. Markdown-версия сохраняет исходный текст. Если схема не помещается по ширине даже после переноса подписей, её можно прокрутить внутри рамки.
+
+После обновления Pele запустите `make check`, затем `python3 tests/check_diagrams.py` (требуется Python-пакет `playwright` и браузер, установленный через `python3 -m playwright install chromium`). Тест открывает собранные статьи без внешней сети, сверяет блоки с Markdown и проверяет подписи узлов и веток при 320 и 1280 px. При обновлении зависимости обновите также копию `node_modules/pele/LICENSE` в `static/licenses/pele.txt`.
 
 ## Deployment
 

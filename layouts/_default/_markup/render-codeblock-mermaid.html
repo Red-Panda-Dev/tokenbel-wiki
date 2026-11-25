@@ -1,15 +1,5 @@
-{{- /* mermaid render hook: turn a mermaid fenced block into a runtime SVG via
-mermaid.js, and flag the page so the loader only runs when needed. The element
-is a div, not a pre, to avoid the dark prose-pre code-block styling. */ -}} {{-
-.Page.Store.Set "hasMermaid" true -}}
-<figure
-  class="mermaid-figure overflow-x-auto rounded-lg border border-gray-300 bg-white p-2"
->
-  <div
-    class="mermaid whitespace-pre text-sm"
-    role="img"
-    aria-label="Схема"
-  >
-    {{ .Inner }}
-  </div>
+{{- /* Preserve the source until the page-local Pele loader renders this block. */ -}}
+{{- .Page.Store.Set "hasMermaid" true -}}
+<figure class="mermaid-figure overflow-x-auto rounded-lg border border-gray-300 bg-white p-2" aria-label="Схема">
+  <div data-mermaid class="whitespace-pre text-sm">{{ .Inner }}</div>
 </figure>

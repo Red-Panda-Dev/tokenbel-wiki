@@ -1342,12 +1342,13 @@
   height: auto;
   max-width: 100%;
 }
-.article-content .mermaid svg {
+.mermaid-figure {
+  --pele-font: var(--font-sans);
+}
+.mermaid-figure svg.pele {
   margin-inline: auto;
   display: block;
-}
-.article-content .mermaid svg g.edgePaths > path {
-  filter: url(#mermaid-sketch);
+  max-width: none !important;
 }
 .article-content li {
   margin-top: 0;
