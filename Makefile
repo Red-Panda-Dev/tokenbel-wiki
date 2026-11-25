@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 
-HUGO_VERSION ?= 0.170.0
+HUGO_VERSION ?= 0.170.1
 HUGO_IMAGE ?= ghcr.io/gohugoio/hugo:v$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/

@@ -6,12 +6,12 @@ description: Docker-based local development and build wrapper for TokenBel Wiki
 
 # Makefile
 
-The `Makefile` provides a **Docker-based** wrapper for local development, building, and validation. It uses the official `ghcr.io/gohugoio/hugo:v0.170.0` Docker image to ensure consistent Hugo versions across development environments.
+The `Makefile` provides a **Docker-based** wrapper for local development, building, and validation. It uses the official `ghcr.io/gohugoio/hugo:v0.170.1` Docker image to ensure consistent Hugo versions across development environments.
 
 ## Docker Configuration
 
 ```makefile
-HUGO_VERSION ?= 0.170.0
+HUGO_VERSION ?= 0.170.1
 HUGO_IMAGE ?= ghcr.io/gohugoio/hugo:v$(HUGO_VERSION)
 PORT ?= 1313
 LOCAL_URL ?= http://localhost:$(PORT)/
@@ -35,7 +35,7 @@ DOCKER_DEV = $(DOCKER_RUN_BASE) --publish $(PORT):$(PORT) $(HUGO_IMAGE)
 - Runs as current user (`--user "$$(id -u):$$(id -g)"`) for file permission consistency
 - Mounts current directory as `/src` in container
 - Overrides the image `HUGO_CACHEDIR=/cache` (owned by the image's `hugo` user) with the project-local `/src/.cache/hugo`
-- Uses Hugo 0.170.0 (single edition; the extended build was removed in v0.170.0) via Docker
+- Uses Hugo 0.170.1 (single edition; the extended build was removed in v0.170.0) via Docker
 
 ## Targets
 

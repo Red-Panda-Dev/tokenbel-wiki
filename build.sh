@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-HUGO_VERSION="0.170.0"
+HUGO_VERSION="0.170.1"
 NODE_VERSION="24.18.1"
 TZ="Europe/Amsterdam"
 HUGO_CACHEDIR="${PWD}/.cache/hugo"

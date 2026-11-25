@@ -71,7 +71,7 @@ worker.js             Единственный runtime-скрипт Worker: Acce
 ```bash
 npm ci        # установить pinned build dependencies, включая Tailwind CSS 4
 make css-build # пересобрать committed static/css/output.css и tailwind.min.css
-make dev       # live-reload сервер (Docker, Hugo 0.170.0 через официальный образ ghcr.io/gohugoio/hugo)
+make dev       # live-reload сервер (Docker, Hugo 0.170.1 через официальный образ ghcr.io/gohugoio/hugo)
 make check     # проверить актуальность committed CSS и HTML-вывод
 ```
 
