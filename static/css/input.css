@@ -98,6 +98,45 @@
     max-width: none !important; /* Override Pele's inline fit-to-width style. */
 }
 
+/* Hand-drawn diagram look. Pele has no handDrawn mode and ignores Mermaid's
+   `look` directive, so the style is layered on top of its class names: a
+   hatched fill instead of solid node surfaces and displacement filters that
+   roughen outlines and connectors. The pattern and filters are defined in
+   layouts/partials/mermaid.html. Labels are not filtered and stay crisp. */
+.mermaid-figure svg.pele {
+    --pele-border: #52525b; /* With a hatched fill the outline carries the shape. */
+}
+
+.mermaid-figure .pele-node > rect,
+.mermaid-figure .pele-node > polygon,
+.mermaid-figure .pele-node > ellipse,
+.mermaid-figure .pele-node > circle,
+.mermaid-figure .pele-node > path {
+    fill: url(#pele-hachure);
+    filter: url(#pele-sketch-node-1);
+}
+
+/* Same-size nodes share local coordinates and would wobble identically,
+   so cycle three noise seeds. */
+.mermaid-figure .pele-nodes > .pele-node:nth-child(3n + 2) > :not(text) {
+    filter: url(#pele-sketch-node-2);
+}
+
+.mermaid-figure .pele-nodes > .pele-node:nth-child(3n) > :not(text) {
+    filter: url(#pele-sketch-node-3);
+}
+
+.mermaid-figure .pele-cluster > rect {
+    fill: url(#pele-hachure);
+    filter: url(#pele-sketch-line);
+}
+
+/* Filter the whole connector group: a straight connector has a zero-height
+   bounding box and would vanish under an element-level filter. */
+.mermaid-figure .pele-edges {
+    filter: url(#pele-sketch-line);
+}
+
 .article-content li {
     @apply mt-0 mb-0 pl-0;
 }

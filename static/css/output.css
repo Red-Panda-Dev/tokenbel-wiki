@@ -298,6 +298,9 @@
     width: calc(var(--spacing) * 7);
     height: calc(var(--spacing) * 7);
   }
+  .h-0 {
+    height: 0;
+  }
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
@@ -318,6 +321,9 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-0 {
+    width: 0;
   }
   .w-8 {
     width: calc(var(--spacing) * 8);
@@ -387,6 +393,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .overflow-hidden {
+    overflow: hidden;
   }
   .overflow-x-auto {
     overflow-x: auto;
@@ -1349,6 +1358,26 @@
   margin-inline: auto;
   display: block;
   max-width: none !important;
+}
+.mermaid-figure svg.pele {
+  --pele-border: #52525b;
+}
+.mermaid-figure .pele-node > rect, .mermaid-figure .pele-node > polygon, .mermaid-figure .pele-node > ellipse, .mermaid-figure .pele-node > circle, .mermaid-figure .pele-node > path {
+  fill: url(#pele-hachure);
+  filter: url(#pele-sketch-node-1);
+}
+.mermaid-figure .pele-nodes > .pele-node:nth-child(3n + 2) > :not(text) {
+  filter: url(#pele-sketch-node-2);
+}
+.mermaid-figure .pele-nodes > .pele-node:nth-child(3n) > :not(text) {
+  filter: url(#pele-sketch-node-3);
+}
+.mermaid-figure .pele-cluster > rect {
+  fill: url(#pele-hachure);
+  filter: url(#pele-sketch-line);
+}
+.mermaid-figure .pele-edges {
+  filter: url(#pele-sketch-line);
 }
 .article-content li {
   margin-top: 0;

@@ -28,6 +28,7 @@ layouts/
     ├── css.html             # Всегда линкует tailwind.min.css (захардкожено, без переключения окружения)
     ├── header.html / footer.html
     ├── page-dates.html      # «Опубликовано/Обновлено» из front matter — рендер-поверхность инварианта enableGitInfo: false
+    ├── mermaid.html         # Только при hasMermaid: загрузчик Pele и скрытый <svg> с паттерном штриховки и фильтрами «от руки»
     ├── section-card.html    # Карточка раздела: рендер icon-enum
     └── recent-pages.html    # «Последние обновления»: фильтр excludeFromRecent
 ```
@@ -36,6 +37,8 @@ layouts/
 
 - CSS source — `static/css/input.css`; pinned standalone `@tailwindcss/cli` собирает committed `static/css/output.css` (unminified) и `static/css/tailwind.min.css` (minified). `partials/css.html` **всегда** линкует только `tailwind.min.css` (захардкожено, без переключения по окружению); `output.css` служит ссылкой для `make css-watch` и freshness-проверки `make css-check` и ни одним шаблоном не подключается. Не добавляйте `.scss` / Sass `@import`.
 - Для уникального layout используйте Tailwind utilities, а для повторяющихся wiki-компонентов — semantic classes через `@apply` в `static/css/input.css`. Все условные class strings должны быть полными literal mappings, а не динамическими фрагментами. После изменения templates/input.css выполните `make css-build` и закоммитьте оба CSS output-файла.
+- Схемы оформлены «от руки» поверх Pele (режима handDrawn в нём нет, директива Mermaid `look:` игнорируется): `partials/mermaid.html` задаёт паттерн `#pele-hachure` и фильтры `#pele-sketch-*`, а `input.css` применяет их к фигурам узлов и к группе `.pele-edges`, не к тексту. Id — контракт между partial и CSS, правьте синхронно. Фильтр линий вешается на всю группу `.pele-edges` с областью от viewport: у прямой линии нулевая высота bbox, и поэлементный фильтр её скрывает.
+- Сканер Tailwind читает шаблоны как обычный текст: слово в комментарии или разметке, совпадающее с именем утилиты (`filter`, `outline`…), попадает в committed CSS вместе с зависимыми `@property`. Не употребляйте такие токены в шаблонах без нужды.
 - `head.html` управляет SEO: `canonical` = `.Permalink` (всегда production-домен), `noindex, follow` только для 404, OG-теги, JSON-LD на главной, а также `<link rel="alternate" type="text/markdown">` на страницах с Markdown-версией и `<link rel="describedby">` на главную (llms.txt, sitemap.xml — зеркалит Link-заголовки worker.js). Не ломайте логику canonical/robots.
 - `*.markdown.md` — шаблоны output format `Markdown` (см. `hugo.yaml` `outputs`) для `worker.js`-негоциации `Accept: text/markdown`. Они используют `.RawContent` (render hooks НЕ применяются — намеренно: агентам нужен исходный Markdown) и обязаны начинаться с `# {{ .Title }}` (это проверяет `tests/check_markdown.py`). HTML-шаблоны остаются каноническими; не дублируйте в Markdown-шаблонах разметку/стили.
 - `make check` жёстко ищет строки: `База знаний TokenBel` (home), `Страница не найдена` (404). Сохраняйте их дословно при рефакторинге.

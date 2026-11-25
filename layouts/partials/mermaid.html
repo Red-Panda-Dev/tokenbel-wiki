@@ -1,4 +1,49 @@
 {{- if .Page.Store.Get "hasMermaid" -}}
+  {{- /* Hand-drawn diagram look. Pele has no handDrawn mode and ignores Mermaid's
+        `look` directive, so the style is layered on top of its class names from
+        static/css/input.css: a hatched fill instead of solid node surfaces and
+        displacement filters that roughen contours and connectors. Labels are not
+        filtered and stay crisp. The ids below are a contract with that CSS.
+
+        Connectors: the whole edge group shares one of the filters, sized from
+        the viewport, because a straight connector has a zero-height bounding box
+        and the browser drops filtered elements when their region collapses.
+        Nodes: the second displaced copy is clipped to a band around the contour
+        so the hatching stays single. Pele positions nodes with a transform, so
+        same-size shapes would sample identical noise; three seeds cycled by CSS
+        keep their contours distinct.
+
+        Tailwind scans templates verbatim, so wording here must not contain
+        tokens that are utility class names: they would be emitted into the
+        committed CSS. */ -}}
+  <svg class="absolute h-0 w-0 overflow-hidden" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="pele-hachure" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+        <rect width="4" height="4" fill="#f7f7f8" />
+        <line x1="0" y1="0" x2="0" y2="4" stroke="#b8b8c0" stroke-width="0.7" />
+      </pattern>
+      <filter id="pele-sketch-line" filterUnits="userSpaceOnUse" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      {{- range $i, $seeds := slice (slice 103 110) (slice 117 124) (slice 141 148) }}
+      <filter id="pele-sketch-node-{{ math.Add $i 1 }}" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="{{ index $seeds 0 }}" result="noise-a" />
+        <feDisplacementMap in="SourceGraphic" in2="noise-a" scale="2" xChannelSelector="R" yChannelSelector="G" result="outline-a" />
+        <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="outer" />
+        <feMorphology in="SourceAlpha" operator="erode" radius="3" result="inner" />
+        <feComposite in="outer" in2="inner" operator="out" result="band" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="{{ index $seeds 1 }}" result="noise-b" />
+        <feDisplacementMap in="SourceGraphic" in2="noise-b" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="outline-b" />
+        <feComposite in="outline-b" in2="band" operator="in" result="outline-b-band" />
+        <feMerge>
+          <feMergeNode in="outline-a" />
+          <feMergeNode in="outline-b-band" />
+        </feMerge>
+      </filter>
+      {{- end }}
+    </defs>
+  </svg>
   {{- $renderer := resources.Get "js/diagrams.js" | js.Build (dict "targetPath" "js/diagrams.js" "minify" true) | fingerprint -}}
   <script defer src="{{ $renderer.RelPermalink }}"></script>
 {{- end -}}
