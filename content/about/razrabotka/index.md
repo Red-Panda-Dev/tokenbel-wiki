@@ -2,7 +2,7 @@
 title: "Разработка"
 description: "Как устроен TokenBel: PostgreSQL, pgvector, Redis, высокая доступность и технологические решения для хранения и обработки финансовых данных."
 date: "2025-11-15"
-lastmod: "2026-08-03"
+lastmod: "2026-11-25"
 draft: false
 weight: 4
 ---
@@ -22,7 +22,3 @@ v3
 
 v3
 [![Схема базы данных](https://cdn-wiki.tokenbel.info/wiki/media/images/4d/4d8aeb2a01f9fe942c31946e4e41d410032bcfa99c4bddd7342fa21aed760240.webp)](https://cdn-wiki.tokenbel.info/wiki/media/images/4d/4d8aeb2a01f9fe942c31946e4e41d410032bcfa99c4bddd7342fa21aed760240.webp)
-
-### Планы и задачи
-
-Для планирования и отслеживания задач используется [Planka](https://github.com/plankanban/planka).
