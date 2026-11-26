@@ -20,7 +20,7 @@ System(storage, "Object Storage", "R2 / S3: статика и файлы")
 System_Ext(ext, "External Services", "Внешние источники данных и уведомления")
 
 System_Boundary(tbel, "TokenBel") {
-  Container(api, "API", "aiohttp backend", "JSON API и внутренний API")
+  Container(api, "Backend", "aiohttp", "JSON API, внутренний API и SSR")
   Container(wiki, "Wiki", "Hugo", "Статические страницы")
   Container(cron, "Cron", "Планировщик", "Расписание задач")
   ContainerQueue(queue, "Queue", "Очередь", "Очередь задач")
