@@ -126,8 +126,11 @@
     filter: url(#pele-sketch-node-3);
 }
 
+/* Groups (boundaries, subgraphs) get a different hatch than the nodes inside:
+   sparse, lighter and crossing at the opposite angle, so a node reads as
+   separate from its backdrop. */
 .mermaid-figure .pele-cluster > rect {
-    fill: url(#pele-hachure);
+    fill: url(#pele-hachure-group);
     filter: url(#pele-sketch-line);
 }
 

@@ -13,6 +13,11 @@
         same-size shapes would sample identical noise; three seeds cycled by CSS
         keep their contours distinct.
 
+        Hatching: as in technical drawings, a group (boundary or subgraph) and the
+        nodes inside it must not share a hatch. Nodes use a dense hatch at -45
+        degrees; groups use a sparse, lighter one at +45 degrees, so the two never
+        coincide line for line.
+
         Tailwind scans templates verbatim, so wording here must not contain
         tokens that are utility class names: they would be emitted into the
         committed CSS. */ -}}
@@ -21,6 +26,10 @@
       <pattern id="pele-hachure" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
         <rect width="4" height="4" fill="#f7f7f8" />
         <line x1="0" y1="0" x2="0" y2="4" stroke="#b8b8c0" stroke-width="0.7" />
+      </pattern>
+      <pattern id="pele-hachure-group" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="9" height="9" fill="#fcfcfd" />
+        <line x1="0" y1="0" x2="0" y2="9" stroke="#d4d4d8" stroke-width="0.6" />
       </pattern>
       <filter id="pele-sketch-line" filterUnits="userSpaceOnUse" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
         <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="noise" />

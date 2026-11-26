@@ -1373,7 +1373,7 @@
   filter: url(#pele-sketch-node-3);
 }
 .mermaid-figure .pele-cluster > rect {
-  fill: url(#pele-hachure);
+  fill: url(#pele-hachure-group);
   filter: url(#pele-sketch-line);
 }
 .mermaid-figure .pele-edges {
