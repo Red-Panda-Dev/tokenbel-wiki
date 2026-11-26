@@ -26,7 +26,8 @@ System_Boundary(tbel, "TokenBel") {
   ContainerQueue(queue, "Queue", "Очередь", "Очередь задач")
   Container(workers, "Workers", "Воркеры", "Коллекторы и конвейеры данных")
   ContainerDb(cache, "Cache", "Redis", "Кэш и сессии")
-  ContainerDb(db, "Database", "PostgreSQL", "Основное хранилище")
+  ContainerDb(db, "Database", "PostgreSQL (master)", "Основное хранилище, чтение и запись")
+  ContainerDb(replica, "Read Replica", "PostgreSQL (slave)", "Реплика только для чтения")
 }
 
 BiRel(client, dns, "Запросы")
@@ -42,7 +43,8 @@ Rel(workers, queue, "Задачи для других воркеров")
 BiRel(workers, ext, "Обмен данными")
 Rel(workers, api, "Отправка данных")
 BiRel(workers, cache, "Чтение и запись")
-Rel(workers, db, "Чтение, read-only")
+Rel(db, replica, "Репликация master → slave")
+Rel(workers, replica, "Чтение, read-only")
 
 UpdateElementStyle(client, $borderColor="#D6B656", $fontColor="#8A6A1F")
 UpdateElementStyle(dns, $borderColor="#9773A6", $fontColor="#6E4E7E")
@@ -56,6 +58,7 @@ UpdateElementStyle(queue, $borderColor="#C2410C", $fontColor="#9A3412")
 UpdateElementStyle(workers, $borderColor="#C2410C", $fontColor="#9A3412")
 UpdateElementStyle(cache, $borderColor="#5E9484", $fontColor="#3D6B5A")
 UpdateElementStyle(db, $borderColor="#5E9484", $fontColor="#3D6B5A")
+UpdateElementStyle(replica, $borderColor="#5E9484", $fontColor="#3D6B5A")
 ```
 
 ### Хранение данных
