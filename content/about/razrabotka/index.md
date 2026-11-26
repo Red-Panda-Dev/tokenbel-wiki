@@ -16,18 +16,18 @@ title "Схема сервиса TokenBel"
 Person(client, "Client", "Пользователь сервиса")
 
 System(dns, "DNS", "Cloudflare DNS")
-System(storage, "Object Storage", "R2 / S3: статика и файлы")
-System_Ext(ext, "External Services", "Внешние источники данных и уведомления")
+System(storage, "Object Storage", "Статика и файлы")
+System_Ext(ext, "External Services", "Внешние источники данных")
 
 System_Boundary(tbel, "TokenBel") {
   Container(api, "Backend", "aiohttp", "JSON API, внутренний API и SSR")
   Container(wiki, "Wiki", "Hugo", "Статические страницы")
   Container(cron, "Cron", "Планировщик", "Расписание задач")
   ContainerQueue(queue, "Queue", "Очередь", "Очередь задач")
-  Container(workers, "Workers", "Воркеры", "Коллекторы и конвейеры данных")
+  Container(workers, "Workers", "Воркеры", "Конвейеры данных")
   ContainerDb(cache, "Cache", "Redis", "Кэш и сессии")
-  ContainerDb(db, "Database", "PostgreSQL (master)", "Основное хранилище, чтение и запись")
-  ContainerDb(replica, "Read Replica", "PostgreSQL (slave)", "Реплика только для чтения")
+  ContainerDb(db, "Database", "PostgreSQL (master)", "Основное хранилище")
+  ContainerDb(replica, "Read Replica", "PostgreSQL (slave)", "Реплика для чтения")
 }
 
 BiRel(client, dns, "Запросы")
