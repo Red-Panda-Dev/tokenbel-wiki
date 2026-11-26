@@ -11,7 +11,7 @@ weight: 4
 
 ```mermaid
 C4Container
-title "Схема сервиса TokenBel (C4 Container)"
+title "Схема сервиса TokenBel"
 
 Person(client, "Client", "Пользователь сервиса")
 
